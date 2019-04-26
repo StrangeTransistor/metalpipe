@@ -1,4 +1,11 @@
 {
+	"esm": true,
+
+	"scripts":
+	{
+		"test": "cd fixt; node -r esm -e 'console.log(1)'"
+	},
+
 	"peerDependencies":
 	{
 		"gulp":
@@ -10,6 +17,13 @@
 
 	"dependencies":
 	{
+		"esm":
+			"3",
+
+		"@streetstrider/rootpath":
+			"2",
+
+
 		"gulp-concat":
 			"2",
 
