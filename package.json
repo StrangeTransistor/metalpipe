@@ -3,7 +3,8 @@
 
 	"scripts":
 	{
-		"test": "cd fixt; node -r esm -e 'console.log(1)'"
+		"test1": "cd fixt; node -r esm ../node_modules/gulp/bin/gulp.js",
+		"test":  "cd fixt; gulp"
 	},
 
 	"peerDependencies":
