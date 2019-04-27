@@ -1,6 +1,9 @@
 
 require = require('esm')(module)
 
+require('console-ultimate')
+
+
 var rootpath = require('@streetstrider/rootpath')
 
 var is_prod = require('../util/is-prod').default
