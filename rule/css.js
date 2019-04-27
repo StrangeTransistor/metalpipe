@@ -2,8 +2,6 @@
 import gulp from 'gulp'
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
-// import { src } from 'gulp'
-// import { dest as dst } from 'gulp'
 
 import concat from 'gulp-concat'
 import guif from 'gulp-if'
