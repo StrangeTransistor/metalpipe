@@ -1,5 +1,4 @@
 
-import gulp from 'gulp'
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
