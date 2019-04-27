@@ -1,0 +1,32 @@
+
+import gulp from 'gulp'
+var { src } = require('gulp')
+var { dest: dst } = require('gulp')
+// import { src } from 'gulp'
+// import { dest as dst } from 'gulp'
+
+import concat from 'gulp-concat'
+import guif from 'gulp-if'
+
+
+import less from '../unit/less'
+import cssnano from '../unit/cssnano'
+
+import live from '../util/live'
+import is_prod from '../util/is-prod'
+
+
+export default function css ({ $from, $to })
+{
+	return () =>
+	{
+		return live($from('**/*.less'), function css$ ()
+		{
+			return src($from('index/index.less'))
+			.pipe(less({ $from }))
+			.pipe(concat('index.css'))
+			.pipe(guif(is_prod(), cssnano()))
+			.pipe(dst($to()))
+		})
+	}
+}

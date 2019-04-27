@@ -6,16 +6,17 @@ require('console-ultimate')
 
 var rootpath = require('@streetstrider/rootpath')
 
+var { parallel } = require('gulp')
+
 var is_prod = require('../util/is-prod').default
 
 
-var $from = rootpath()
-var $to = $from.partial('release', is_prod() && 'prod' || 'dev')
+var $root = rootpath()
+
+var $from = $root.partial('lib')
+var $to   = $root.partial('release', is_prod() && 'prod' || 'dev')
+
+var css = require('../rule/css').default
 
 
-exports.default = async () =>
-{
-	console.log('Hello')
-	console.log($from())
-	console.log($to())
-}
+exports.default = css({ $from, $to })
