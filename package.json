@@ -6,7 +6,7 @@
 		"test1": "cd fixt; node -r esm ../node_modules/gulp/bin/gulp.js",
 		"test":  "cd fixt; gulp --once; gulp --prod",
 
-		"st": "eslint rule/ unit/ util/"
+		"st": "eslint rule/ unit/ util/ fixt/"
 	},
 
 	"peerDependencies":

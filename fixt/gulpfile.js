@@ -16,7 +16,9 @@ var $root = rootpath()
 var $from = $root.partial('lib')
 var $to   = $root.partial('release', is_prod() && 'prod' || 'dev')
 
-var css = require('../rule/css').default
+var Css = require('../rule/css').default
 
 
-exports.default = css({ $from, $to })
+var css = Css({ $from, $to })
+
+exports.default = parallel(css)

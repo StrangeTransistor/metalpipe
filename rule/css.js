@@ -16,7 +16,7 @@ import is_prod from '../util/is-prod'
 
 export default function css ({ $from, $to })
 {
-	return () =>
+	return function CSS ()
 	{
 		return live($from('**/*.less'), function css$ ()
 		{
