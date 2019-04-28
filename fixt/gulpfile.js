@@ -16,6 +16,8 @@ var $root = rootpath()
 var $from = $root.partial('lib')
 var $to   = $root.partial('release', is_prod() && 'prod' || 'dev')
 
+console.log('To:', $root.relative($to))
+
 var Css = require('../rule/css').default
 
 
