@@ -57,6 +57,30 @@
 
 
 		"gulp-better-rollup":
+			"4",
+
+		"rollup-plugin-node-resolve":
+			"4",
+
+		"rollup-plugin-node-globals":
+			"1",
+
+		"rollup-plugin-node-builtins":
+			"2",
+
+		"rollup-plugin-commonjs":
+			"9",
+
+		"rollup-plugin-sucrase":
+			"2",
+
+		"rollup-plugin-import-alias":
+			"1",
+
+		"rollup-plugin-mustache":
+			"0.1",
+
+		"rollup-plugin-babel":
 			"4"
 	},
 

@@ -19,20 +19,52 @@ export default function javascript ({ $from, $to })
 		return live($from('**/*.js'), () =>
 		{
 			return src($from('index/index.js'))
-			.pipe(rollup(config()))
+			.pipe(rollup(config({ $from })))
 			// .pipe(concat('index.css'))
 			.pipe(dst($to()))
 		})
 	}
 }
 
-function config ()
+
+function config ({ $from })
 {
-	return {
+	return 0,
+	{
+		plugins: plugins({ $from }),
+
 		output:
 		{
 			format: 'iife',
 			file: 'index.js',
 		},
 	}
+}
+
+
+import resolve  from 'rollup-plugin-node-resolve'
+import globals  from 'rollup-plugin-node-globals'
+import builtins  from 'rollup-plugin-node-builtins'
+import commonjs from 'rollup-plugin-commonjs'
+import sucrase  from 'rollup-plugin-sucrase'
+import aliases  from 'rollup-plugin-import-alias'
+import mustache from 'rollup-plugin-mustache'
+// babel
+// babel-preset-env
+// babel-preset-minify
+
+function plugins ({ $from })
+{
+	var plugins =
+	[
+		aliases({ Paths: { '~lib': $from() }, }),
+		resolve({ browser: true }),
+		globals(),
+		builtins(),
+		commonjs(),
+		sucrase({ transforms: [ 'flow' ] }),
+		mustache({ include: '**/*.mst.html' }),
+	]
+
+	return plugins
 }
