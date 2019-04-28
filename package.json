@@ -46,7 +46,11 @@
 			"2",
 
 		"gulp-autoprefixer":
-			"6"
+			"6",
+
+
+		"gulp-pug":
+			"4"
 	},
 
 	"devDependencies":

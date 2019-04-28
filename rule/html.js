@@ -1,3 +1,26 @@
+
+var { src } = require('gulp')
+var { dest: dst } = require('gulp')
+
+
+import pug from '../unit/pug'
+
+import live from '../util/live'
+
+
+export default function html ({ $from, $to })
+{
+	return function HTML ()
+	{
+		return live($from('**/*.pug'), function html$ ()
+		{
+			return src($from('index/*.pug'))
+			.pipe(pug({ $from }))
+			.pipe(dst($to()))
+		})
+	}
+}
+
 //
 //function html ()
 //{
