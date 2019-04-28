@@ -22,9 +22,11 @@ console.log('To:', $root.relative($to))
 
 var Css = require('../rule/css').default
 var Html = require('../rule/html').default
+var JavaScript = require('../rule/javascript').default
 
 
 var css = Css(fromto)
 var html = Html(fromto)
+var javascript = JavaScript(fromto)
 
-exports.default = parallel(css, html)
+exports.default = parallel(css, html, javascript)

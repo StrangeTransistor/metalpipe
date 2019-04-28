@@ -6,7 +6,7 @@
 		"check1": "cd fixt; node -r esm ../node_modules/gulp/bin/gulp.js",
 		"check":  "cd fixt; gulp --once; gulp --prod",
 
-		"st": "eslint rule/ unit/ util/ fixt/",
+		"st": "eslint rule/ unit/ util/ fixt/lib/",
 
 		"test": "npm run st && npm run check"
 	},
@@ -17,7 +17,10 @@
 			"4",
 
 		"less":
-			"3"
+			"3",
+
+		"rollup":
+			"1"
 	},
 
 	"dependencies":
@@ -50,6 +53,10 @@
 
 
 		"gulp-pug":
+			"4",
+
+
+		"gulp-better-rollup":
 			"4"
 	},
 
@@ -64,6 +71,10 @@
 
 		"less":
 			"3",
+
+
+		"rollup":
+			"1",
 
 
 		"eslint":
