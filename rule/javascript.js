@@ -60,8 +60,8 @@ function plugins ({ $from })
 	var plugins =
 	[
 		resolve(),
+		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
-		// aliases({ Paths: { '~lib': $from() }, }),
 		// globals(),
 		// builtins(),
 		// sucrase({ transforms: [ 'flow' ] }),
