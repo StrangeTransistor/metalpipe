@@ -48,9 +48,12 @@ import resolve  from 'rollup-plugin-node-resolve'
 import globals  from 'rollup-plugin-node-globals'
 import builtins from 'rollup-plugin-node-builtins'
 import commonjs from 'rollup-plugin-commonjs'
-import sucrase  from 'rollup-plugin-sucrase'
+
 import aliases  from 'rollup-plugin-import-alias'
-import mustache from 'rollup-plugin-mustache'
+
+// import sucrase  from 'rollup-plugin-sucrase'
+// import mustache from 'rollup-plugin-mustache'
+
 // babel
 // babel-preset-env
 // babel-preset-minify
