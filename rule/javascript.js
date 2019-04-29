@@ -51,8 +51,8 @@ import commonjs from 'rollup-plugin-commonjs'
 
 import aliases  from 'rollup-plugin-import-alias'
 
+import mustache from 'rollup-plugin-mustache'
 // import sucrase  from 'rollup-plugin-sucrase'
-// import mustache from 'rollup-plugin-mustache'
 
 // babel
 // babel-preset-env
@@ -67,8 +67,8 @@ function plugins ({ $from })
 		resolve(),
 		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
+		mustache({ include: '**/*.mst.html' }),
 		// sucrase({ transforms: [ 'flow' ] }),
-		// mustache({ include: '**/*.mst.html' }),
 	]
 
 	return plugins
