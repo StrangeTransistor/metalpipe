@@ -19,7 +19,7 @@ export default function javascript ({ $from, $to })
 		return live($from('**/*.js'), () =>
 		{
 			return src($from('index/index.js'))
-			.pipe(rollup(config({ $from })))
+			.pipe(rollup(...config({ $from })))
 			// .pipe(concat('index.css'))
 			.pipe(dst($to()))
 		})
@@ -29,22 +29,24 @@ export default function javascript ({ $from, $to })
 
 function config ({ $from })
 {
-	return 0,
+	var input =
 	{
 		plugins: plugins({ $from }),
-
-		output:
-		{
-			format: 'iife',
-			file: 'index.js',
-		},
 	}
+
+	var output =
+	{
+		format: 'iife',
+		file: 'index.js',
+	}
+
+	return [ input, output ]
 }
 
 
 import resolve  from 'rollup-plugin-node-resolve'
 import globals  from 'rollup-plugin-node-globals'
-import builtins  from 'rollup-plugin-node-builtins'
+import builtins from 'rollup-plugin-node-builtins'
 import commonjs from 'rollup-plugin-commonjs'
 import sucrase  from 'rollup-plugin-sucrase'
 import aliases  from 'rollup-plugin-import-alias'
@@ -57,13 +59,13 @@ function plugins ({ $from })
 {
 	var plugins =
 	[
-		aliases({ Paths: { '~lib': $from() }, }),
-		resolve({ browser: true }),
-		globals(),
-		builtins(),
-		commonjs(),
-		sucrase({ transforms: [ 'flow' ] }),
-		mustache({ include: '**/*.mst.html' }),
+		resolve(),
+		// commonjs(),
+		// aliases({ Paths: { '~lib': $from() }, }),
+		// globals(),
+		// builtins(),
+		// sucrase({ transforms: [ 'flow' ] }),
+		// mustache({ include: '**/*.mst.html' }),
 	]
 
 	return plugins

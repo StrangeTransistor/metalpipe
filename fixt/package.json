@@ -4,6 +4,9 @@
 	"dependencies":
 	{
 		"@streetstrider/css-default":
-			"1"
+			"1",
+
+		"ramda":
+			"0.26"
 	}
 }
