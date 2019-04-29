@@ -60,10 +60,10 @@ function plugins ({ $from })
 	var plugins =
 	[
 		globals(),
+		builtins(),
 		resolve(),
 		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
-		// builtins(),
 		// sucrase({ transforms: [ 'flow' ] }),
 		// mustache({ include: '**/*.mst.html' }),
 	]
