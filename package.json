@@ -55,6 +55,9 @@
 		"gulp-pug":
 			"4",
 
+		"pug-runtime":
+			"2",
+
 
 		"gulp-better-rollup":
 			"4",
@@ -79,6 +82,9 @@
 
 		"rollup-plugin-mustache":
 			"0.1",
+
+		"rollup-plugin-pug":
+			"1",
 
 		"rollup-plugin-babel":
 			"4"

@@ -14,3 +14,11 @@ console.log(join('a', 'b'))
 import mst from '../other/other.mst.html'
 
 console.log(mst.render({ data: 'yes' }))
+
+import pug_s from '../other/other.static.pug'
+
+console.log(pug_s)
+
+import pug from '../other/other.pug'
+
+console.log(pug({ x: 'yes' }))

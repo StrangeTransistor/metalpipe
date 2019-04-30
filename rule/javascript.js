@@ -52,6 +52,8 @@ import commonjs from 'rollup-plugin-commonjs'
 import aliases  from 'rollup-plugin-import-alias'
 
 import mustache from 'rollup-plugin-mustache'
+import pug from 'rollup-plugin-pug'
+
 // import sucrase  from 'rollup-plugin-sucrase'
 
 // babel
@@ -68,6 +70,7 @@ function plugins ({ $from })
 		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
 		mustache({ include: '**/*.mst.html' }),
+		pug({ pugRuntime: 'pug-runtime' }),
 		// sucrase({ transforms: [ 'flow' ] }),
 	]
 
