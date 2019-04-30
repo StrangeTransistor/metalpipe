@@ -1,4 +1,4 @@
 
 import nah from 'ramda/src/not'
 
-console.log(nah(false))
+console.log('nah', nah(false))
