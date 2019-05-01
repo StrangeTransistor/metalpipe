@@ -2,14 +2,13 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-// import concat from 'gulp-concat'
-// import guif from 'gulp-if'
+import guif from 'gulp-if'
 
 
 import rollup from '../unit/rollup'
 
 import live from '../util/live'
-// import is_prod from '../util/is-prod'
+import is_prod from '../util/is-prod'
 
 
 export default function javascript ({ $from, $to })
@@ -20,7 +19,7 @@ export default function javascript ({ $from, $to })
 		{
 			return src($from('index/index.js'))
 			.pipe(rollup(...config({ $from })))
-			// .pipe(concat('index.css'))
+			.pipe(guif(is_prod(), prod()))
 			.pipe(dst($to()))
 		})
 	}
@@ -56,9 +55,6 @@ import pug from 'rollup-plugin-pug'
 
 import sucrase  from 'rollup-plugin-sucrase'
 
-// babel
-// babel-preset-env
-// babel-preset-minify
 
 function plugins ({ $from })
 {
@@ -77,4 +73,19 @@ function plugins ({ $from })
 	]
 
 	return plugins
+}
+
+
+import babel from 'gulp-babel'
+// 'babel-preset-minify'
+
+function prod ()
+{
+	return babel(
+	{
+		presets:
+		[
+			'@babel/preset-env',
+		]
+	})
 }

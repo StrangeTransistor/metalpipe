@@ -86,8 +86,15 @@
 		"rollup-plugin-pug":
 			"1",
 
-		"rollup-plugin-babel":
-			"4"
+
+		"gulp-babel":
+			"8",
+
+		"@babel/core":
+			"7",
+
+		"@babel/preset-env":
+			"7"
 	},
 
 	"devDependencies":
