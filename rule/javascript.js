@@ -65,13 +65,15 @@ function plugins ({ $from })
 	var plugins =
 	[
 		pug({ pugRuntime: 'pug-runtime' }),
+		mustache({ include: '**/*.mst.html' }),
+		/* pug must precede extended syntaxes (flow) */
 		sucrase({ transforms: [ 'flow' ] }),
+
 		globals(),
 		builtins(),
 		resolve(),
 		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
-		mustache({ include: '**/*.mst.html' }),
 	]
 
 	return plugins
