@@ -22,3 +22,7 @@ console.log(pug_s)
 import pug from '../other/other.pug'
 
 console.log(pug({ x: 'yes' }))
+
+var x: string = 'yes'
+
+console.log(x)

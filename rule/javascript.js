@@ -54,7 +54,7 @@ import aliases  from 'rollup-plugin-import-alias'
 import mustache from 'rollup-plugin-mustache'
 import pug from 'rollup-plugin-pug'
 
-// import sucrase  from 'rollup-plugin-sucrase'
+import sucrase  from 'rollup-plugin-sucrase'
 
 // babel
 // babel-preset-env
@@ -64,14 +64,14 @@ function plugins ({ $from })
 {
 	var plugins =
 	[
+		pug({ pugRuntime: 'pug-runtime' }),
+		sucrase({ transforms: [ 'flow' ] }),
 		globals(),
 		builtins(),
 		resolve(),
 		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
 		mustache({ include: '**/*.mst.html' }),
-		pug({ pugRuntime: 'pug-runtime' }),
-		// sucrase({ transforms: [ 'flow' ] }),
 	]
 
 	return plugins
