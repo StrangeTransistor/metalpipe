@@ -67,7 +67,7 @@ function plugins ({ $from })
 
 		globals(),
 		builtins(),
-		resolve(),
+		resolve({ mainFields: [ 'module', 'main', 'browser' ] }),
 		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
 	]
