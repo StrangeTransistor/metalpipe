@@ -77,7 +77,6 @@ function plugins ({ $from })
 
 
 import babel from 'gulp-babel'
-// 'babel-preset-minify'
 
 function prod ()
 {
@@ -86,6 +85,8 @@ function prod ()
 		presets:
 		[
 			'@babel/preset-env',
-		]
+		//	'minify',
+		],
+		comments: false,
 	})
 }
