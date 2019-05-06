@@ -15,7 +15,7 @@ export default function javascript ({ $from, $to })
 {
 	return function JAVASCRIPT ()
 	{
-		return live($from('**/*.js'), () =>
+		return live($from('**/*.js'), function javascript$ ()
 		{
 			return src($from('index/index.js'))
 			.pipe(rollup(...config({ $from })))
