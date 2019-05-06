@@ -15,13 +15,13 @@ import mst from '../other/other.mst.html'
 
 console.log(mst.render({ data: 'yes' }))
 
-import pug_s from '../other/other.static.pug'
+import pug_s from '../other/some.static.pug'
 
 console.log(pug_s)
 
-import pug from '../other/other.pug'
+import pug from './index.pug'
 
-console.log(pug({ x: 'yes' }))
+console.log(pug({ other: 'Other', some: 'Some' }))
 
 var x: string = 'yes'
 

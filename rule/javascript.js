@@ -60,7 +60,7 @@ function plugins ({ $from })
 {
 	var plugins =
 	[
-		pug({ pugRuntime: 'pug-runtime' }),
+		pug({ basedir: $from(), pugRuntime: 'pug-runtime' }),
 		mustache({ include: '**/*.mst.html' }),
 		/* pug must precede extended syntaxes (flow) */
 		sucrase({ transforms: [ 'flow' ] }),
