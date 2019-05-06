@@ -3,7 +3,6 @@
 
 	"scripts":
 	{
-		"check1": "cd fixt; node -r esm ../node_modules/gulp/bin/gulp.js",
 		"check":  "cd fixt; gulp --once; gulp --prod",
 
 		"st": "eslint rule/ unit/ util/ fixt/lib/",
