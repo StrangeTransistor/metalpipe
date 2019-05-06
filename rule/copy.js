@@ -1,7 +1,15 @@
-/*
-function font ()
+
+var { src } = require('gulp')
+var { dest: dst } = require('gulp')
+
+import live from '../util/live'
+
+
+export default function copy ({ from, to })
 {
-	return src($from('node_modules/font-awesome/fonts/*'))
-	.pipe(dest($to('static/fa')))
+	return live(from, function copy$ ()
+	{
+		return src(from)
+		.pipe(dst(to))
+	})
 }
-*/
