@@ -3,7 +3,7 @@
 
 	"scripts":
 	{
-		"check":  "cd fixt; gulp --once; gulp --prod",
+		"check":  "cd fixt; gulp --once; gulp --final",
 
 		"st": "eslint rule/ unit/ util/ fixt/lib/",
 

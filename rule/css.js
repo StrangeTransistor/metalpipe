@@ -11,7 +11,7 @@ import prefix from '../unit/autoprefixer'
 import cssnano from '../unit/cssnano'
 
 import live from '../util/live'
-import is_prod from '../util/is-prod'
+import is_final from '../util/is-final'
 
 
 export default function css ({ $from, $to })
@@ -23,13 +23,13 @@ export default function css ({ $from, $to })
 			return src($from('index/index.less'))
 			.pipe(less({ $from }))
 			.pipe(concat('index.css'))
-			.pipe(guif(is_prod(), prod()))
+			.pipe(guif(is_final(), final()))
 			.pipe(dst($to()))
 		})
 	}
 }
 
-function prod ()
+function final ()
 {
 	return prefix()
 	.pipe(cssnano())

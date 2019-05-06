@@ -8,7 +8,7 @@ import guif from 'gulp-if'
 import rollup from '../unit/rollup'
 
 import live from '../util/live'
-import is_prod from '../util/is-prod'
+import is_final from '../util/is-final'
 
 
 export default function javascript ({ $from, $to })
@@ -19,7 +19,7 @@ export default function javascript ({ $from, $to })
 		{
 			return src($from('index/index.js'))
 			.pipe(rollup(...config({ $from })))
-			.pipe(guif(is_prod(), prod()))
+			.pipe(guif(is_final(), final()))
 			.pipe(dst($to()))
 		})
 	}
@@ -78,7 +78,7 @@ function plugins ({ $from })
 
 import babel from 'gulp-babel'
 
-function prod ()
+function final ()
 {
 	return babel(
 	{

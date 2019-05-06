@@ -8,13 +8,13 @@ var rootpath = require('@streetstrider/rootpath')
 
 var { parallel } = require('gulp')
 
-var is_prod = require('../util/is-prod').default
+var is_final = require('../util/is-final').default
 
 
 var $root = rootpath()
 
 var $from = $root.partial('lib')
-var $to   = $root.partial('release', is_prod() && 'prod' || 'dev')
+var $to   = $root.partial('release', is_final() && 'final' || 'dev')
 
 var fromto = { $from, $to }
 
