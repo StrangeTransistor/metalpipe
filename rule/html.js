@@ -19,7 +19,7 @@ export default function html (fromto)
 
 function html_pug ({ $from, $to })
 {
-	return function HTML_PUG ()
+	return function PUG ()
 	{
 		return live($from('**/*.pug'), function pug$ ()
 		{
