@@ -4,6 +4,7 @@
 	"scripts":
 	{
 		"check":  "cd fixt; gulp --once; gulp --final",
+		"watch":  "cd fixt; gulp",
 
 		"st": "eslint rule/ unit/ util/ fixt/lib/",
 
@@ -32,6 +33,9 @@
 
 		"console-ultimate":
 			"3",
+
+		"function-name":
+			"2",
 
 
 		"gulp-concat":

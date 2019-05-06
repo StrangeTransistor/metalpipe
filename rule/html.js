@@ -36,6 +36,7 @@ function html_static ({ $from, $to })
 	{
 		return copy(
 		{
+			name: 'html_static$',
 			from: $from('index/*.htm?(l)'),
 			to:   $to(),
 		})
