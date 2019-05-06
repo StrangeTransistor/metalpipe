@@ -19,7 +19,7 @@ export default function javascript ({ $from, $to })
 		{
 			return src($from('index/index.js'))
 			.pipe(rollup(...config({ $from })))
-			.pipe(guif(is_final(), final()))
+			.pipe(final())
 			.pipe(dst($to()))
 		})
 	}
@@ -80,13 +80,15 @@ import babel from 'gulp-babel'
 
 function final ()
 {
-	return babel(
-	{
-		presets:
-		[
-			'@babel/preset-env',
-		//	'minify',
-		],
-		comments: false,
-	})
+	return guif(is_final(),
+		babel(
+		{
+			presets:
+			[
+				'@babel/preset-env',
+				// 'minify',
+			],
+			comments: false,
+		})
+	)
 }

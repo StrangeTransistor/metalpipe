@@ -23,7 +23,7 @@ export default function css ({ $from, $to })
 			return src($from('index/index.less'))
 			.pipe(less({ $from }))
 			.pipe(concat('index.css'))
-			.pipe(guif(is_final(), final()))
+			.pipe(final())
 			.pipe(dst($to()))
 		})
 	}
@@ -31,6 +31,8 @@ export default function css ({ $from, $to })
 
 function final ()
 {
-	return prefix()
-	.pipe(cssnano())
+	return guif(is_final(),
+		prefix()
+		.pipe(cssnano())
+	)
 }
