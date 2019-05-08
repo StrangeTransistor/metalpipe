@@ -10,7 +10,16 @@ module.exports = function Context ()
 	var $from = $root.partial('lib')
 	var $to   = $root.partial('release', is_final() && 'final' || 'dev')
 
-	var context = { $root, $from, $to }
+	function describe ()
+	{
+		console.log('To:', $root.relative($to))
+	}
+
+	var context =
+	{
+		$root, $from, $to,
+		describe,
+	}
 
 	return context
 }
