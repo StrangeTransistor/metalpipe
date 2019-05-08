@@ -6,6 +6,7 @@
 
 	"scripts":
 	{
+		"check1": "cd fixt; gulp --once",
 		"check":  "cd fixt; gulp --once; gulp --final",
 		"watch":  "cd fixt; gulp",
 
