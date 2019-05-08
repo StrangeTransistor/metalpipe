@@ -107,9 +107,6 @@
 
 	"devDependencies":
 	{
-		"gulp-cli":
-			"2",
-
 		"gulp":
 			"4",
 
