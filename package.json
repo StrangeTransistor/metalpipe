@@ -1,4 +1,7 @@
 {
+	"name": "metalpipe",
+	"version": "0.0.0",
+
 	"esm": true,
 
 	"scripts":
