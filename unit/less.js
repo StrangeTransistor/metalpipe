@@ -1,8 +1,8 @@
 
-import gulp_less from 'gulp-less'
+var gulp_less = require('gulp-less')
 
 
-export default function less ({ $from })
+module.exports = function less ({ $from })
 {
 	return gulp_less({ paths: $from() })
 }

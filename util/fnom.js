@@ -1,7 +1,7 @@
 
-import Name from 'function-name'
+var Name = require('function-name')
 
-export default function fnom (name, fn)
+module.exports = function fnom (name, fn)
 {
 	Name(fn, name)
 

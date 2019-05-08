@@ -1,8 +1,8 @@
 
-import gulp_rollup from 'gulp-better-rollup'
+var gulp_rollup = require('gulp-better-rollup')
 
 
-export default function rollup (...args)
+module.exports = function rollup (...args)
 {
 	return gulp_rollup(...args)
 }

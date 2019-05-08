@@ -1,8 +1,8 @@
 
-import gulp_cssnano from 'gulp-cssnano'
+var gulp_cssnano = require('gulp-cssnano')
 
 
-export default function cssnano ()
+module.exports = function cssnano ()
 {
 	return gulp_cssnano()
 }

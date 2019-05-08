@@ -1,12 +1,12 @@
 
-import { watch } from 'gulp'
+var { watch } = require('gulp')
 
 
-import is_final from './is-final'
-import is_once from './is-once'
+var is_final = require('./is-final')
+var is_once  = require('./is-once')
 
 
-export default function live (glob, task)
+module.exports = function live (glob, task)
 {
 	if (is_final() || is_once())
 	{

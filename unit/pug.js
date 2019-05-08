@@ -1,8 +1,8 @@
 
-import gulp_pug from 'gulp-pug'
+var gulp_pug = require('gulp-pug')
 
 
-export default function pug ({ $from })
+module.exports = function pug ({ $from })
 {
 	return gulp_pug({ basedir: $from() })
 }

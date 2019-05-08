@@ -1,8 +1,8 @@
 
-import is_argv from './is-argv'
+var is_argv = require('./is-argv')
 
 
-export default function is_once ()
+module.exports = function is_once ()
 {
 	return is_argv('--once')
 }

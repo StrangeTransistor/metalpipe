@@ -1,8 +1,8 @@
 
-import gulp_autoprefixer from 'gulp-autoprefixer'
+var gulp_autoprefixer = require('gulp-autoprefixer')
 
 
-export default function autoprefixer ()
+module.exports = function autoprefixer ()
 {
 	return gulp_autoprefixer()
 }

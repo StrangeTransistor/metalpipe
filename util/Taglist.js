@@ -1,5 +1,5 @@
 
-export default function Taglist (tags, subst)
+module.exports = function Taglist (tags, subst)
 {
 	tags  = [].concat(tags || [])
 	subst = { ...subst }

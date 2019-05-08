@@ -2,11 +2,11 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-import live from '../util/live'
-import fnom from '../util/fnom'
+var live = require('../util/live')
+var fnom = require('../util/fnom')
 
 
-export default function copy ({ from, to, name })
+module.exports = function copy ({ from, to, name })
 {
 	name || (name = 'copy$')
 

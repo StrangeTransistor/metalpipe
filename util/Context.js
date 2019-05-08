@@ -1,9 +1,9 @@
 
-import rootpath from './rootpath'
-import is_final from './is-final'
+var rootpath = require('./rootpath')
+var is_final = require('./is-final')
 
 
-export default function Context ()
+module.exports = function Context ()
 {
 	var $root = rootpath()
 

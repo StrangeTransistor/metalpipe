@@ -1,2 +1,2 @@
 
-export { default } from '@streetstrider/rootpath'
+module.exports = require('@streetstrider/rootpath')

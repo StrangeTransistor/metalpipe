@@ -1,8 +1,6 @@
 {
-	"name": "metalpipe",
+	   "name": "metalpipe",
 	"version": "0.0.0",
-
-	"esm": true,
 
 	"scripts":
 	{
@@ -29,9 +27,6 @@
 
 	"dependencies":
 	{
-		"esm":
-			"3",
-
 		"@streetstrider/rootpath":
 			"2",
 

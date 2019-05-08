@@ -2,19 +2,19 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-import concat from 'gulp-concat'
-import guif from 'gulp-if'
+var concat = require('gulp-concat')
+var guif = require('gulp-if')
 
 
-import less from '../unit/less'
-import prefix from '../unit/autoprefixer'
-import cssnano from '../unit/cssnano'
+var less = require('../unit/less')
+var prefix = require('../unit/autoprefixer')
+var cssnano = require('../unit/cssnano')
 
-import live from '../util/live'
-import is_final from '../util/is-final'
+var live = require('../util/live')
+var is_final = require('../util/is-final')
 
 
-export default function css ({ $from, $to })
+module.exports = function css ({ $from, $to })
 {
 	return function CSS ()
 	{

@@ -5,14 +5,14 @@ var { dest: dst } = require('gulp')
 var { parallel } = require('gulp')
 
 
-import pug from '../unit/pug'
+var pug = require('../unit/pug')
 
-import live from '../util/live'
+var live = require('../util/live')
 
-import copy from './copy'
+var copy = require('./copy')
 
 
-export default function html (fromto)
+module.exports = function html (fromto)
 {
 	return parallel(html_pug(fromto), html_static(fromto))
 }
