@@ -8,29 +8,30 @@ var guif = require('gulp-if')
 var rollup = require('../unit/rollup')
 
 var live = require('../util/live')
-var is_final = require('../util/is-final')
 
 
-module.exports = function javascript ({ $from, $to })
+module.exports = function javascript (context)
 {
 	return function JAVASCRIPT ()
 	{
-		return live($from('**/*.js'), function javascript$ ()
+		var { $from, $to } = context
+
+		return live(context, $from('**/*.js'), function javascript$ ()
 		{
 			return src($from('index/index.js'))
-			.pipe(rollup(...config({ $from })))
-			.pipe(final())
+			.pipe(rollup(...config(context)))
+			.pipe(final(context))
 			.pipe(dst($to()))
 		})
 	}
 }
 
 
-function config ({ $from })
+function config (context)
 {
 	var input =
 	{
-		plugins: plugins({ $from }),
+		plugins: plugins(context),
 	}
 
 	var output =
@@ -78,9 +79,9 @@ function plugins ({ $from })
 
 var babel = require('gulp-babel')
 
-function final ()
+function final (context)
 {
-	return guif(is_final(),
+	return guif(context.opts.final,
 		babel(
 		{
 			presets:

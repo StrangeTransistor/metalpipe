@@ -2,13 +2,11 @@
 var { watch } = require('gulp')
 
 
-var is_final = require('./is-final')
-var is_once  = require('./is-once')
-
-
-module.exports = function live (glob, task)
+module.exports = function live (context, glob, task)
 {
-	if (is_final() || is_once())
+	var { final, once } = context.opts
+
+	if (final || once)
 	{
 		return task()
 	}

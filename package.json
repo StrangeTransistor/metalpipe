@@ -30,6 +30,9 @@
 		"@streetstrider/rootpath":
 			"2",
 
+		"minimist":
+			"1",
+
 		"console-ultimate":
 			"3",
 

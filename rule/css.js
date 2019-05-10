@@ -11,27 +11,28 @@ var prefix = require('../unit/autoprefixer')
 var cssnano = require('../unit/cssnano')
 
 var live = require('../util/live')
-var is_final = require('../util/is-final')
 
 
-module.exports = function css ({ $from, $to })
+module.exports = function css (context)
 {
 	return function CSS ()
 	{
-		return live($from('**/*.less'), function css$ ()
+		var { $from, $to } = context
+
+		return live(context, $from('**/*.less'), function css$ ()
 		{
 			return src($from('index/index.less'))
-			.pipe(less({ $from }))
+			.pipe(less(context))
 			.pipe(concat('index.css'))
-			.pipe(final())
+			.pipe(final(context))
 			.pipe(dst($to()))
 		})
 	}
 }
 
-function final ()
+function final (context)
 {
-	return guif(is_final(),
+	return guif(context.opts.final,
 		prefix()
 		.pipe(cssnano())
 	)

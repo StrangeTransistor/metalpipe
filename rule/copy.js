@@ -6,11 +6,11 @@ var live = require('../util/live')
 var fnom = require('../util/fnom')
 
 
-module.exports = function copy ({ from, to, name })
+module.exports = function copy ({ context, from, to, name })
 {
 	name || (name = 'copy$')
 
-	return live(from, fnom(name, () =>
+	return live(context, from, fnom(name, () =>
 	{
 		return src(from)
 		.pipe(dst(to))
