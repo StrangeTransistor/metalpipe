@@ -5,7 +5,7 @@
 	"scripts":
 	{
 		"check1": "cd fixt; gulp --once",
-		"check":  "cd fixt; gulp --once; gulp --final",
+		"check":  "cd fixt; gulp --once; gulp --final --no-minify",
 		"watch":  "cd fixt; gulp",
 
 		"st": "eslint rule/ unit/ util/ fixt/lib/",

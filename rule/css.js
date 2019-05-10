@@ -11,6 +11,7 @@ var prefix = require('../unit/autoprefixer')
 var cssnano = require('../unit/cssnano')
 
 var live = require('../util/live')
+var get_true = require('../util/get-true')
 
 
 module.exports = function css (context)
@@ -32,8 +33,10 @@ module.exports = function css (context)
 
 function final (context)
 {
+	var minify = get_true(context.opts, 'minify')
+
 	return guif(context.opts.final,
 		prefix()
-		.pipe(cssnano())
+		.pipe(guif(minify, cssnano()))
 	)
 }

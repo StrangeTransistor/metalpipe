@@ -8,6 +8,7 @@ var guif = require('gulp-if')
 var rollup = require('../unit/rollup')
 
 var live = require('../util/live')
+var get_true = require('../util/get-true')
 
 
 module.exports = function javascript (context)
@@ -81,14 +82,20 @@ var babel = require('gulp-babel')
 
 function final (context)
 {
+	var presets =
+	[
+		'@babel/preset-env',
+	]
+
+	if (get_true(context.opts, 'minify'))
+	{
+		presets.push('minify')
+	}
+
 	return guif(context.opts.final,
 		babel(
 		{
-			presets:
-			[
-				'@babel/preset-env',
-				// 'minify',
-			],
+			presets,
 			comments: false,
 		})
 	)
