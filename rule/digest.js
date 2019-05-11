@@ -1,6 +1,8 @@
 
 var { dest: dst } = require('gulp')
 
+var guif = require('gulp-if')
+
 var dgs = require('../unit/digest')
 
 
@@ -11,6 +13,6 @@ module.exports = function digest (context)
 		var { $to } = context
 
 		return dgs()
-		.pipe(dst($to()))
+		.pipe(guif(context.opts.final, dst($to())))
 	}
 }
