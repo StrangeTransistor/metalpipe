@@ -9,6 +9,8 @@ var Digest = require('../rule/digest')
 
 module.exports = function frontend (context)
 {
+	context.describe()
+
 	var css = Css(context)
 	var html = Html(context)
 	var javascript = JavaScript(context)
