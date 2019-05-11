@@ -1,11 +1,7 @@
 
-var dump = (x) => JSON.stringify(x, null, '  ')
-
 var { dest: dst } = require('gulp')
 
-var file = require('gulp-file')
-
-var rev = require('../util/rev')
+var dgs = require('../unit/digest')
 
 
 module.exports = function digest (context)
@@ -14,11 +10,7 @@ module.exports = function digest (context)
 	{
 		var { $to } = context
 
-		var
-		_ = rev()
-		_ = dump(_)
-
-		return file('release.json', _, { src: true })
+		return dgs()
 		.pipe(dst($to()))
 	}
 }
