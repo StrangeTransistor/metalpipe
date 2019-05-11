@@ -4,6 +4,7 @@ var { dest: dst } = require('gulp')
 
 var concat = require('gulp-concat')
 var guif = require('gulp-if')
+var mpipe = require('multipipe')
 
 
 var less = require('../unit/less')
@@ -36,7 +37,9 @@ function final (context)
 	var minify = get_true(context.opts, 'minify')
 
 	return guif(context.opts.final,
-		prefix()
-		.pipe(guif(minify, cssnano()))
+		mpipe(
+			prefix(),
+			guif(minify, cssnano())
+		)
 	)
 }

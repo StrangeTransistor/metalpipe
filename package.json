@@ -46,6 +46,9 @@
 		"gulp-if":
 			"2",
 
+		"multipipe":
+			"3",
+
 
 		"gulp-less":
 			"4",

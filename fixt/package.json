@@ -8,7 +8,9 @@
 		"last 2 Firefox versions",
 		"last 2 FirefoxAndroid versions",
 		"last 2 iOS versions",
-		"last 2 Safari versions"
+		"last 2 Safari versions",
+
+		"IE >= 10"
 	],
 
 	"dependencies":
