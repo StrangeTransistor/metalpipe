@@ -1,3 +1,4 @@
+// TODO: hash
 
 var { series, parallel } = require('gulp')
 
