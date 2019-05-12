@@ -1,7 +1,7 @@
 
 var minimist = require('minimist')
 
-var rootpath = require('./rootpath')
+var rootpath = require('./util/rootpath')
 
 
 module.exports = function Context ()
