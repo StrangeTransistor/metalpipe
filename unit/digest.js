@@ -6,11 +6,14 @@ var file = require('gulp-file')
 var rev = require('../util/rev')
 
 
-module.exports = function digest ()
+module.exports = function digest (context)
 {
 	var _ = {}
 
-	_.version = '0' // context.version
+	var p = pkg(context.package)
+
+	_.name    = p.name
+	_.version = p.version
 
 	_.timestamp = (new Date).toISOString()
 
@@ -18,13 +21,15 @@ module.exports = function digest ()
 
 	// context.instance
 	// context.hash
-
-	/*
-	release.instance = instance
-	release.name = env.package.name + '-' + instance
-	*/
+	// release.instance = instance
+	// release.name = env.package.name + '-' + instance
 
 	_ = dump(_)
 
 	return file('release.json', _, { src: true })
+}
+
+function pkg (p)
+{
+	return (p || { name: null, version: null })
 }

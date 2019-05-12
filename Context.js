@@ -2,6 +2,7 @@
 var minimist = require('minimist')
 
 var rootpath = require('./util/rootpath')
+var Package  = require('./util/Package')
 
 
 module.exports = function Context ()
@@ -13,6 +14,8 @@ module.exports = function Context ()
 	var $from = $root.partial('lib')
 	var $to   = $root.partial('release', (opts.final && 'final' || 'dev'))
 
+	var package = Package($root)
+
 	function describe ()
 	{
 		console.info('To:', $root.relative($to))
@@ -21,6 +24,7 @@ module.exports = function Context ()
 
 	var context =
 	{
+		package,
 		$root, $from, $to,
 		opts,
 		describe,

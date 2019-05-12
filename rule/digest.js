@@ -12,7 +12,7 @@ module.exports = function digest (context)
 	{
 		var { $to } = context
 
-		return dgs()
+		return dgs(context)
 		.pipe(guif(context.opts.final, dst($to())))
 	}
 }
