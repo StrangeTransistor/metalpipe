@@ -1,6 +1,7 @@
 
-var { parallel } = require('gulp')
+var { series, parallel } = require('gulp')
 
+var Clean = require('../rule/clean')
 var Css = require('../rule/css')
 var Html = require('../rule/html')
 var JavaScript = require('../rule/javascript')
@@ -11,10 +12,19 @@ module.exports = function frontend (context)
 {
 	context.describe()
 
+	var clean = Clean(context)
 	var css = Css(context)
 	var html = Html(context)
 	var javascript = JavaScript(context)
 	var digest = Digest(context)
 
-	return parallel(css, html, javascript, digest)
+	return series(
+		clean,
+		parallel(
+			css,
+			html,
+			javascript,
+			digest
+		)
+	)
 }
