@@ -15,6 +15,8 @@ module.exports = function digest (context)
 	_.name    = p.name
 	_.version = p.version
 
+	if (context.opts.hash) { _.hash = context.opts.hash }
+
 	_.timestamp = (new Date).toISOString()
 
 	_.rev = rev()
