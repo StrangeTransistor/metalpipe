@@ -1,6 +1,10 @@
 
-module.exports = function get_true (options, key)
+var True = () => true
+
+var fallback = require('./get-fallback')
+
+
+module.exports = function get_true (object, key)
 {
-	if (! (key in options)) return true
-	return (!! options.key)
+	return (!! fallback(object, key, True))
 }
