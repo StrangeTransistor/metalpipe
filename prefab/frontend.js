@@ -1,4 +1,6 @@
 // TODO: hash
+// TODO: serve
+// TODO: shell?
 
 var { series, parallel } = require('gulp')
 
