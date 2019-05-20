@@ -46,6 +46,9 @@
 		"gulp-file":
 			"0.4",
 
+		"through2":
+			"3",
+
 		"gulp-concat":
 			"2",
 
