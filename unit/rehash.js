@@ -1,14 +1,14 @@
 
 var through = require('through2')
 
-var rehash = require('../util/rehash')
+var rh = require('../util/rehash')
 
 
-module.exports = function vinyl_rehash (hash)
+module.exports = function rehash (hash)
 {
 	return through.obj((file, encoding, done) =>
 	{
-		var filename = rehash(file.path, hash)
+		var filename = rh(file.path, hash)
 
 		if (filename === file.path)
 		{

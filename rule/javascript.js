@@ -8,10 +8,10 @@ var mpipe = require('multipipe')
 
 
 var rollup = require('../unit/rollup')
+var rehash = require('../unit/rehash')
 
 var live = require('../util/live')
 var get_true = require('../util/get-true')
-var vinyl_rehash = require('../util/vinyl-rehash')
 
 
 module.exports = function javascript (context)
@@ -104,7 +104,7 @@ function final (context)
 				presets,
 				comments: false,
 			}),
-			vinyl_rehash(hash)
+			rehash(hash)
 		)
 	)
 }

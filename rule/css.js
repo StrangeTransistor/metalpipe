@@ -10,10 +10,10 @@ var mpipe = require('multipipe')
 var less = require('../unit/less')
 var prefix = require('../unit/autoprefixer')
 var cssnano = require('../unit/cssnano')
+var rehash = require('../unit/rehash')
 
 var live = require('../util/live')
 var get_true = require('../util/get-true')
-var vinyl_rehash = require('../util/vinyl-rehash')
 
 
 module.exports = function css (context)
@@ -42,7 +42,7 @@ function final (context)
 		mpipe(
 			prefix(),
 			guif(minify, cssnano()),
-			guif(!! hash, vinyl_rehash(hash)),
+			guif(!! hash, rehash(hash)),
 		)
 	)
 }
