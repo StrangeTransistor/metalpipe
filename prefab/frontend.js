@@ -3,11 +3,11 @@
 
 var { series, parallel } = require('gulp')
 
-var Clean = require('../rule/clean')
-var Css = require('../rule/css')
-var Html = require('../rule/html')
-var JavaScript = require('../rule/javascript')
-var Digest = require('../rule/digest')
+var Clean = require('../pipeline/clean')
+var Css = require('../pipeline/css')
+var Html = require('../pipeline/html')
+var JavaScript = require('../pipeline/javascript')
+var Digest = require('../pipeline/digest')
 
 var get_hash = require('../util/get-hash')
 
