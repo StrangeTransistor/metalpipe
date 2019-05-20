@@ -4,7 +4,6 @@ var { dest: dst } = require('gulp')
 
 var concat = require('gulp-concat')
 var guif = require('gulp-if')
-var through = require('through2')
 var mpipe = require('multipipe')
 
 
@@ -14,7 +13,7 @@ var cssnano = require('../unit/cssnano')
 
 var live = require('../util/live')
 var get_true = require('../util/get-true')
-var rehash = require('../util/rehash')
+var vinyl_rehash = require('../util/vinyl-rehash')
 
 
 module.exports = function css (context)
@@ -43,25 +42,7 @@ function final (context)
 		mpipe(
 			prefix(),
 			guif(minify, cssnano()),
-			guif(!! hash, hashy(hash)),
+			guif(!! hash, vinyl_rehash(hash)),
 		)
 	)
-}
-
-function hashy (hash)
-{
-	return through.obj((file, encoding, done) =>
-	{
-		var filename = rehash(file.path, hash)
-
-		if (filename === file.path)
-		{
-			return done(null, file)
-		}
-
-		file = file.clone({ contents: false })
-		file.path = filename
-
-		done(null, file)
-	})
 }
