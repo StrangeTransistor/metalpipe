@@ -6,7 +6,7 @@ var fallback = require('./get-fallback')
 
 module.exports = function get_hash (options)
 {
-	return fallback(options, 'hash', () => random())
+	return fallback(options, 'hash', random)
 }
 
 
