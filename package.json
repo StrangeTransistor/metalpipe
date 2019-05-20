@@ -5,7 +5,9 @@
 	"scripts":
 	{
 		"check1": "cd fixt; gulp --once",
-		"check":  "cd fixt; gulp --once; gulp --final --no-minify",
+		"check2": "cd fixt; gulp --final --no-minify",
+		"check":  "npm run check1 && npm run check2",
+
 		"watch":  "cd fixt; gulp",
 
 		"st": "eslint rule/ unit/ util/ fixt/lib/",
