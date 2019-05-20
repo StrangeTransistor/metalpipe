@@ -10,7 +10,7 @@
 
 		"watch":  "cd fixt; gulp",
 
-		"st": "eslint pipeline/ unit/ util/ fixt/lib/",
+		"st": "eslint .",
 
 		"test": "npm run st && npm run check"
 	},
