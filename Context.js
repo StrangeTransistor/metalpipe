@@ -14,8 +14,6 @@ module.exports = function Context ()
 	var $from = $root.partial('lib')
 	var $to   = $root.partial('release', (opts.final && 'final' || 'dev'))
 
-	var package = Package($root)
-
 	function describe ()
 	{
 		console.info('To:', $root.relative($to))
@@ -24,7 +22,7 @@ module.exports = function Context ()
 
 	var context =
 	{
-		package,
+		package: Package($root),
 		$root, $from, $to,
 		opts,
 		describe,
