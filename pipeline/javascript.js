@@ -22,7 +22,7 @@ module.exports = function javascript (context)
 
 		return live(context, $from('**/*.js'), function javascript$ ()
 		{
-			return src($from('index/index.js'))
+			return src($from('index/index.js'), { allowEmpty: true })
 			.pipe(rollup(...config(context)))
 			.pipe(final(context))
 			.pipe(dst($to()))

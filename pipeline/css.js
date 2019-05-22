@@ -24,7 +24,7 @@ module.exports = function css (context)
 
 		return live(context, $from('**/*.less'), function css$ ()
 		{
-			return src($from('index/index.less'))
+			return src($from('index/index.less'), { allowEmpty: true })
 			.pipe(less(context))
 			.pipe(concat('index.css'))
 			.pipe(final(context))
