@@ -13,5 +13,18 @@ module.exports = function live (context, glob, task)
 	else
 	{
 		return watch(glob, { ignoreInitial: false }, task)
+		.on('error', watch_error)
 	}
+}
+
+function watch_error (error)
+{
+	switch (error.code)
+	{
+	case 'ENOSPC':
+		console.error('ENOSPC, to many watchers')
+		break
+	}
+
+	console.error(error)
 }
