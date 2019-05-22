@@ -44,6 +44,12 @@
 		"randomstring":
 			"1",
 
+		"debounce":
+			"1",
+
+		"node-notifier":
+			"5",
+
 
 		"gulp-file":
 			"0.4",

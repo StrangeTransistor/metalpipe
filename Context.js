@@ -3,6 +3,7 @@ var minimist = require('minimist')
 
 var rootpath = require('./util/rootpath')
 var Package  = require('./util/Package')
+var Notify   = require('./util/Notify')
 
 
 module.exports = function Context ()
@@ -13,6 +14,8 @@ module.exports = function Context ()
 
 	var $from = $root.partial('lib')
 	var $to   = $root.partial('release', (opts.final && 'final' || 'dev'))
+
+	var notify = Notify()
 
 	function describe ()
 	{
@@ -26,6 +29,7 @@ module.exports = function Context ()
 		$root, $from, $to,
 		opts,
 		describe,
+		notify,
 	}
 
 	return context
