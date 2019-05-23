@@ -7,6 +7,7 @@ var Clean = require('../pipeline/clean')
 var Css = require('../pipeline/css')
 var Html = require('../pipeline/html')
 var JavaScript = require('../pipeline/javascript')
+var Assets = require('../pipeline/assets')
 var Digest = require('../pipeline/digest')
 
 var get_hash = require('../util/get-hash')
@@ -22,6 +23,7 @@ module.exports = function frontend (context)
 	var css = Css(context)
 	var html = Html(context)
 	var javascript = JavaScript(context)
+	var assets = Assets(context)
 	var digest = Digest(context)
 
 	return series(
@@ -30,6 +32,7 @@ module.exports = function frontend (context)
 			css,
 			html,
 			javascript,
+			assets,
 			digest
 		)
 	)
