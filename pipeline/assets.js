@@ -10,6 +10,7 @@ var { series } = require('gulp')
 // var mpipe = require('multipipe')
 
 
+var rename = require('../unit/rename')
 // var rehash = require('../unit/rehash')
 
 // var live = require('../util/live')
@@ -36,6 +37,9 @@ function assets_plain (context)
 }
 
 
+var { sep }  = require('path')
+var { join } = require('path')
+
 function assets_bundle (context)
 {
 	return function ASSETS_BUNDLE ()
@@ -44,11 +48,23 @@ function assets_bundle (context)
 
 		var from = [ $from('*/assets/**'), $from('!assets/') ]
 
-		console.warn(from)
-
 		return src(from)
+		.pipe(rename(skip_subdir))
 		.pipe(debug())
 		.pipe(dst($to('assets')))
+
+		function skip_subdir (filename)
+		{
+			filename = $from.relative(filename)
+
+			filename = filename.split(sep)
+			filename.splice(1, 1)
+			filename = join(...filename)
+
+			filename = $from(filename)
+
+			return filename
+		}
 	}
 }
 
