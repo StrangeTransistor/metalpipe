@@ -15,9 +15,9 @@ var { dest: dst } = require('gulp')
 
 module.exports = function assets (context)
 {
-	console.log(assets_bundle)
-	return assets_plain(context)
-	// return assets_bundle(context)
+	console.log(assets_plain)
+	// return assets_plain(context)
+	return assets_bundle(context)
 }
 
 function assets_plain (context)
