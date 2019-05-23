@@ -3,6 +3,8 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
+var { series } = require('gulp')
+
 // var concat = require('gulp-concat')
 // var guif = require('gulp-if')
 // var mpipe = require('multipipe')
@@ -15,10 +17,12 @@ var { dest: dst } = require('gulp')
 
 module.exports = function assets (context)
 {
-	console.log(assets_plain)
-	// return assets_plain(context)
-	return assets_bundle(context)
+	var plain = assets_plain(context)
+	var bundle = assets_bundle(context)
+
+	return series(plain, bundle)
 }
+
 
 function assets_plain (context)
 {
@@ -30,6 +34,7 @@ function assets_plain (context)
 		.pipe(dst($to('assets')))
 	}
 }
+
 
 function assets_bundle (context)
 {
@@ -46,5 +51,6 @@ function assets_bundle (context)
 		.pipe(dst($to('assets')))
 	}
 }
+
 
 var debug = require('gulp-debug')
