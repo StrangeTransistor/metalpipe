@@ -36,6 +36,11 @@ function config (context)
 	var input =
 	{
 		plugins: plugins(context),
+
+		onwarn (warning)
+		{
+			console.debug('Rollup: %s (%s)', warning.toString(), warning.code)
+		}
 	}
 
 	var output =
