@@ -1,8 +1,9 @@
 
-var load = JSON.parse
+// var load = JSON.parse
 
 var { execSync: shell } = require('child_process')
 
+/*
 var format =
 `
 {
@@ -15,16 +16,20 @@ var format =
 format = format.replace(/\n/g, '')
 format = format.replace(/"/g, '\\"')
 format = `--format="${format}"`
-
+*/
 
 module.exports = function rev ()
 {
+	return run('git describe --always --long --abbrev=40 --dirty')
+
+	/*
 	var
 	R = run(`git log -1 ${ format }`)
-	R = load(R)
+	R = loadc(R)
 	R.rev = run('git describe --always --long --abbrev=40 --dirty')
 
 	return R
+	*/
 }
 
 function run (cmd, options = {})
