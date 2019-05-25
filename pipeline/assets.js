@@ -3,25 +3,28 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-var { series } = require('gulp')
-
-// var concat = require('gulp-concat')
-// var guif = require('gulp-if')
-// var mpipe = require('multipipe')
-
 
 var rename = require('../unit/rename')
 // var rehash = require('../unit/rehash')
 
-// var live = require('../util/live')
+var series = require('../util/series')
+var live = require('../util/live')
 
 
 module.exports = function assets (context)
 {
-	var plain = assets_plain(context)
-	var bundle = assets_bundle(context)
+	return function ASSETS ()
+	{
+		var { $from } = context
 
-	return series(plain, bundle)
+		var watch = [ $from('assets/**'), $from('*/assets/**') ]
+
+		return live(context, watch, series(
+				assets_plain(context),
+				assets_bundle(context)
+			)
+		)
+	}
 }
 
 
@@ -32,6 +35,7 @@ function assets_plain (context)
 		var { $from, $to } = context
 
 		return src($from('assets/**'))
+		.pipe(debug())
 		.pipe(dst($to('assets')))
 	}
 }
