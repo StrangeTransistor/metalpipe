@@ -1,12 +1,12 @@
 
 var { watch } = require('gulp')
 
+var is_live = require('./is-live')
+
 
 module.exports = function live (context, glob, task)
 {
-	var { final, once } = context.opts
-
-	if (final || once)
+	if (! is_live(context))
 	{
 		return task()
 	}

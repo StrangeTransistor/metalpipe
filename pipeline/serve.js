@@ -1,12 +1,20 @@
 
 var srv = require('gulp-serve')
 
+var is_live = require('../util/is-live')
 
-module.exports = function serve ({ $to })
+
+module.exports = function serve (context)
 {
-	return srv(
+	if (is_live(context))
 	{
-		port: 8080,
-		root: [ $to(), $to.$static(), ],
-	})
+		var { $to } = context
+
+		return srv(
+		{
+			port: 8080,
+			root: [ $to(), $to.$static(), ],
+		})
+	}
+	else return async () => {}
 }
