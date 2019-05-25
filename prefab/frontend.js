@@ -1,4 +1,5 @@
 // TODO: serve
+// TODO: asset uri rewrite (css, html)
 // TODO: shell?
 
 var { series, parallel } = require('gulp')
