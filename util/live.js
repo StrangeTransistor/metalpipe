@@ -37,5 +37,6 @@ var enospc = debounce((context, error) =>
 {
 	context.notify('ENOSPC, too many watchers')
 	console.error(error)
+	process.exit()
 }
 , 100)
