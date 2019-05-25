@@ -10,7 +10,7 @@ var mpipe = require('multipipe')
 var less = require('../unit/less')
 var prefix = require('../unit/autoprefixer')
 var cssnano = require('../unit/cssnano')
-var rehash = require('../unit/rehash')
+var stamp = require('../unit/hash-stamp')
 
 var live = require('../util/live')
 var get_true = require('../util/get-true')
@@ -42,7 +42,7 @@ function final (context)
 		mpipe(
 			prefix(),
 			guif(minify, cssnano()),
-			guif(!! hash, rehash(hash)),
+			guif(!! hash, stamp(hash)),
 		)
 	)
 }

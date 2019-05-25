@@ -2,7 +2,7 @@
 var { parse, format } = require('path')
 
 
-module.exports = function rehash (filename, hash)
+module.exports = function stamp (filename, hash)
 {
 	if (! hash)
 	{

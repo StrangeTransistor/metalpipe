@@ -2,7 +2,7 @@
 var through = require('through2')
 
 
-module.exports = function rehash (rename_fn)
+module.exports = function rename (rename_fn)
 {
 	return through.obj((file, encoding, done) =>
 	{

@@ -8,7 +8,7 @@ var mpipe = require('multipipe')
 
 
 var rollup = require('../unit/rollup')
-var rehash = require('../unit/rehash')
+var stamp  = require('../unit/hash-stamp')
 
 var live = require('../util/live')
 var get_true = require('../util/get-true')
@@ -109,7 +109,7 @@ function final (context)
 				presets,
 				comments: false,
 			}),
-			rehash(hash)
+			stamp(hash)
 		)
 	)
 }

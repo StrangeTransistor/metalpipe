@@ -1,11 +1,11 @@
-// TODO: rehash
+// TODO: stamp
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
 
 var rename = require('../unit/rename')
-// var rehash = require('../unit/rehash')
+// var stamp = require('../unit/hash-stamp')
 
 var series = require('../util/series')
 var live = require('../util/live')
