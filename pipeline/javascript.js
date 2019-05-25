@@ -25,7 +25,7 @@ module.exports = function javascript (context)
 			return src($from('index/index.js'), { allowEmpty: true })
 			.pipe(rollup(...config(context)))
 			.pipe(final(context))
-			.pipe(dst($to()))
+			.pipe(dst($to.$static()))
 		})
 	}
 }

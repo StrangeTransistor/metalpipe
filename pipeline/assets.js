@@ -18,7 +18,7 @@ module.exports = function assets (context)
 
 		var watch = [ $from('assets/**'), $from('*/assets/**') ]
 
-		var to = $to(stamp(context.opts.hash, 'assets'))
+		var to = $to.$static(stamp(context.opts.hash, 'assets'))
 
 		return live(context, watch, series(
 				assets_plain(context, to),

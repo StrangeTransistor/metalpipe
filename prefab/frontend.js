@@ -17,6 +17,8 @@ module.exports = function frontend (context)
 {
 	context.describe()
 
+	context.$to.$static = context.$to.partial('static')
+
 	context.opts.hash = get_hash(context.opts)
 
 	var clean = Clean(context)

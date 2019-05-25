@@ -28,7 +28,7 @@ module.exports = function css (context)
 			.pipe(less(context))
 			.pipe(concat('index.css'))
 			.pipe(final(context))
-			.pipe(dst($to()))
+			.pipe(dst($to.$static()))
 		})
 	}
 }
