@@ -1,12 +1,11 @@
-// TODO: stamp
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
 
 var rename = require('../unit/rename')
-// var stamp = require('../unit/hash-stamp')
 
+var stamp = require('../util/hash-stamp')
 var series = require('../util/series')
 var live = require('../util/live')
 
@@ -15,28 +14,30 @@ module.exports = function assets (context)
 {
 	return function ASSETS ()
 	{
-		var { $from } = context
+		var { $from, $to } = context
 
 		var watch = [ $from('assets/**'), $from('*/assets/**') ]
 
+		var to = $to(stamp(context.opts.hash, 'assets'))
+
 		return live(context, watch, series(
-				assets_plain(context),
-				assets_bundle(context)
+				assets_plain(context, to),
+				assets_bundle(context, to)
 			)
 		)
 	}
 }
 
 
-function assets_plain (context)
+function assets_plain (context, to)
 {
 	return function ASSETS_PLAIN ()
 	{
-		var { $from, $to } = context
+		var { $from } = context
 
 		return src($from('assets/**'))
 		.pipe(debug())
-		.pipe(dst($to('assets')))
+		.pipe(dst(to))
 	}
 }
 
@@ -44,18 +45,18 @@ function assets_plain (context)
 var { sep }  = require('path')
 var { join } = require('path')
 
-function assets_bundle (context)
+function assets_bundle (context, to)
 {
 	return function ASSETS_BUNDLE ()
 	{
-		var { $from, $to } = context
+		var { $from } = context
 
 		var from = [ $from('*/assets/**'), $from('!assets/') ]
 
 		return src(from)
 		.pipe(rename(skip_subdir))
 		.pipe(debug())
-		.pipe(dst($to('assets')))
+		.pipe(dst(to))
 
 		function skip_subdir (filename)
 		{
