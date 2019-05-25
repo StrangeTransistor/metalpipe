@@ -2,6 +2,9 @@
 var srv = require('gulp-serve')
 
 var is_live = require('../util/is-live')
+var fnom = require('../util/fnom')
+
+var label = 'SERVE'
 
 
 module.exports = function serve (context)
@@ -10,11 +13,11 @@ module.exports = function serve (context)
 	{
 		var { $to } = context
 
-		return srv(
+		return fnom(label, srv(
 		{
 			port: 8080,
 			root: [ $to(), $to.$static(), ],
-		})
+		}))
 	}
-	else return async () => {}
+	else return fnom(label, async () => {})
 }
