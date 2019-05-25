@@ -1,20 +1,19 @@
 
-var randomstring = require('randomstring').generate
+var random = require('randomstring').generate
 
 var fallback = require('./get-fallback')
 
 
 module.exports = function get_hash (options)
 {
-	return fallback(options, 'hash', random)
-}
-
-
-function random ()
-{
-	return randomstring(
+	return fallback(options, 'hash', () =>
 	{
-		length: 7,
-		capitalization: 'lowercase',
+		if (! options.final) { return null }
+
+		return random(
+		{
+			length: 7,
+			capitalization: 'lowercase',
+		})
 	})
 }
