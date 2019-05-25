@@ -36,7 +36,6 @@ function assets_plain (context, to)
 		var { $from } = context
 
 		return src($from('assets/**'))
-		.pipe(debug())
 		.pipe(dst(to))
 	}
 }
@@ -55,7 +54,6 @@ function assets_bundle (context, to)
 
 		return src(from)
 		.pipe(rename(skip_subdir))
-		.pipe(debug())
 		.pipe(dst(to))
 
 		function skip_subdir (filename)
@@ -72,6 +70,3 @@ function assets_bundle (context, to)
 		}
 	}
 }
-
-
-var debug = require('gulp-debug')
