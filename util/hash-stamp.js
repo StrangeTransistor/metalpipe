@@ -1,8 +1,10 @@
 
 var { parse, format } = require('path')
 
+var curry = require('curry')
 
-module.exports = function stamp (filename, hash)
+
+module.exports = curry((hash, filename) =>
 {
 	if (! hash)
 	{
@@ -17,4 +19,4 @@ module.exports = function stamp (filename, hash)
 	filename = format(filename)
 
 	return filename
-}
+})
