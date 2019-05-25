@@ -54,17 +54,20 @@
 		"gulp-file":
 			"0.4",
 
-		"through2":
-			"3",
-
 		"gulp-concat":
 			"2",
 
 		"gulp-if":
 			"2",
 
+		"through2":
+			"3",
+
 		"multipipe":
 			"3",
+
+		"end-of-stream":
+			"1",
 
 
 		"gulp-clean":
