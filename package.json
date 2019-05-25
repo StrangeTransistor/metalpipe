@@ -76,6 +76,9 @@
 		"gulp-clean":
 			"0.4",
 
+		"gulp-serve":
+			"1",
+
 
 		"gulp-less":
 			"4",
