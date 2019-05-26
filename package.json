@@ -96,6 +96,9 @@
 		"pug-runtime":
 			"2",
 
+		"gulp-htmlmin":
+			"5",
+
 
 		"gulp-better-rollup":
 			"4",

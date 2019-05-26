@@ -6,10 +6,9 @@ var { parallel } = require('gulp')
 
 
 var pug = require('../unit/pug')
+var min = require('../unit/htmlmin')
 
 var live = require('../util/live')
-
-var copy = require('./copy')
 
 
 module.exports = function html (context)
@@ -27,6 +26,7 @@ function html_pug (context)
 		{
 			return src($from('index/*.pug'))
 			.pipe(pug({ $from }))
+			.pipe(min())
 			.pipe(dst($to()))
 		})
 	}
@@ -36,14 +36,15 @@ function html_static (context)
 {
 	var { $from, $to } = context
 
+	var from = $from('index/*.htm?(l)')
+
 	return function HTML_STATIC ()
 	{
-		return copy(
+		return live(context, from, function html_static$ ()
 		{
-			name: 'html_static$',
-			context,
-			from: $from('index/*.htm?(l)'),
-			to:   $to(),
+			return src(from)
+			.pipe(min())
+			.pipe(dst($to()))
 		})
 	}
 }
