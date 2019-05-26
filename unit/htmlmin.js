@@ -1,3 +1,4 @@
+// TODO: minifier options
 
 var min = require('gulp-htmlmin')
 
