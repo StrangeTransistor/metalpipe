@@ -20,10 +20,13 @@ module.exports = function javascript (context)
 	{
 		var { $from, $to } = context
 
+		var pr = context.notify.process('JAVASCRIPT')
+
 		return live(context, $from('**/*.js'), function javascript$ ()
 		{
 			return src($from('index/index.js'), { allowEmpty: true })
 			.pipe(rollup(...config(context)))
+			.on('error', pr.error).on('end', pr.stable)
 			.pipe(final(context))
 			.pipe(dst($to.$static()))
 		})

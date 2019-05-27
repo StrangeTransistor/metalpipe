@@ -35,8 +35,7 @@ var debounce = require('debounce')
 
 var enospc = debounce((context, error) =>
 {
-	context.notify('ENOSPC, too many watchers')
-	console.error(error)
+	context.notify.error('ENOSPC, too many watchers', error)
 	process.exit()
 }
 , 100)

@@ -22,10 +22,13 @@ module.exports = function css (context)
 	{
 		var { $from, $to } = context
 
+		var pr = context.notify.process('CSS')
+
 		return live(context, $from('**/*.less'), function css$ ()
 		{
 			return src($from('index/index.less'), { allowEmpty: true })
 			.pipe(less(context))
+			.on('error', pr.error).on('end', pr.stable)
 			.pipe(concat('index.css'))
 			.pipe(final(context))
 			.pipe(dst($to.$static()))
