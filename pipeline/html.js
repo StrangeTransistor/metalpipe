@@ -22,10 +22,18 @@ function html_pug (context)
 	{
 		var { $from, $to } = context
 
+		var pr = context.notify.process('PUG')
+
 		return live(context, $from('**/*.pug'), function pug$ ()
 		{
 			return src($from('index/*.pug'))
 			.pipe(pug({ $from }))
+			.on('error', function (e)
+			{
+				pr.error(e)
+				this.end()
+			})
+			.on('end', pr.stable)
 			.pipe(min())
 			.pipe(dst($to()))
 		})
