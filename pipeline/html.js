@@ -2,8 +2,6 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-var { parallel } = require('gulp')
-
 
 var pug = require('../unit/pug')
 var min = require('../unit/htmlmin')
@@ -13,6 +11,8 @@ var live = require('../util/live')
 
 module.exports = function html (context)
 {
+	var { parallel } = context.gulp
+
 	return parallel(html_pug(context), html_static(context))
 }
 

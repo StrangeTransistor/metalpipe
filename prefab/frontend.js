@@ -1,7 +1,5 @@
 // TODO: asset uri rewrite (css, html)
 
-var { series, parallel } = require('gulp')
-
 var Clean = require('../pipeline/clean')
 var Css = require('../pipeline/css')
 var Html = require('../pipeline/html')
@@ -20,6 +18,8 @@ module.exports = function frontend (context)
 	context.$to.$static = context.$to.partial('static')
 
 	context.opts.hash = get_hash(context.opts)
+
+	var { series, parallel } = context.gulp
 
 	var clean = Clean(context)
 	var css = Css(context)
