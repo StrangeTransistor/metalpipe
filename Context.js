@@ -6,8 +6,17 @@ var Package  = require('./util/Package')
 var Notify   = require('./util/Notify')
 
 
-module.exports = function Context ()
+module.exports = function Context (options)
 {
+	options || (options = {})
+
+	var { gulp } = options
+	if (! gulp)
+	{
+		console.warn(`Context needs gulp instance`)
+		gulp = require('gulp')
+	}
+
 	var opts = minimist(process.argv.slice(2))
 
 	var $root = rootpath()
@@ -26,6 +35,7 @@ module.exports = function Context ()
 	var context =
 	{
 		package: Package($root),
+		gulp,
 		$root, $from, $to,
 		opts,
 		describe,
