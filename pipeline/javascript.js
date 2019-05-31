@@ -20,11 +20,16 @@ module.exports = function javascript (context)
 	{
 		var { $from, $to } = context
 
+		var from = [ 'js', 'mst.html', 'pug' ].map(ext =>
+		{
+			return $from(`**/*.${ ext }`)
+		})
+
 		var pr = context.notify.process('JAVASCRIPT')
 
 		// TODO: ensure cache is on
 
-		return live(context, $from('**/*.js'), function javascript$ ()
+		return live(context, from, function javascript$ ()
 		{
 			return src($from('index/index.js'), { allowEmpty: true })
 			.pipe(rollup(...config(context)))
