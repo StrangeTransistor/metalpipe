@@ -7,5 +7,5 @@ var rootpath = require('../util/rootpath')
 
 module.exports = () =>
 {
-	return rootpath(tmpdir(), 'metalbox-test', random(8))
+	return rootpath(tmpdir(), 'metalpipe', random(8))
 }
