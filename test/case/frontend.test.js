@@ -19,7 +19,13 @@ describe('Frontend', () =>
 		expect_release(cl, tmp.partial('release/dev'))
 	})
 
-	xit('final', () =>
+	it('final', () =>
 	{
+		var tmp =  origin('frontend')
+		var  cl = collate('frontend/final')
+
+		run('gulp', [ '--final',  '--no-minify', '--hash', 'ABCDEFG' ], tmp)
+
+		expect_release(cl, tmp.partial('release/final'), { hash: 'ABCDEFG' })
 	})
 })
