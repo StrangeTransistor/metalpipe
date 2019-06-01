@@ -25,7 +25,7 @@ module.exports = function javascript (context)
 		//{
 		//	return $from(`**/*.${ ext }`)
 		//})
-		var from = $from('**/*.js')
+		var from = [ $from('**/*.js'), $from('!release/**') ]
 		console.debug(from)
 
 		var pr = context.notify.process('JAVASCRIPT')
