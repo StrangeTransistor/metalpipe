@@ -16,7 +16,7 @@ describe('Frontend', () =>
 		var tmp =  origin('frontend')
 		var cl  = collate('frontend/dev')
 
-		run('gulp --once', tmp)
+		run('gulp', [ '--once' ], tmp)
 
 		expect(compare(cl(), tmp('release/dev'))).ok
 		// digest(tmp('release/dev/release.json'), { hash: true })

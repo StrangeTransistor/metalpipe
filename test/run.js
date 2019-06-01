@@ -1,7 +1,7 @@
 
-var { execSync: run } = require('child_process')
+var { spawnSync: run } = require('child_process')
 
-module.exports = (cmd, tmp) =>
+module.exports = (cmd, args, tmp) =>
 {
-	return run(cmd, { cwd: tmp() })
+	return run(cmd, args, { cwd: tmp(), stdio: 'inherit' })
 }
