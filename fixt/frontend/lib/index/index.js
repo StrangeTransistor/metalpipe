@@ -28,8 +28,5 @@ console.log(yes)
 import pug_static from '../other/some.static.pug'
 console.log(pug_static)
 
-//
-//import pug from './index.pug'
-//
-//console.log(pug({ other: 'Other', some: 'Some' }))
-//
+import pug from './index.pug'
+console.log(pug({ other: 'Other', some: 'Some' }))

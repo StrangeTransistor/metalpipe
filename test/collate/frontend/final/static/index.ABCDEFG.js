@@ -1,5 +1,7 @@
 "use strict";
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -33,7 +35,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     };
   }
 
-  function other() {
+  function other$1() {
     return 'Other';
   }
 
@@ -268,13 +270,274 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     uptime: uptime
   };
   var pug_static = "<div>Some Static</div>";
+  var require$$0 = {};
+  var pug_has_own_property = Object.prototype.hasOwnProperty;
+  var merge = pug_merge;
+
+  function pug_merge(a, b) {
+    if (arguments.length === 1) {
+      var attrs = a[0];
+
+      for (var i = 1; i < a.length; i++) {
+        attrs = pug_merge(attrs, a[i]);
+      }
+
+      return attrs;
+    }
+
+    for (var key in b) {
+      if (key === 'class') {
+        var valA = a[key] || [];
+        a[key] = (Array.isArray(valA) ? valA : [valA]).concat(b[key] || []);
+      } else if (key === 'style') {
+        var valA = pug_style(a[key]);
+        valA = valA && valA[valA.length - 1] !== ';' ? valA + ';' : valA;
+        var valB = pug_style(b[key]);
+        valB = valB && valB[valB.length - 1] !== ';' ? valB + ';' : valB;
+        a[key] = valA + valB;
+      } else {
+        a[key] = b[key];
+      }
+    }
+
+    return a;
+  }
+
+  var classes = pug_classes;
+
+  function pug_classes_array(val, escaping) {
+    var classString = '',
+        className,
+        padding = '',
+        escapeEnabled = Array.isArray(escaping);
+
+    for (var i = 0; i < val.length; i++) {
+      className = pug_classes(val[i]);
+      if (!className) continue;
+      escapeEnabled && escaping[i] && (className = pug_escape(className));
+      classString = classString + padding + className;
+      padding = ' ';
+    }
+
+    return classString;
+  }
+
+  function pug_classes_object(val) {
+    var classString = '',
+        padding = '';
+
+    for (var key in val) {
+      if (key && val[key] && pug_has_own_property.call(val, key)) {
+        classString = classString + padding + key;
+        padding = ' ';
+      }
+    }
+
+    return classString;
+  }
+
+  function pug_classes(val, escaping) {
+    if (Array.isArray(val)) {
+      return pug_classes_array(val, escaping);
+    } else if (val && _typeof(val) === 'object') {
+      return pug_classes_object(val);
+    } else {
+      return val || '';
+    }
+  }
+
+  var style = pug_style;
+
+  function pug_style(val) {
+    if (!val) return '';
+
+    if (_typeof(val) === 'object') {
+      var out = '';
+
+      for (var style in val) {
+        if (pug_has_own_property.call(val, style)) {
+          out = out + style + ':' + val[style] + ';';
+        }
+      }
+
+      return out;
+    } else {
+      return val + '';
+    }
+  }
+
+  var attr = pug_attr;
+
+  function pug_attr(key, val, escaped, terse) {
+    if (val === false || val == null || !val && (key === 'class' || key === 'style')) {
+      return '';
+    }
+
+    if (val === true) {
+      return ' ' + (terse ? key : key + '="' + key + '"');
+    }
+
+    if (typeof val.toJSON === 'function') {
+      val = val.toJSON();
+    }
+
+    if (typeof val !== 'string') {
+      val = JSON.stringify(val);
+
+      if (!escaped && val.indexOf('"') !== -1) {
+        return ' ' + key + '=\'' + val.replace(/'/g, '&#39;') + '\'';
+      }
+    }
+
+    if (escaped) val = pug_escape(val);
+    return ' ' + key + '="' + val + '"';
+  }
+
+  var attrs = pug_attrs;
+
+  function pug_attrs(obj, terse) {
+    var attrs = '';
+
+    for (var key in obj) {
+      if (pug_has_own_property.call(obj, key)) {
+        var val = obj[key];
+
+        if ('class' === key) {
+          val = pug_classes(val);
+          attrs = pug_attr(key, val, false, terse) + attrs;
+          continue;
+        }
+
+        if ('style' === key) {
+          val = pug_style(val);
+        }
+
+        attrs += pug_attr(key, val, false, terse);
+      }
+    }
+
+    return attrs;
+  }
+
+  var pug_match_html = /["&<>]/;
+  var escape = pug_escape;
+
+  function pug_escape(_html) {
+    var html = '' + _html;
+    var regexResult = pug_match_html.exec(html);
+    if (!regexResult) return _html;
+    var result = '';
+    var i, lastIndex, escape;
+
+    for (i = regexResult.index, lastIndex = 0; i < html.length; i++) {
+      switch (html.charCodeAt(i)) {
+        case 34:
+          escape = '&quot;';
+          break;
+
+        case 38:
+          escape = '&amp;';
+          break;
+
+        case 60:
+          escape = '&lt;';
+          break;
+
+        case 62:
+          escape = '&gt;';
+          break;
+
+        default:
+          continue;
+      }
+
+      if (lastIndex !== i) result += html.substring(lastIndex, i);
+      lastIndex = i + 1;
+      result += escape;
+    }
+
+    if (lastIndex !== i) return result + html.substring(lastIndex, i);else return result;
+  }
+
+  var rethrow = pug_rethrow;
+
+  function pug_rethrow(err, filename, lineno, str) {
+    if (!(err instanceof Error)) throw err;
+
+    if ((typeof window != 'undefined' || !filename) && !str) {
+      err.message += ' on line ' + lineno;
+      throw err;
+    }
+
+    try {
+      str = str || require$$0.readFileSync(filename, 'utf8');
+    } catch (ex) {
+      pug_rethrow(err, null, lineno);
+    }
+
+    var context = 3,
+        lines = str.split('\n'),
+        start = Math.max(lineno - context, 0),
+        end = Math.min(lines.length, lineno + context);
+    var context = lines.slice(start, end).map(function (line, i) {
+      var curr = i + start + 1;
+      return (curr == lineno ? '  > ' : '    ') + curr + '| ' + line;
+    }).join('\n');
+    err.path = filename;
+    err.message = (filename || 'Pug') + ':' + lineno + '\n' + context + '\n\n' + err.message;
+    throw err;
+  }
+
+  var pugRuntime = {
+    merge: merge,
+    classes: classes,
+    style: style,
+    attr: attr,
+    attrs: attrs,
+    escape: escape,
+    rethrow: rethrow
+  };
+
+  function pug(locals) {
+    var pug_html = "",
+        pug_interp;
+    var pug_debug_filename, pug_debug_line;
+
+    try {
+      var pug_debug_sources = {};
+      var locals_for_with = locals || {};
+      (function (other, some) {
+        pug_html = pug_html + "<!DOCTYPE html>";
+        pug_html = pug_html + "<head>";
+        pug_html = pug_html + "<meta charset=\"utf-8\">";
+        pug_html = pug_html + "<title>";
+        pug_html = pug_html + "index</title>";
+        pug_html = pug_html + "<link rel=\"stylesheet\" href=\"index.css\">";
+        pug_html = pug_html + "<script src=\"static/index.js\"></script></head>";
+        pug_html = pug_html + "<body>";
+        pug_html = pug_html + "<div class=\"some\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = some) ? "" : pug_interp) + "</div>";
+        pug_html = pug_html + "<div class=\"other some\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = other) ? "" : pug_interp) + "</div></body>";
+      }).call(this, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined, "some" in locals_for_with ? locals_for_with.some : typeof some !== "undefined" ? some : undefined);
+    } catch (err) {
+      pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
+    }
+
+    return pug_html;
+  }
+
   console.log('answer', index);
   console.log('noop', noop3);
   console.log('curry', curry);
-  console.log(other);
+  console.log(other$1);
   console.log(!!global$1.global);
   console.log(p);
   var yes = 'yes';
   console.log(yes);
   console.log(pug_static);
+  console.log(pug({
+    other: 'Other',
+    some: 'Some'
+  }));
 })();
