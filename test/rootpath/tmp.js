@@ -2,7 +2,7 @@
 var { tmpdir } = require('os')
 var random = require('randomstring').generate
 
-var rootpath = require('../util/rootpath')
+var rootpath = require('../../util/rootpath')
 
 
 module.exports = () =>

@@ -1,11 +1,10 @@
 
-var rootpath = require('./metal-rootpath')
-
-var tmp_rootpath  = require('./tmp-rootpath')
-var fixt_rootpath = require('./fixt-rootpath')
-
 var { copySync: cp } = require('fs-extra')
 var { ensureSymlinkSync: ln } = require('fs-extra')
+
+var rootpath      = require('./rootpath/metalpipe')
+var tmp_rootpath  = require('./rootpath/tmp')
+var fixt_rootpath = require('./rootpath/fixt')
 
 
 module.exports = (name) =>
