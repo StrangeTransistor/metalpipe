@@ -4,9 +4,11 @@
 
 	"scripts":
 	{
-		"test": "npm run st && npm run check",
+		"test": "npm run st && npm run unit",
 
 		"st": "eslint .",
+
+		"unit": "mocha test/case/*.test.js",
 
 		"check": "npm run check_front && npm run check_back",
 		"check_front": "cd fixt/frontend; npm test",
@@ -160,6 +162,13 @@
 			"5",
 
 		"js-outlander":
-			"StrangeTransistor/js-outlander#2.5.0"
+			"StrangeTransistor/js-outlander#2.5.0",
+
+
+		"mocha":
+			"6",
+
+		"chai":
+			"4"
 	}
 }
