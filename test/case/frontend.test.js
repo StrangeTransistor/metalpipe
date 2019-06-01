@@ -29,8 +29,7 @@ describe('Frontend', () =>
 		expect_release(cl, tmp.partial('release/final'), { hash: 'ABCDEFG' })
 	})
 
-	// TODO: fix
-	xit('final with minification', () =>
+	it('final with minification', () =>
 	{
 		var tmp =  origin('frontend')
 		var  cl = collate('frontend/minify')
