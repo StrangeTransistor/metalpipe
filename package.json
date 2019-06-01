@@ -149,6 +149,9 @@
 		"gulp-debug":
 			"4",
 
+		"fs-extra":
+			"8",
+
 
 		"less":
 			"3",
