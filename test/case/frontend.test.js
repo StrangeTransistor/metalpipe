@@ -1,5 +1,5 @@
 
-// var { expect } = require('chai')
+var { expect } = require('chai')
 var origin = require('../origin')
 var collate = require('../collate-rootpath')
 
@@ -16,7 +16,7 @@ describe('Frontend', () =>
 
 		run('gulp --once', tmp)
 
-		compare(cl(), tmp('release/dev'))
+		expect(compare(cl(), tmp('release/dev'))).ok
 	})
 
 	xit('final', () =>
