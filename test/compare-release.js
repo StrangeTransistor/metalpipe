@@ -1,7 +1,6 @@
 
-// var console  = require('console-ultimate/default')
-// var { bold } = console.color
-var bold = (x) => x
+var console = require('console-ultimate/default')
+var { bold } = console.color
 
 
 module.exports = (dst, tmp) =>
@@ -23,9 +22,9 @@ module.exports = (dst, tmp) =>
 		var differences = r.differences
 		var diff = r.diffSet.filter(it => it.state !== 'equal')
 
-		console.warn('release differs: %s files differences', differences)
 		console.warn(diff)
-		console.log(bold(` meld ${tmp} ${dst}`))
+		console.error('release differs: %s files differences', differences)
+		console.log('\n', bold(`meld ${tmp} ${dst}`))
 
 		return false
 	}
