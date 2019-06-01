@@ -8,7 +8,7 @@
 
 		"st": "eslint .",
 
-		"unit": "mocha test/case/*.test.js",
+		"unit": "mocha -t 10000 test/case/*.test.js",
 
 		"check": "npm run check_front && npm run check_back",
 		"check_front": "cd fixt/frontend; npm test",

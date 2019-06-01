@@ -12,7 +12,7 @@ describe('Frontend', () =>
 
 		run('gulp --once', tmp)
 
-
+		console.log(1)
 	})
 
 	xit('final', () =>
