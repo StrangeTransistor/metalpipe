@@ -4,10 +4,13 @@
 
 	"scripts":
 	{
-		"check":  "cd fixt/frontend; npm test",
+		"test": "npm run st && npm run check",
 
 		"st": "eslint .",
-		"test": "npm run st && npm run check"
+
+		"check": "npm run check_front && npm run check_back",
+		"check_front": "cd fixt/frontend; npm test",
+		"check_back":  "cd fixt/backend;  npm test"
 	},
 
 	"peerDependencies":
