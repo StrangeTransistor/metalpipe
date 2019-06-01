@@ -285,6 +285,8 @@
               uptime: uptime
             };
 
+            var pug_static = "<div>Some Static</div>";
+
             console.log('answer', index);
             console.log('noop', noop3);
             console.log('curry', curry);
@@ -293,21 +295,14 @@
             console.log(!! global$1.global);
             console.log(p);
 
-            //
-            //import mst from '../other/other.mst.html'
-            //
-            //console.log(mst.render({ data: 'yes' }))
-            //
-            //import pug_s from '../other/some.static.pug'
-            //
-            //console.log(pug_s)
+            var yes = 'yes';
+            console.log(yes);
+            console.log(pug_static);
+
             //
             //import pug from './index.pug'
             //
             //console.log(pug({ other: 'Other', some: 'Some' }))
             //
-            //var x: string = 'yes'
-            //
-            //console.log(x)
 
 }());

@@ -267,10 +267,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     config: config,
     uptime: uptime
   };
+  var pug_static = "<div>Some Static</div>";
   console.log('answer', index);
   console.log('noop', noop3);
   console.log('curry', curry);
   console.log(other);
   console.log(!!global$1.global);
   console.log(p);
+  var yes = 'yes';
+  console.log(yes);
+  console.log(pug_static);
 })();

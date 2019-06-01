@@ -16,19 +16,20 @@ console.log(!! global.global)
 import p from 'process'
 console.log(p)
 
+var yes: string = 'yes'
+console.log(yes)
+
 //
 //import mst from '../other/other.mst.html'
 //
 //console.log(mst.render({ data: 'yes' }))
 //
-//import pug_s from '../other/some.static.pug'
-//
-//console.log(pug_s)
+
+import pug_static from '../other/some.static.pug'
+console.log(pug_static)
+
 //
 //import pug from './index.pug'
 //
 //console.log(pug({ other: 'Other', some: 'Some' }))
 //
-//var x: string = 'yes'
-//
-//console.log(x)
