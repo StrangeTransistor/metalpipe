@@ -4,14 +4,9 @@
 
 	"scripts":
 	{
-		"check1": "cd fixt; gulp --once",
-		"check2": "cd fixt; gulp --final --no-minify",
-		"check":  "npm run check1 && npm run check2",
-
-		"watch":  "cd fixt; gulp",
+		"check":  "cd fixt/frontend; npm test",
 
 		"st": "eslint .",
-
 		"test": "npm run st && npm run check"
 	},
 

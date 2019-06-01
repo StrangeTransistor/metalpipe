@@ -1,5 +1,5 @@
 {
-	   "name": "fixt",
+	   "name": "fixt-frontend",
 	"version": "0.0.0",
 	"private":  true,
 
@@ -14,6 +14,16 @@
 
 		"IE >= 10"
 	],
+
+	"scripts":
+	{
+		"start": "gulp",
+
+		"test": "npm run check1 && npm run check2",
+
+		"check1": "gulp --once",
+		"check2": "gulp --final --no-minify"
+	},
 
 	"dependencies":
 	{
