@@ -1,4 +1,5 @@
 // TODO: vendor concat
+// TODO: multiple entries
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
