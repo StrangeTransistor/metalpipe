@@ -4,6 +4,8 @@
 
 	"scripts":
 	{
+		"postinstall": "run/postinstall",
+
 		"test": "npm run st && npm run unit",
 
 		"st": "eslint .",
