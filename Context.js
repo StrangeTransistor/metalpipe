@@ -2,6 +2,7 @@
 var minimist = require('minimist')
 
 var rootpath = require('./util/rootpath')
+var fallback = require('./util/get-fallback')
 var Package  = require('./util/Package')
 var Notify   = require('./util/Notify')
 
@@ -22,7 +23,10 @@ module.exports = function Context (options)
 	var $root = rootpath()
 
 	var $from = $root.partial('lib')
-	var $to   = $root.partial('release', (opts.final && 'final' || 'dev'))
+	var $to   = $root.partial('release', fallback(opts, 'to', () =>
+	{
+		return (opts.final && 'final' || 'dev')
+	}))
 
 	var notify = Notify()
 
