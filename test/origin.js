@@ -1,4 +1,6 @@
 
+var console = require('console-ultimate/default')
+
 var { copySync: cp } = require('fs-extra')
 var { ensureSymlinkSync: ln } = require('fs-extra')
 

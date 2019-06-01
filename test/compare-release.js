@@ -15,8 +15,7 @@ module.exports = (dst, tmp) =>
 
 	if (r.same)
 	{
-		console.log(`   ${bold('tmp:')} ${tmp}`)
-
+		// console.log(`   ${bold('tmp:')} ${tmp}`)
 		return true
 	}
 	else
