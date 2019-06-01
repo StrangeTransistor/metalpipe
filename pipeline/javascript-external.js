@@ -52,8 +52,7 @@ function config (context)
 	{
 		plugins: plugins(context),
 
-		// external (id) { return (id !== input) },
-		// external () { return true },
+		external () { return true },
 
 		onwarn (warning)
 		{
