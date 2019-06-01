@@ -2,15 +2,10 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-// var guif = require('gulp-if')
-// var mpipe = require('multipipe')
-
 
 var rollup = require('../unit/rollup')
-// var stamp  = require('../unit/hash-stamp')
 
 var live = require('../util/live')
-// var get_true = require('../util/get-true')
 
 
 module.exports = function javascript (context)
@@ -32,9 +27,7 @@ module.exports = function javascript (context)
 		return live(context, from, function javascript$ ()
 		{
 			return src(from, { allowEmpty: true })
-			// .pipe(require('gulp-debug')())
 			.pipe(rollup(...config(context)))
-			// .pipe(require('gulp-debug')())
 			.on('error', pr.error).on('end', pr.stable)
 			// .pipe(final(context))
 			.pipe(dst($to()))
