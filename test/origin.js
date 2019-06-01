@@ -14,5 +14,5 @@ module.exports = (name) =>
 
 	console.info('Origin: from `%s` to `%s`', fixt(), tmp())
 
-	return tmp()
+	return tmp
 }

@@ -1,13 +1,18 @@
 
 // var { expect } = require('chai')
 var origin = require('../origin')
+var run = require('../run')
 
 
 describe('Frontend', () =>
 {
 	it('dev', () =>
 	{
-		origin('frontend')
+		var tmp = origin('frontend')
+
+		run('gulp --once', tmp)
+
+
 	})
 
 	xit('final', () =>
