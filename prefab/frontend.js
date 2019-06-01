@@ -13,6 +13,8 @@ var get_hash = require('../util/get-hash')
 
 module.exports = function frontend (context)
 {
+	context.$from = context.$root.partial('lib')
+
 	context.describe()
 
 	context.$to.$static = context.$to.partial('static')

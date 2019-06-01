@@ -22,7 +22,7 @@ module.exports = function Context (options)
 
 	var $root = rootpath()
 
-	var $from = $root.partial('lib')
+	var $from = $root.partial()
 	var $to   = $root.partial('release', fallback(opts, 'to', () =>
 	{
 		return (opts.final && 'final' || 'dev')

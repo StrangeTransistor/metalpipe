@@ -17,16 +17,13 @@ module.exports = function javascript (context)
 {
 	return function JAVASCRIPT ()
 	{
-		var { $root, $to } = context
-		var $from = $root
-
+		var { $from, $to } = context
 
 		//var from = [ 'js', 'mst.html', 'pug' ].map(ext =>
 		//{
 		//	return $from(`**/*.${ ext }`)
 		//})
 		var from = [ $from('**/*.js'), $from('!release/**') ]
-		console.debug(from)
 
 		var pr = context.notify.process('JAVASCRIPT')
 
