@@ -8,13 +8,14 @@ console.log('noop', noop)
 import { curry } from 'rambda/src/curry'
 console.log('curry', curry)
 
-//import '~lib/other/other'
-//
-//console.log(!! global.global)
-//
-//import { join } from 'path'
-//
-//console.log(join('a', 'b'))
+import other from '~lib/other/other'
+console.log(other)
+
+console.log(!! global.global)
+
+import p from 'process'
+console.log(p)
+
 //
 //import mst from '../other/other.mst.html'
 //
