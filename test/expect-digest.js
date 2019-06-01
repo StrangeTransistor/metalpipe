@@ -23,12 +23,8 @@ module.exports = (path, options) =>
 	if (options.hash)
 	{
 		expect(release.hash).a('string')
-		expect(release.hash).eq('fixed')
+		expect(release.hash).eq(options.hash)
 	}
 
-	expect(release.git).an('object')
-	expect(release.git.rev).a('string')
-	expect(release.git.msg).a('string')
-	expect(release.git.timestamp).a('string')
-	expect(release.git.author).a('string')
+	expect(release.rev).a('string')
 }
