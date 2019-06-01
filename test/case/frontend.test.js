@@ -24,7 +24,18 @@ describe('Frontend', () =>
 		var tmp =  origin('frontend')
 		var  cl = collate('frontend/final')
 
-		run('gulp', [ '--final',  '--no-minify', '--hash', 'ABCDEFG' ], tmp)
+		run('gulp', [ '--final', '--no-minify', '--hash', 'ABCDEFG' ], tmp)
+
+		expect_release(cl, tmp.partial('release/final'), { hash: 'ABCDEFG' })
+	})
+
+	// TODO: fix
+	xit('final with minification', () =>
+	{
+		var tmp =  origin('frontend')
+		var  cl = collate('frontend/minify')
+
+		run('gulp', [ '--final', '--hash', 'ABCDEFG' ], tmp)
 
 		expect_release(cl, tmp.partial('release/final'), { hash: 'ABCDEFG' })
 	})
