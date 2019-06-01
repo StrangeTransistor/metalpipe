@@ -19,11 +19,9 @@ console.log(p)
 var yes: string = 'yes'
 console.log(yes)
 
-//
-//import mst from '../other/other.mst.html'
-//
-//console.log(mst.render({ data: 'yes' }))
-//
+/* templating: */
+import mst from '../other/other.mst.html'
+console.log(mst.render({ data: 'yes' }))
 
 import pug_static from '../other/some.static.pug'
 console.log(pug_static)
