@@ -16,7 +16,10 @@ module.exports = (name) =>
 
 	cp(fixt(), tmp())
 
-	ln(root('.'), tmp('node_modules/metalpipe'))
+	ln(root('node_modules/gulp'), tmp('node_modules/gulp'))
+	ln(root('node_modules/metalpipe'), tmp('node_modules/metalpipe'))
+	ln(root('node_modules/console-ultimate'), tmp('node_modules/console-ultimate'))
+
 	ln(root('.git'), tmp('.git'))
 
 	console.info('Origin: from `%s` to `%s`', fixt(), tmp())
