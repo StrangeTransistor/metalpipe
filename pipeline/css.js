@@ -3,7 +3,6 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-var concat = require('gulp-concat')
 var guif = require('gulp-if')
 var mpipe = require('multipipe')
 
@@ -30,7 +29,6 @@ module.exports = function css (context)
 			return src($from('index/index.less'), { allowEmpty: true })
 			.pipe(less(context))
 			.on('error', pr.error).on('end', pr.stable)
-			.pipe(concat('index.css'))
 			.pipe(final(context))
 			.pipe(dst($to.$static()))
 		})

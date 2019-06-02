@@ -54,11 +54,7 @@ function config (context)
 		}
 	}
 
-	var output =
-	{
-		format: 'iife',
-		file: 'index.js',
-	}
+	var output = { format: 'iife' }
 
 	return [ input, output ]
 }
