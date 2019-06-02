@@ -1,5 +1,4 @@
 // TODO: vendor concat
-// TODO: multiple entries
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
@@ -32,7 +31,7 @@ module.exports = function javascript (context)
 
 		return live(context, from, function javascript$ ()
 		{
-			return src($from('index/index.js'), { allowEmpty: true })
+			return src($from('index/*.js'), { allowEmpty: true })
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(final(context))
