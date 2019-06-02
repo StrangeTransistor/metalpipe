@@ -14,7 +14,7 @@ module.exports = function frontend (context)
 
 	var clean = Clean(context)
 	var pkg = WithPackage(context)
-	var javascript = Javascript(context)
+	var javascript = Javascript(context, { ignore })
 	var digest = Digest(context)
 
 	return series(
@@ -26,3 +26,11 @@ module.exports = function frontend (context)
 		)
 	)
 }
+
+
+var ignore =
+[
+	'!node_modules/**',
+	'!release/**',
+	'*npm-debug.log',
+]

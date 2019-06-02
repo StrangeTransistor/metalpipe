@@ -8,17 +8,15 @@ var rollup = require('../unit/rollup')
 var live = require('../util/live')
 
 
-module.exports = function javascript (context)
+module.exports = function javascript (context, options = {})
 {
 	return function JAVASCRIPT ()
 	{
 		var { $from, $to } = context
 
-		//var from = [ 'js', 'mst.html', 'pug' ].map(ext =>
-		//{
-		//	return $from(`**/*.${ ext }`)
-		//})
-		var from = [ $from('**/*.js'), $from('!release/**') ]
+		var ignore = (options.ignore || [])
+
+		var from = [ '**/*.js', ...ignore ].map(glob => $from(glob))
 
 		var pr = context.notify.process('JAVASCRIPT')
 
