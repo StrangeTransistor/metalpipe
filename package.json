@@ -65,6 +65,9 @@
 		"gulp-if":
 			"2",
 
+		"gulp-noop":
+			"1",
+
 		"through2":
 			"3",
 
