@@ -2,8 +2,8 @@
 require('console-ultimate')
 
 
-var Context  = require('../../Context')
-var Backend = require('../../prefab/backend')
+var Context = require('metalpipe/Context')
+var Backend = require('metalpipe/prefab/backend')
 
 
 exports.default = Backend(Context({ gulp: require('gulp') }))
