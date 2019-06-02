@@ -21,10 +21,9 @@ module.exports = function digest (context)
 
 	_.rev = rev()
 
-	// context.instance
-	// context.hash
-	// release.instance = instance
-	// release.name = env.package.name + '-' + instance
+	// TODO: instance, name
+	// _.name = context.package.name + '/' + _.instance
+	// _.instance
 
 	_ = dump(_)
 
