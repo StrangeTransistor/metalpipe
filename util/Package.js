@@ -1,7 +1,7 @@
 
-var load = JSON.parse
-
 var { readFileSync: read_file } = require('fs')
+
+var { load } = require('./json')
 
 
 module.exports = function Package ($root)

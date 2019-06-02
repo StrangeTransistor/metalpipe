@@ -1,9 +1,8 @@
 
-var dump = (x) => JSON.stringify(x, null, '  ')
+var rev = require('../util/rev')
+var { dump } = require('../util/json')
 
 var file = require('gulp-file')
-
-var rev = require('../util/rev')
 
 
 module.exports = function digest (context)
@@ -25,9 +24,7 @@ module.exports = function digest (context)
 	// _.name = context.package.name + '/' + _.instance
 	// _.instance
 
-	_ = dump(_)
-
-	return file('release.json', _, { src: true })
+	return file('release.json', dump(_), { src: true })
 }
 
 function pkg (p)

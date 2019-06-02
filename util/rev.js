@@ -1,6 +1,4 @@
 
-// var load = JSON.parse
-
 var { execSync: shell } = require('child_process')
 
 /*
@@ -17,6 +15,7 @@ format = format.replace(/\n/g, '')
 format = format.replace(/"/g, '\\"')
 format = `--format="${format}"`
 */
+
 
 module.exports = function rev ()
 {
