@@ -1,8 +1,8 @@
 
 var Clean = require('../pipeline/clean')
-var WithPackage = require('../pipeline/with-package-backend')
+var WithPackage = require('../pipeline/backend/with-package')
 var Javascript = require('../pipeline/javascript/single')
-var Other = require('../pipeline/other-backend')
+var Other = require('../pipeline/backend/other')
 var Digest = require('../pipeline/digest')
 
 

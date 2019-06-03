@@ -1,7 +1,7 @@
 
 var { dest: dst } = require('gulp')
 
-var with_package = require('../unit/with-package')
+var with_package = require('../../unit/with-package')
 
 
 module.exports = function WithPackage (context)
