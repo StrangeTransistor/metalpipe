@@ -24,7 +24,7 @@ module.exports = function Other (context, options = {})
 			context,
 			from,
 			to: $to(),
-			name: 'copy$',
+			name: 'other$',
 		})
 	}
 }
