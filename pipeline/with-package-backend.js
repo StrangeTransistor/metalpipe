@@ -18,5 +18,20 @@ module.exports = function WithPackage (context)
 
 function backend (p /*, context */)
 {
+	// TODO: check final
+	delete p.devDependencies
+
+	if (p.scripts)
+	{
+		delete p.scripts.test
+	}
+
+	var script_patch = p['scripts:final']
+	delete p['script:final']
+	if (script_patch)
+	{
+		p.scripts = { ...p.scripts, ...script_patch }
+	}
+
 	return p
 }

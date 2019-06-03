@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp",
-    "test": "npm run check1 && npm run check2",
+    "start": "echo pm2",
     "check1": "gulp --once",
     "check2": "gulp --final"
   },
@@ -13,8 +12,5 @@
   },
   "dependencies": {
     "the-answer": "1"
-  },
-  "devDependencies": {
-    "gulp": "4"
   }
 }
