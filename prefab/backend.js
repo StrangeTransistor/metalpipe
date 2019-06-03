@@ -34,6 +34,7 @@ var ignore =
 [
 	'!node_modules/**',
 	'!release/**',
+	'!web/**',
 	'!gulpfile.js',
 	'*npm-debug.log',
 ]
