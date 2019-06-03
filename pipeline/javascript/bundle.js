@@ -13,6 +13,8 @@ var stamp  = require('../../unit/hash-stamp')
 var live = require('../../util/live')
 var get_true = require('../../util/get-true')
 
+var onwarn = require('./onwarn')
+
 
 module.exports = function javascript (context)
 {
@@ -47,10 +49,7 @@ function config (context)
 	{
 		plugins: plugins(context),
 
-		onwarn (warning)
-		{
-			console.debug('Rollup: %s (%s)', warning.toString(), warning.code)
-		}
+		onwarn,
 	}
 
 	var output = { format: 'iife' }

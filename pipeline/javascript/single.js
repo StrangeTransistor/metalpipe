@@ -7,6 +7,8 @@ var rollup = require('../../unit/rollup')
 
 var live = require('../../util/live')
 
+var onwarn = require('./onwarn')
+
 
 module.exports = function javascript (context, options = {})
 {
@@ -42,17 +44,10 @@ function config (context)
 
 		external () { return true },
 
-		onwarn (warning)
-		{
-			console.debug('Rollup: %s (%s)', warning.toString(), warning.code)
-		}
+		onwarn,
 	}
 
-	var output =
-	{
-		format: 'cjs',
-		// exports: 'auto',
-	}
+	var output = { format: 'cjs' }
 
 	return [ input, output ]
 }
@@ -68,6 +63,7 @@ function plugins (/*{ $from }*/)
 {
 	var plugins =
 	[
+		// TODO: templates
 		// pug({ basedir: $from(), pugRuntime: 'pug-runtime' }),
 		// mustache({ include: '**/*.mst.html' }),
 		/* pug must precede extended syntaxes (flow) */
@@ -76,32 +72,3 @@ function plugins (/*{ $from }*/)
 
 	return plugins
 }
-
-
-// var babel = require('gulp-babel')
-//
-// function final (context)
-// {
-// 	var presets =
-// 	[
-// 		'@babel/preset-env',
-// 	]
-//
-// 	if (get_true(context.opts, 'minify'))
-// 	{
-// 		presets.push('minify')
-// 	}
-//
-// 	var hash = context.opts.hash
-//
-// 	return guif(context.opts.final,
-// 		mpipe(
-// 			babel(
-// 			{
-// 				presets,
-// 				comments: false,
-// 			}),
-// 			stamp(hash)
-// 		)
-// 	)
-// }
