@@ -3,9 +3,9 @@ var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
 
-var rollup = require('../unit/rollup')
+var rollup = require('../../unit/rollup')
 
-var live = require('../util/live')
+var live = require('../../util/live')
 
 
 module.exports = function javascript (context, options = {})

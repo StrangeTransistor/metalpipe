@@ -1,7 +1,7 @@
 
 var Clean = require('../pipeline/clean')
 var WithPackage = require('../pipeline/with-package-backend')
-var Javascript = require('../pipeline/javascript-external')
+var Javascript = require('../pipeline/javascript/single')
 var Other = require('../pipeline/other-backend')
 var Digest = require('../pipeline/digest')
 

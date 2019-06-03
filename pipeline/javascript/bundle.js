@@ -7,11 +7,11 @@ var guif = require('gulp-if')
 var mpipe = require('multipipe')
 
 
-var rollup = require('../unit/rollup')
-var stamp  = require('../unit/hash-stamp')
+var rollup = require('../../unit/rollup')
+var stamp  = require('../../unit/hash-stamp')
 
-var live = require('../util/live')
-var get_true = require('../util/get-true')
+var live = require('../../util/live')
+var get_true = require('../../util/get-true')
 
 
 module.exports = function javascript (context)
