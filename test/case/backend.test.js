@@ -19,23 +19,16 @@ describe('Backend', () =>
 		expect_release(cl, tmp.partial('release/dev'))
 	})
 
-	xit('final', () =>
+	it('final', () =>
 	{
-		var tmp =  origin('frontend')
-		var  cl = collate('frontend/final')
+		var tmp =  origin('backend')
+		var  cl = collate('backend/final')
 
-		run('gulp', [ '--final', '--no-minify', '--hash', 'ABCDEFG' ], tmp)
+		run('gulp', [ '--final' ], tmp)
 
-		expect_release(cl, tmp.partial('release/final'), { hash: 'ABCDEFG' })
+		expect_release(cl, tmp.partial('release/final'))
 	})
 
-	xit('final with minification', () =>
-	{
-		var tmp =  origin('frontend')
-		var  cl = collate('frontend/minify')
-
-		run('gulp', [ '--final', '--hash', 'ABCDEFG' ], tmp)
-
-		expect_release(cl, tmp.partial('release/final'), { hash: 'ABCDEFG' })
-	})
+	// TODO: test target
+	// xit('test target?')
 })
