@@ -26,7 +26,7 @@ module.exports = function live (context, glob, task)
 			break
 
 		default:
-			context.notify.error(error)
+			context.notify.error(error.message, error)
 		}
 	}
 }
