@@ -22,7 +22,7 @@ module.exports = function live (context, glob, task)
 		switch (error.code)
 		{
 		case 'ENOSPC':
-			enospc(context, error)
+			enospc(task, context, error)
 			break
 
 		default:
@@ -34,9 +34,9 @@ module.exports = function live (context, glob, task)
 
 var debounce = require('debounce')
 
-var enospc = debounce((context, error) =>
+var enospc = debounce((task, context, error) =>
 {
-	context.notify.error('ENOSPC, too many watchers', error)
+	context.notify.error(`ENOSPC, too many watchers (${ task.name })`, error)
 	process.exit()
 }
 , 100)
