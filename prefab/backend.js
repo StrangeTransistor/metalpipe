@@ -32,9 +32,14 @@ module.exports = function frontend (context)
 
 var ignore =
 [
+	'!package.json',
 	'!node_modules/**',
 	'!release/**',
-	'!web/**',
 	'!gulpfile.js',
-	'*npm-debug.log',
+
+	'!web/**',
+
+	'!*npm-debug.log',
+	'!coverage/**',
+	'!flow-typed/**',
 ]

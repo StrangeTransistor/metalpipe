@@ -14,7 +14,6 @@ module.exports = function Other (context, options = {})
 		[
 			'**/*',
 			'!**/*.js',
-			'!package.json',
 			...ignore,
 		]
 		.map(glob => $from(glob))
