@@ -16,7 +16,7 @@ module.exports = function serve (context)
 		return fnom(label, srv(
 		{
 			port: 8080,
-			root: [ $to(), $to.$static(), ],
+			root: [ $to(), $to.$static(), ], // TODO: single entry here
 		}))
 	}
 	else return fnom(label, async () => {})
