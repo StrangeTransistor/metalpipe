@@ -26,7 +26,10 @@ describe('Backend', () =>
 
 		run('gulp', [ '--final' ], tmp)
 
-		expect_release(cl, tmp.partial('release/final'))
+		expect_release(cl, tmp.partial('release/final'),
+		{
+			inst: { instance: 'final', name: 'fixt-backend/final' },
+		})
 	})
 
 	// TODO: test target

@@ -14,10 +14,12 @@ module.exports = (path, options) =>
 	expect(release.version).eq('0.0.0')
 	expect(release.timestamp).a('string')
 
-	if (options.instance)
+	if (options.inst)
 	{
 		expect(release.instance).a('string')
+		expect(release.instance).eq(options.inst.instance)
 		expect(release.name).a('string')
+		expect(release.name).eq(options.inst.name)
 	}
 
 	if (options.hash)

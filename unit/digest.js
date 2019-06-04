@@ -20,9 +20,11 @@ module.exports = function digest (context)
 
 	_.rev = rev()
 
-	// TODO: instance, name
-	// _.name = context.package.name + '/' + _.instance
-	// _.instance
+	if (context.instance)
+	{
+		_.instance = context.instance
+		_.name = (context.package.name + '/' + _.instance)
+	}
 
 	return file('release.json', dump(_), { src: true })
 }
