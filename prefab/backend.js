@@ -6,6 +6,8 @@ var WithPackage = require('../pipeline/backend/with-package')
 var Javascript = require('../pipeline/javascript/single')
 var Other = require('../pipeline/backend/other')
 var Digest = require('../pipeline/digest')
+var Serve = require('../pipeline/backend/serve')
+
 
 var fallback = require('../util/get-fallback')
 
@@ -26,6 +28,7 @@ module.exports = function frontend (context)
 	var javascript = Javascript(context, { ignore })
 	var other = Other(context, { ignore })
 	var digest = Digest(context)
+	var serve = Serve(context)
 
 	return series(
 		clean,
@@ -33,7 +36,8 @@ module.exports = function frontend (context)
 			pkg,
 			javascript,
 			other,
-			digest
+			digest,
+			serve
 		)
 	)
 }
