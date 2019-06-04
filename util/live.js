@@ -2,6 +2,12 @@
 
 var is_live = require('./is-live')
 
+var watch_default =
+{
+	ignoreInitial: false,
+	ignorePermissionErrors: true,
+}
+
 
 module.exports = function live (context, glob, task)
 {
@@ -13,7 +19,19 @@ module.exports = function live (context, glob, task)
 	}
 	else
 	{
-		return watch(glob, { ignoreInitial: false }, task)
+		var { $from, $to } = context
+
+		var ignored =
+		[
+			// dot(),
+			$to(),
+			$from('release'),
+			$from('node_modules')
+		]
+
+		var options = { ...watch_default, ignored }
+
+		return watch(glob, options, task)
 		.on('error', watch_error)
 	}
 
