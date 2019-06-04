@@ -84,9 +84,6 @@
 		"gulp-serve":
 			"1",
 
-		"gulp-shell":
-			"0.7",
-
 
 		"gulp-less":
 			"4",

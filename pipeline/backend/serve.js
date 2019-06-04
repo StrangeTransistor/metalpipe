@@ -1,5 +1,7 @@
 
-var shell = require('gulp-shell')
+// var shell = require('gulp-shell')
+var { spawn } = require('child_process')
+
 
 var is_live = require('../../util/is-live')
 var fnom = require('../../util/fnom')
@@ -18,7 +20,15 @@ module.exports = function Serve (context)
 		return noop('no package.json `serve` script')
 	}
 
-	return fnom(label, shell.task([ 'npm run serve' ]))
+	return fnom(label, () =>
+	{
+		setTimeout(() =>
+		{
+			// shell([ 'npm run serve' ])
+			spawn('npm', [ 'run', 'serve' ], { stdio: 'inherit' })
+		}
+		, 2e3)
+	})
 }
 
 
