@@ -22,8 +22,6 @@ module.exports = function javascript (context, options = {})
 
 		var pr = context.notify.process('JAVASCRIPT')
 
-		// TODO: ensure cache is on
-
 		return live(context, from, function javascript$ ()
 		{
 			return src(from, { allowEmpty: true })
