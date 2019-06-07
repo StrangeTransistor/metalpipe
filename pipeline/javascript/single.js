@@ -51,9 +51,6 @@ function config (context)
 }
 
 
-// var mustache = require('rollup-plugin-mustache')
-// var pug      = require('rollup-plugin-pug')
-
 var sucrase  = require('rollup-plugin-sucrase')
 
 
@@ -61,10 +58,6 @@ function plugins (/*{ $from }*/)
 {
 	var plugins =
 	[
-		// TODO: templates
-		// pug({ basedir: $from(), pugRuntime: 'pug-runtime' }),
-		// mustache({ include: '**/*.mst.html' }),
-		/* pug must precede extended syntaxes (flow) */
 		sucrase({ transforms: [ 'flow' ] }),
 	]
 
