@@ -1,3 +1,4 @@
+/* @flow */
 
 import answer from 'the-answer'
 console.log('answer', answer)

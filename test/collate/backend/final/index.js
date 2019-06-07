@@ -5,6 +5,8 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var answer = _interopDefault(require('the-answer'));
 var mod = _interopDefault(require('./src/mod'));
 
+/*  */
+
 console.log(answer);
 
 console.log(mod());
