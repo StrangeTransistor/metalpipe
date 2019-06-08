@@ -15,6 +15,9 @@ console.log(other)
 import cjs from '~lib/other/cjs'
 console.log(cjs)
 
+import json from '../other/other.json'
+console.log(json)
+
 console.log(!! global.global)
 
 import p from 'process'

@@ -65,6 +65,11 @@
 
             var cjs = { cjs: 'yes', answer: index };
 
+            var other$2 = "json";
+            var json = {
+            	other: other$2
+            };
+
             // shim for using process in browser
             // based off https://github.com/defunctzombie/node-process/blob/master/browser.js
 
@@ -1348,6 +1353,7 @@
             console.log('curry', curry);
             console.log(other$1);
             console.log(cjs);
+            console.log(json);
 
             console.log(!! global$1.global);
             console.log(p);

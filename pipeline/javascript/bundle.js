@@ -61,6 +61,7 @@ var globals  = require('rollup-plugin-node-globals')
 var builtins = require('rollup-plugin-node-builtins')
 var commonjs = require('rollup-plugin-commonjs')
 
+var json     = require('rollup-plugin-json')
 var aliases  = require('rollup-plugin-import-alias')
 
 var mustache = require('rollup-plugin-mustache')
@@ -76,6 +77,7 @@ function plugins ({ $from })
 		pug({ basedir: $from(), pugRuntime: 'pug-runtime' }),
 		mustache({ include: '**/*.mst.html' }),
 		/* pug must precede extended syntaxes (flow) */
+		json(),
 		sucrase({ transforms: [ 'flow' ] }),
 
 		globals(),
