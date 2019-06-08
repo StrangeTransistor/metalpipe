@@ -39,6 +39,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return 'Other';
   }
 
+  var cjs = {
+    cjs: 'yes',
+    answer: index
+  };
+
   function defaultSetTimout() {
     throw new Error('setTimeout has not been defined');
   }
@@ -1299,6 +1304,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   console.log('noop', noop3);
   console.log('curry', curry);
   console.log(other$1);
+  console.log(cjs);
   console.log(!!global$1.global);
   console.log(p);
   var yes = 'yes';

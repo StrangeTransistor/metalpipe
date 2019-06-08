@@ -12,6 +12,9 @@ console.log('curry', curry)
 import other from '~lib/other/other'
 console.log(other)
 
+import cjs from '~lib/other/cjs'
+console.log(cjs)
+
 console.log(!! global.global)
 
 import p from 'process'

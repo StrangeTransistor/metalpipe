@@ -63,6 +63,8 @@
             	return 'Other'
             }
 
+            var cjs = { cjs: 'yes', answer: index };
+
             // shim for using process in browser
             // based off https://github.com/defunctzombie/node-process/blob/master/browser.js
 
@@ -1345,6 +1347,7 @@
             console.log('noop', noop3);
             console.log('curry', curry);
             console.log(other$1);
+            console.log(cjs);
 
             console.log(!! global$1.global);
             console.log(p);
