@@ -20,6 +20,8 @@ module.exports = function Context (options)
 
 	var opts = minimist(process.argv.slice(2))
 
+	opts.dev = (! opts.final)
+
 	var $root = rootpath()
 
 	var $from = $root.partial()
