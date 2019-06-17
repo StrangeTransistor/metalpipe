@@ -47,6 +47,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var json = {
     other: other$2
   };
+  var dev = false;
 
   function defaultSetTimout() {
     throw new Error('setTimeout has not been defined');
@@ -1282,6 +1283,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     try {
       var pug_debug_sources = {};
+      ;
       var locals_for_with = locals || {};
       (function (other, some) {
         pug_html = pug_html + "<!DOCTYPE html>";
@@ -1310,6 +1312,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   console.log(other$1);
   console.log(cjs);
   console.log(json);
+  console.log(dev);
   console.log(!!global$1.global);
   console.log(p);
   var yes = 'yes';

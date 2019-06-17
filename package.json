@@ -135,6 +135,9 @@
 		"rollup-plugin-pug":
 			"1",
 
+		"rollup-plugin-virtual":
+			"1",
+
 
 		"gulp-babel":
 			"8",

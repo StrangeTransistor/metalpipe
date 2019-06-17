@@ -70,6 +70,8 @@
             	other: other$2
             };
 
+            var dev = true;
+
             // shim for using process in browser
             // based off https://github.com/defunctzombie/node-process/blob/master/browser.js
 
@@ -1333,7 +1335,7 @@
             };
 
             function pug(locals) {var pug_html = "", pug_interp;var pug_debug_filename, pug_debug_line;try {var pug_debug_sources = {};
-            var locals_for_with = (locals || {});(function (other, some) {
+            ;var locals_for_with = (locals || {});(function (other, some) {
             pug_html = pug_html + "\u003C!DOCTYPE html\u003E";
             pug_html = pug_html + "\u003Chead\u003E";
             pug_html = pug_html + "\u003Cmeta charset=\"utf-8\"\u003E";
@@ -1354,6 +1356,12 @@
             console.log(other$1);
             console.log(cjs);
             console.log(json);
+            function debug (...args)
+            {
+            	console.log(...args);
+            }
+            console.log(dev);
+            debug(1, 2, 3);
 
             console.log(!! global$1.global);
             console.log(p);

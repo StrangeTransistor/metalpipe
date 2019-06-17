@@ -63,6 +63,7 @@ var commonjs = require('rollup-plugin-commonjs')
 
 var json     = require('rollup-plugin-json')
 var aliases  = require('rollup-plugin-import-alias')
+var virtual  = require('rollup-plugin-virtual')
 
 var mustache = require('rollup-plugin-mustache')
 var pug      = require('rollup-plugin-pug')
@@ -70,7 +71,7 @@ var pug      = require('rollup-plugin-pug')
 var sucrase  = require('rollup-plugin-sucrase')
 
 
-function plugins ({ $from })
+function plugins ({ $from, opts })
 {
 	var plugins =
 	[
@@ -78,6 +79,7 @@ function plugins ({ $from })
 		mustache({ include: '**/*.mst.html' }),
 		/* pug must precede extended syntaxes (flow) */
 		json(),
+		virtual({ '~metalpipe': 'export var dev = ' + opts.dev }),
 		sucrase({ transforms: [ 'flow' ] }),
 
 		globals(),

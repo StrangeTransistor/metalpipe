@@ -18,6 +18,15 @@ console.log(cjs)
 import json from '../other/other.json'
 console.log(json)
 
+
+import { dev } from '~metalpipe'
+function debug (...args)
+{
+	dev && console.log(...args)
+}
+console.log(dev)
+debug(1, 2, 3)
+
 console.log(!! global.global)
 
 import p from 'process'
