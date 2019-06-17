@@ -70,7 +70,7 @@
             	other: other$2
             };
 
-            var dev = true;
+            var dev$1 = true;
 
             // shim for using process in browser
             // based off https://github.com/defunctzombie/node-process/blob/master/browser.js
@@ -1335,7 +1335,7 @@
             };
 
             function pug(locals) {var pug_html = "", pug_interp;var pug_debug_filename, pug_debug_line;try {var pug_debug_sources = {};
-            ;var locals_for_with = (locals || {});(function (other, some) {
+            ;var locals_for_with = (locals || {});(function (dev, other, some) {
             pug_html = pug_html + "\u003C!DOCTYPE html\u003E";
             pug_html = pug_html + "\u003Chead\u003E";
             pug_html = pug_html + "\u003Cmeta charset=\"utf-8\"\u003E";
@@ -1347,8 +1347,14 @@
             pug_html = pug_html + "\u003Cdiv class=\"some\"\u003E";
             pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = some) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
             pug_html = pug_html + "\u003Cdiv class=\"other some\"\u003E";
-            pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = other) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E\u003C\u002Fbody\u003E";
-            }.call(this,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined,"some" in locals_for_with?locals_for_with.some:typeof some!=="undefined"?some:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
+            pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = other) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
+            pug_html = pug_html + "\u003Cdiv class=\"dev\"\u003E";
+            pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = dev) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
+            if (dev) {
+            pug_html = pug_html + "\u003Cdiv class=\"dev\"\u003E";
+            pug_html = pug_html + "Yes\u003C\u002Fdiv\u003E";
+            }
+            pug_html = pug_html + "\u003C\u002Fbody\u003E";}.call(this,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined,"some" in locals_for_with?locals_for_with.some:typeof some!=="undefined"?some:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
 
             console.log('answer', index);
             console.log('noop', noop3);
@@ -1360,7 +1366,7 @@
             {
             	console.log(...args);
             }
-            console.log(dev);
+            console.log(dev$1);
             debug(1, 2, 3);
 
             console.log(!! global$1.global);

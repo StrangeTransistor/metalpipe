@@ -27,7 +27,7 @@ function html_pug (context)
 		return live(context, $from('**/*.pug'), function pug$ ()
 		{
 			return src($from('index/*.pug'))
-			.pipe(pug({ $from }))
+			.pipe(pug(context))
 			.on('error', function (e)
 			{
 				pr.error(e)

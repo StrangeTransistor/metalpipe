@@ -47,7 +47,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var json = {
     other: other$2
   };
-  var dev = false;
+  var dev$1 = false;
 
   function defaultSetTimout() {
     throw new Error('setTimeout has not been defined');
@@ -1285,7 +1285,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var pug_debug_sources = {};
       ;
       var locals_for_with = locals || {};
-      (function (other, some) {
+      (function (dev, other, some) {
         pug_html = pug_html + "<!DOCTYPE html>";
         pug_html = pug_html + "<head>";
         pug_html = pug_html + "<meta charset=\"utf-8\">";
@@ -1297,8 +1297,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         pug_html = pug_html + "<div class=\"some\">";
         pug_html = pug_html + pugRuntime.escape(null == (pug_interp = some) ? "" : pug_interp) + "</div>";
         pug_html = pug_html + "<div class=\"other some\">";
-        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = other) ? "" : pug_interp) + "</div></body>";
-      }).call(this, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined, "some" in locals_for_with ? locals_for_with.some : typeof some !== "undefined" ? some : undefined);
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = other) ? "" : pug_interp) + "</div>";
+        pug_html = pug_html + "<div class=\"dev\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = dev) ? "" : pug_interp) + "</div>";
+
+        if (dev) {
+          pug_html = pug_html + "<div class=\"dev\">";
+          pug_html = pug_html + "Yes</div>";
+        }
+
+        pug_html = pug_html + "</body>";
+      }).call(this, "dev" in locals_for_with ? locals_for_with.dev : typeof dev !== "undefined" ? dev : undefined, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined, "some" in locals_for_with ? locals_for_with.some : typeof some !== "undefined" ? some : undefined);
     } catch (err) {
       pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
     }
@@ -1312,7 +1321,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   console.log(other$1);
   console.log(cjs);
   console.log(json);
-  console.log(dev);
+  console.log(dev$1);
   console.log(!!global$1.global);
   console.log(p);
   var yes = 'yes';
