@@ -101,6 +101,7 @@ body {
 }
 .a {
   color: Black;
+  dev: true;
 }
 .a {
   background: Orange;

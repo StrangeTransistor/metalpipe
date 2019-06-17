@@ -101,6 +101,7 @@ body {
 }
 .a {
   color: Black;
+  dev: false;
 }
 .other {
   color: Green;
