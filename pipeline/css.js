@@ -27,7 +27,13 @@ module.exports = function css (context)
 		{
 			return src($from('index/*.less'), { allowEmpty: true })
 			.pipe(less(context))
-			.on('error', pr.error).on('end', pr.stable)
+			.on('error', function (e)
+			{
+				// TODO: dry
+				pr.error(e)
+				this.end()
+			})
+			.on('end', pr.stable)
 			.pipe(final(context))
 			.pipe(dst($to.$static()))
 		})
