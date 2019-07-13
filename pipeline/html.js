@@ -22,7 +22,8 @@ function html_pug (context)
 	{
 		var { $from, $to } = context
 
-		var pr = context.notify.process('PUG')
+		var pr  = context.notify.process('PUG')
+		var prh = context.notify.process('HTML-MIN')
 
 		return live(context, $from('**/*.pug'), function pug$ ()
 		{
@@ -33,6 +34,10 @@ function html_pug (context)
 			.on('error', pr.error.end)
 
 			.pipe(min())
+
+			.on('error', prh.error).on('end', prh.stable)
+			.on('error', prh.error.end)
+
 			.pipe(dst($to()))
 		})
 	}
