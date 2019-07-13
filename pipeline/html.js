@@ -28,12 +28,10 @@ function html_pug (context)
 		{
 			return src($from('index/*.pug'))
 			.pipe(pug(context))
-			.on('error', function (e)
-			{
-				pr.error(e)
-				this.end()
-			})
-			.on('end', pr.stable)
+
+			.on('error', pr.error).on('end', pr.stable)
+			.on('error', pr.error.end)
+
 			.pipe(min())
 			.pipe(dst($to()))
 		})

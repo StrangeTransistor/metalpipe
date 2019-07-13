@@ -29,6 +29,11 @@ module.exports = function Notify ()
 			fail = 2
 		}
 
+		error.end = function ()
+		{
+			this.end()
+		}
+
 		function stable ()
 		{
 			if (fail === 1)
