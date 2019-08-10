@@ -1,8 +1,8 @@
 
 var srv = require('gulp-serve')
 
-var is_live = require('../util/is-live')
-var fnom = require('../util/fnom')
+var is_live = require('../../util/is-live')
+var fnom = require('../../util/fnom')
 
 var label = 'SERVE'
 

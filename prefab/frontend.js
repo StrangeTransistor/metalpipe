@@ -1,11 +1,11 @@
 // TODO: asset uri rewrite (css, html)
 
 var Clean = require('../pipeline/clean')
-var Css = require('../pipeline/css')
-var Html = require('../pipeline/html')
+var Css = require('../pipeline/frontend/css')
+var Html = require('../pipeline/frontend/html')
 var Javascript = require('../pipeline/javascript/bundle')
-var Assets = require('../pipeline/assets')
-var Serve = require('../pipeline/serve')
+var Assets = require('../pipeline/frontend/assets')
+var Serve = require('../pipeline/frontend/serve')
 var Digest = require('../pipeline/digest')
 
 var get_hash = require('../util/get-hash')

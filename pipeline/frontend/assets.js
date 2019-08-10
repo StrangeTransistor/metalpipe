@@ -3,11 +3,11 @@ var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
 
-var rename = require('../unit/rename')
+var rename = require('../../unit/rename')
 
-var stamp = require('../util/hash-stamp')
-var series = require('../util/series')
-var live = require('../util/live')
+var stamp = require('../../util/hash-stamp')
+var series = require('../../util/series')
+var live = require('../../util/live')
 
 
 module.exports = function assets (context)
