@@ -28,7 +28,7 @@ function backend (p, context)
 		}
 
 		var script_patch = p['scripts:final']
-		delete p['script:final']
+		delete p['scripts:final']
 		if (script_patch)
 		{
 			p.scripts = { ...p.scripts, ...script_patch }

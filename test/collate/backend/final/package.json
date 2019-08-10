@@ -7,9 +7,6 @@
     "check1": "gulp --once",
     "check2": "gulp --final"
   },
-  "scripts:final": {
-    "start": "echo pm2"
-  },
   "dependencies": {
     "the-answer": "1"
   }
