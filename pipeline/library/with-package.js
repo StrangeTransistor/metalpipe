@@ -8,19 +8,9 @@ module.exports = function WithPackage (context)
 	{
 		if (context.opts.final)
 		{
+			delete p.private
 			delete p.devDependencies
-
-			if (p.scripts)
-			{
-				delete p.scripts.test
-			}
-
-			var script_patch = p['scripts:final']
-			delete p['scripts:final']
-			if (script_patch)
-			{
-				p.scripts = { ...p.scripts, ...script_patch }
-			}
+			delete p.scripts
 		}
 
 		return p
