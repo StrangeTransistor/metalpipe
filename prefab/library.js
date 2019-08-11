@@ -6,9 +6,14 @@ var Other = require('../pipeline/backend/other')
 // var Digest = require('../pipeline/digest')
 
 
+var Ignore = require('../util/Ignore')
+
+
 module.exports = function frontend (context)
 {
 	context.describe()
+
+	var ignore = Ignore()
 
 	var { series, parallel } = context.gulp
 
@@ -28,17 +33,3 @@ module.exports = function frontend (context)
 		)
 	)
 }
-
-var ignore =
-[
-	'!package.json',
-	'!node_modules/**',
-	'!release/**',
-	'!gulpfile.js',
-
-	// '!web/**',
-
-	'!*npm-debug.log',
-	'!coverage/**',
-	'!flow-typed/**',
-]

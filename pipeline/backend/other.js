@@ -1,5 +1,5 @@
 
-var copy = require('../copy')
+var copy = require('../../unit/copy')
 
 
 module.exports = function Other (context, options = {})
@@ -7,14 +7,12 @@ module.exports = function Other (context, options = {})
 	return function OTHER ()
 	{
 		var { $from, $to } = context
-
-		var ignore = (options.ignore || [])
+		var { ignore } = options
 
 		var from =
 		[
 			'**/*',
-			'!**/*.js',
-			...ignore,
+			...ignore.view(),
 		]
 		.map(glob => $from(glob))
 

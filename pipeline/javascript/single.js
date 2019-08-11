@@ -16,9 +16,16 @@ module.exports = function javascript (context, options = {})
 	{
 		var { $from, $to } = context
 
-		var ignore = (options.ignore || [])
+		var glob = '**/*.js'
 
-		var from = [ '**/*.js', ...ignore ].map(glob => $from(glob))
+		var ignore = []
+		if (options.ignore)
+		{
+			ignore = options.ignore.view()
+			options.ignore.add(glob)
+		}
+
+		var from = [ glob, ...ignore ].map(glob => $from(glob))
 
 		var pr = context.notify.process('JAVASCRIPT')
 
@@ -52,7 +59,6 @@ function config (context)
 
 
 var sucrase  = require('rollup-plugin-sucrase')
-
 
 function plugins (/*{ $from }*/)
 {
