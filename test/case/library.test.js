@@ -19,20 +19,16 @@ describe('Library', () =>
 		expect_release(cl, tmp.partial('release/dev'))
 	})
 
-	/* TODO: final target
-	xit('final', () =>
+	// TODO: ignore test
+	it('final', () =>
 	{
 		var tmp =  origin('library')
 		var  cl = collate('library/final')
 
 		run('gulp', [ '--final' ], tmp)
 
-		expect_release(cl, tmp.partial('release/final'),
-		{
-			inst: { instance: 'final', name: 'fixt-library/final' },
-		})
+		expect_release(cl, tmp.partial('release/final'))
 	})
-	*/
 
 	// TODO: test target
 	// xit('test target?')
