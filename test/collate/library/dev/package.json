@@ -1,0 +1,16 @@
+{
+  "name": "fixt-library",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "gulp",
+    "unit": "true",
+    "test": "gulp --once && npm run unit"
+  },
+  "dependencies": {
+    "the-answer": "1"
+  },
+  "devDependencies": {
+    "gulp": "4"
+  }
+}
