@@ -1,6 +1,7 @@
 
 var srv = require('gulp-serve')
 
+var get_true = require('../../util/get-true')
 var is_live = require('../../util/is-live')
 var fnom = require('../../util/fnom')
 
@@ -9,15 +10,23 @@ var label = 'SERVE'
 
 module.exports = function serve (context)
 {
-	if (is_live(context))
-	{
-		var { $to } = context
+	var do_serve = get_true(context.opts, 'serve')
 
-		return fnom(label, srv(
-		{
-			port: 8080,
-			root: [ $to(), $to.$static(), ], // TODO: single entry here
-		}))
-	}
-	else return fnom(label, async () => {})
+	if (! do_serve) { return noop() }
+	if (! is_live(context)) { return noop() }
+
+	var { $to } = context
+	var port = (+context.opts.serve || 8080)
+
+	return fnom(label, srv(
+	{
+		port,
+		root: [ $to(), $to.$static(), ], // TODO: single entry here
+	}))
+}
+
+
+function noop ()
+{
+	return fnom(label, async () => {})
 }
