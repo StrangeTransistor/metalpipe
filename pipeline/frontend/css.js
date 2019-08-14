@@ -69,9 +69,7 @@ function rewrite_uri (context)
 		{
 			url (asset)
 			{
-				var { url, pathname } = asset
-
-				if (url !== pathname) { return url }
+				var { url } = asset
 
 				url = stamp(url)
 				url = url.replace(/^static\//, '')
