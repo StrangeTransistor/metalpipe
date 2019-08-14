@@ -115,6 +115,10 @@ body {
   width: 100px;
   height: 100px;
 }
+.bg + img {
+  width: 25px;
+  height: 25px;
+}
 .img1 {
   background: url(assets.ABCDEFG/red.png);
 }

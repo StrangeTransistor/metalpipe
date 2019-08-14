@@ -1309,9 +1309,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         }
 
         pug_html = pug_html + "<div class=\"bg img1\"></div>";
+        pug_html = pug_html + "<img src=\"static/assets/red.png\">";
         pug_html = pug_html + "<div class=\"bg img2\"></div>";
+        pug_html = pug_html + "<img src=\"static/assets/dir/violet.png\">";
         pug_html = pug_html + "<div class=\"bg img3\"></div>";
-        pug_html = pug_html + "<div class=\"bg img4\"></div></body>";
+        pug_html = pug_html + "<img src=\"static/assets/index/green.png\">";
+        pug_html = pug_html + "<div class=\"bg img4\"></div>";
+        pug_html = pug_html + "<img src=\"static/assets/index/dir/blue.png\"></body>";
       }).call(this, "dev" in locals_for_with ? locals_for_with.dev : typeof dev !== "undefined" ? dev : undefined, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined, "some" in locals_for_with ? locals_for_with.some : typeof some !== "undefined" ? some : undefined);
     } catch (err) {
       pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
