@@ -23,10 +23,11 @@ module.exports = function live (context, glob, task)
 
 		var ignored =
 		[
-			// dot(),
 			$to(),
 			$from('release'),
-			$from('node_modules')
+			'**/node_modules',
+			// $from('web'), // TODO: exclude web
+			// dot(),
 		]
 
 		var options = { ...watch_default, ignored }
