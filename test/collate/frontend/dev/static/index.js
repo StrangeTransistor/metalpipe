@@ -721,7 +721,7 @@
                 template = this.generate(this.parse(this.scan(text, options.delimiters), text, options), text, options);
                 return this.cache[key] = template;
               };
-            })(exports);
+            })( exports );
             });
 
             var template = createCommonjsModule(function (module, exports) {
@@ -1047,7 +1047,7 @@
                 return Object.prototype.toString.call(a) === '[object Array]';
               };
 
-            })(exports);
+            })( exports );
             });
 
             /*
@@ -1208,7 +1208,8 @@
               if (val === true) {
                 return ' ' + (terse ? key : key + '="' + key + '"');
               }
-              if (typeof val.toJSON === 'function') {
+              var type = typeof val;
+              if ((type === 'object' || type === 'function') && typeof val.toJSON === 'function') {
                 val = val.toJSON();
               }
               if (typeof val !== 'string') {
@@ -1364,7 +1365,7 @@
             console.log(json);
             function debug (...args)
             {
-            	console.log(...args);
+            	 console.log(...args);
             }
             console.log(dev$1);
             debug(1, 2, 3);

@@ -1155,7 +1155,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return ' ' + (terse ? key : key + '="' + key + '"');
     }
 
-    if (typeof val.toJSON === 'function') {
+    var type = _typeof(val);
+
+    if ((type === 'object' || type === 'function') && typeof val.toJSON === 'function') {
       val = val.toJSON();
     }
 
