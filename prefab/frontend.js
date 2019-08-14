@@ -1,4 +1,3 @@
-// TODO: asset uri rewrite (css, html)
 
 var Clean = require('../pipeline/clean')
 var Css = require('../pipeline/frontend/css')
