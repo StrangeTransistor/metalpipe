@@ -1,4 +1,6 @@
 // TODO: vendor concat
+// TODO: jsx
+// TODO: ts
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
