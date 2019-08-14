@@ -131,3 +131,6 @@ body {
 .img4 {
   background: url(assets.ABCDEFG/index/dir/blue.png);
 }
+.img-host {
+  background: url(localhost:8080/static/assets/red.png);
+}
