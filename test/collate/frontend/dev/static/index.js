@@ -1355,7 +1355,11 @@
             pug_html = pug_html + "\u003Cdiv class=\"dev\"\u003E";
             pug_html = pug_html + "Yes\u003C\u002Fdiv\u003E";
             }
-            pug_html = pug_html + "\u003C\u002Fbody\u003E";}.call(this,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined,"some" in locals_for_with?locals_for_with.some:typeof some!=="undefined"?some:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
+            pug_html = pug_html + "\u003Cdiv class=\"bg img1\"\u003E\u003C\u002Fdiv\u003E";
+            pug_html = pug_html + "\u003Cdiv class=\"bg img2\"\u003E\u003C\u002Fdiv\u003E";
+            pug_html = pug_html + "\u003Cdiv class=\"bg img3\"\u003E\u003C\u002Fdiv\u003E";
+            pug_html = pug_html + "\u003Cdiv class=\"bg img4\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fbody\u003E";
+            }.call(this,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined,"some" in locals_for_with?locals_for_with.some:typeof some!=="undefined"?some:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
 
             console.log('answer', index);
             console.log('noop', noop3);

@@ -11,6 +11,12 @@ var prefix = require('../../unit/autoprefixer')
 var cssnano = require('../../unit/cssnano')
 var stamp = require('../../unit/hash-stamp')
 
+var postcss = require('gulp-postcss')
+var rebase  = require('postcss-url')
+
+var in_uri = require('../../util/hash-stamp').in_uri
+
+
 var live = require('../../util/live')
 var get_true = require('../../util/get-true')
 
@@ -31,6 +37,7 @@ module.exports = function css (context)
 			.on('error', pr.error).on('end', pr.stable)
 			.on('error', pr.error.end)
 
+			.pipe(rewrite_uri(context))
 			.pipe(final(context))
 			.pipe(dst($to.$static()))
 		})
@@ -49,4 +56,28 @@ function final (context)
 			guif(!! hash, stamp(hash)),
 		)
 	)
+}
+
+function rewrite_uri (context)
+{
+	var hash = context.opts.hash
+	var stamp = in_uri(hash)
+
+	return postcss(
+	[
+		rebase(
+		{
+			url (asset)
+			{
+				var { url, pathname } = asset
+
+				if (url !== pathname) { return url }
+
+				url = stamp(url)
+				url = url.replace(/^static\//, '')
+
+				return url
+			}
+		})
+	])
 }

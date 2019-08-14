@@ -94,6 +94,12 @@
 		"gulp-autoprefixer":
 			"6",
 
+		"gulp-postcss":
+			"8",
+
+		"postcss-url":
+			"8",
+
 
 		"gulp-pug":
 			"4",

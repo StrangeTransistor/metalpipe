@@ -113,3 +113,20 @@ body {
 .f {
   display: flex;
 }
+.bg {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+.img1 {
+  background: url(assets/red.png);
+}
+.img2 {
+  background: url(assets/dir/violet.png);
+}
+.img3 {
+  background: url(assets/index/green.png);
+}
+.img4 {
+  background: url(assets/index/dir/blue.png);
+}

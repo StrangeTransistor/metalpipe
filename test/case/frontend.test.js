@@ -7,7 +7,7 @@ var run = require('../run')
 var expect_release = require('../expect-release')
 
 
-describe('Frontend', () =>
+describe.only('Frontend', () =>
 {
 	it('dev', () =>
 	{

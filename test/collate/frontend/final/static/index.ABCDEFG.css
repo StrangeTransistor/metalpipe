@@ -110,3 +110,20 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
+.bg {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+.img1 {
+  background: url(assets.ABCDEFG/red.png);
+}
+.img2 {
+  background: url(assets.ABCDEFG/dir/violet.png);
+}
+.img3 {
+  background: url(assets.ABCDEFG/index/green.png);
+}
+.img4 {
+  background: url(assets.ABCDEFG/index/dir/blue.png);
+}
