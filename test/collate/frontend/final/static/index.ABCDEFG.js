@@ -1291,7 +1291,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         pug_html = pug_html + "<meta charset=\"utf-8\">";
         pug_html = pug_html + "<title>";
         pug_html = pug_html + "index</title>";
-        pug_html = pug_html + "<link rel=\"stylesheet\" href=\"index.css\">";
+        pug_html = pug_html + "<link rel=\"stylesheet\" href=\"static/index.css\">";
         pug_html = pug_html + "<script src=\"static/index.js\"></script></head>";
         pug_html = pug_html + "<body>";
         pug_html = pug_html + "<div class=\"some\">";

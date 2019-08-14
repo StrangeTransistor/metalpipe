@@ -1341,7 +1341,7 @@
             pug_html = pug_html + "\u003Cmeta charset=\"utf-8\"\u003E";
             pug_html = pug_html + "\u003Ctitle\u003E";
             pug_html = pug_html + "index\u003C\u002Ftitle\u003E";
-            pug_html = pug_html + "\u003Clink rel=\"stylesheet\" href=\"index.css\"\u003E";
+            pug_html = pug_html + "\u003Clink rel=\"stylesheet\" href=\"static\u002Findex.css\"\u003E";
             pug_html = pug_html + "\u003Cscript src=\"static\u002Findex.js\"\u003E\u003C\u002Fscript\u003E\u003C\u002Fhead\u003E";
             pug_html = pug_html + "\u003Cbody\u003E";
             pug_html = pug_html + "\u003Cdiv class=\"some\"\u003E";

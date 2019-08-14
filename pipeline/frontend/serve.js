@@ -21,7 +21,7 @@ module.exports = function serve (context)
 	return fnom(label, srv(
 	{
 		port,
-		root: [ $to(), $to.$static(), ], // TODO: single entry here
+		root: [ $to() ],
 	}))
 }
 
