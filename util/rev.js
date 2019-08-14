@@ -19,20 +19,22 @@ format = `--format="${format}"`
 
 module.exports = function rev ()
 {
-	return run('git describe --always --long --abbrev=40 --dirty')
-
-	/*
-	var
-	R = run(`git log -1 ${ format }`)
-	R = loadc(R)
-	R.rev = run('git describe --always --long --abbrev=40 --dirty')
-
-	return R
-	*/
+	try
+	{
+		return run('git describe --always --long --abbrev=40 --dirty')
+	}
+	catch (e)
+	{
+		return null
+	}
 }
 
-function run (cmd, options = {})
+function run (cmd)
 {
-	return shell(cmd, { ...options, encoding: 'utf-8' })
+	return shell(cmd,
+	{
+		stdio: [ 'ignore', 'pipe', 'ignore' ],
+		encoding: 'utf-8',
+	})
 	.trim()
 }
