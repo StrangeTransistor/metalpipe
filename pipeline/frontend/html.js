@@ -6,6 +6,12 @@ var { dest: dst } = require('gulp')
 var pug = require('../../unit/pug')
 var min = require('../../unit/htmlmin')
 
+var posthtml = require('gulp-posthtml')
+var rebase   = require('posthtml-urls')
+
+var in_uri = require('../../util/hash-stamp').in_uri
+
+
 var live = require('../../util/live')
 
 
@@ -28,13 +34,14 @@ function html_pug (context)
 		return live(context, $from('**/*.pug'), function pug$ ()
 		{
 			return src($from('index/*.pug'))
-			.pipe(pug(context))
 
+			.pipe(pug(context))
 			.on('error', pr.error).on('end', pr.stable)
 			.on('error', pr.error.end)
 
-			.pipe(min())
+			.pipe(rewrite_uri(context))
 
+			.pipe(min())
 			.on('error', prh.error).on('end', prh.stable)
 			.on('error', prh.error.end)
 
@@ -54,8 +61,20 @@ function html_static (context)
 		return live(context, from, function html_static$ ()
 		{
 			return src(from)
+			.pipe(rewrite_uri(context))
 			.pipe(min())
 			.pipe(dst($to()))
 		})
 	}
+}
+
+function rewrite_uri (context)
+{
+	var hash = context.opts.hash
+	var stamp = in_uri(hash)
+
+	return posthtml(
+	[
+		rebase({ eachURL: stamp })
+	])
 }
