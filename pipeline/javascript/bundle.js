@@ -101,12 +101,12 @@ function final (context)
 {
 	var presets =
 	[
-		'@babel/preset-env',
+		require('@babel/preset-env'),
 	]
 
 	if (get_true(context.opts, 'minify'))
 	{
-		presets.push('minify')
+		presets.push(require('babel-preset-minify'))
 	}
 
 	var hash = context.opts.hash
