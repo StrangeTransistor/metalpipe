@@ -4,17 +4,9 @@
 
 	"scripts":
 	{
-		"postinstall": "run/postinstall",
-
 		"test": "npm run st && npm run unit",
-
-		"st": "eslint .",
-
-		"unit": "mocha -t 10000 test/case/*.test.js",
-
-		"check": "npm run check_front && npm run check_back",
-		"check_front": "cd fixt/frontend; npm test",
-		"check_back":  "cd fixt/backend;  npm test"
+		  "st": "eslint .",
+		"unit": "mocha -t 10000 test/case/*.test.js"
 	},
 
 	"peerDependencies":
@@ -174,9 +166,6 @@
 
 
 		"gulp":
-			"4",
-
-		"gulp-debug":
 			"4",
 
 		"fs-extra":
