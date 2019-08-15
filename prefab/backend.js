@@ -15,12 +15,12 @@ var fallback = require('../util/get-fallback')
 
 module.exports = function frontend (context)
 {
-	context.describe()
-
-	context.instance = fallback(context.opts, 'instance', () =>
+	context.opts.instance = fallback(context.opts, 'instance', () =>
 	{
 		return basename(context.$to())
 	})
+
+	context.describe()
 
 	var ignore = Ignore(null, 'web/**')
 

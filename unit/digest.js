@@ -20,9 +20,9 @@ module.exports = function digest (context)
 
 	_.rev = rev()
 
-	if (context.instance)
+	if (context.opts.instance)
 	{
-		_.instance = context.instance
+		_.instance = context.opts.instance
 		_.name = (context.package.name + '/' + _.instance)
 	}
 

@@ -13,12 +13,10 @@ var get_hash = require('../util/get-hash')
 module.exports = function frontend (context)
 {
 	context.$from = context.$root.partial('lib')
+	context.$to.$static = context.$to.partial('static')
+	context.opts.hash = get_hash(context.opts)
 
 	context.describe()
-
-	context.$to.$static = context.$to.partial('static')
-
-	context.opts.hash = get_hash(context.opts)
 
 	var { series, parallel } = context.gulp
 
