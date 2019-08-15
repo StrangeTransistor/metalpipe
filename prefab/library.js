@@ -3,7 +3,6 @@ var Clean = require('../pipeline/clean')
 var WithPackage = require('../pipeline/library/with-package')
 var Javascript = require('../pipeline/javascript/single')
 var Other = require('../pipeline/backend/other')
-// var Digest = require('../pipeline/digest')
 
 
 var Ignore = require('../util/Ignore')
@@ -21,7 +20,6 @@ module.exports = function frontend (context)
 	var pkg = WithPackage(context)
 	var javascript = Javascript(context, { ignore })
 	var other = Other(context, { ignore })
-	// var digest = Digest(context)
 
 	return series(
 		clean,
@@ -29,7 +27,6 @@ module.exports = function frontend (context)
 			pkg,
 			javascript,
 			other
-			// digest
 		)
 	)
 }
