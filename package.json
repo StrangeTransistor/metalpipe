@@ -21,6 +21,17 @@
 			"1"
 	},
 
+	"files":
+	[
+		"pipeline/",
+		"release/",
+		"unit/",
+		"util/",
+
+		"Context.js",
+		"prefab.js"
+	],
+
 	"dependencies":
 	{
 		"@streetstrider/rootpath":
