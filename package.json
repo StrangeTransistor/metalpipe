@@ -153,10 +153,7 @@
 			"7",
 
 		"babel-preset-minify":
-			"^0.5",
-
-		"babel-helper-evaluate-path":
-			"0.5"
+			"^0.5.1"
 	},
 
 	"devDependencies":
