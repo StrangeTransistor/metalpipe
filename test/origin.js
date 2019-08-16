@@ -15,6 +15,7 @@ module.exports = (name) =>
 	var tmp  = tmp_rootpath()
 	var fixt = fixt_rootpath(name)
 
+	// TODO: filter
 	cp(fixt(), tmp())
 
 	ln(root('node_modules'), tmp('../node_modules'))
