@@ -1,18 +1,22 @@
 
-var { dest: dst } = require('gulp')
-
-var guif = require('gulp-if')
-
-var dgs = require('../unit/digest')
+var nothing = require('../unit/nothing')
 
 
 module.exports = function digest (context)
 {
 	return function DIGEST ()
 	{
+		if (! context.opts.final)
+		{
+			return nothing().end()
+		}
+
+		var { dest: dst } = require('gulp')
+		var dgs = require('../unit/digest')
+
 		var { $to } = context
 
 		return dgs(context)
-		.pipe(guif(context.opts.final, dst($to())))
+		.pipe(dst($to()))
 	}
 }
