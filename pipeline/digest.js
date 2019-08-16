@@ -1,6 +1,4 @@
 
-var nothing = require('../unit/nothing')
-
 
 module.exports = function digest (context)
 {
@@ -8,6 +6,8 @@ module.exports = function digest (context)
 	{
 		if (! context.opts.final)
 		{
+			var nothing = require('../unit/nothing')
+
 			return nothing().end()
 		}
 

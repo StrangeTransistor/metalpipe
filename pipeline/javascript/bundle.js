@@ -89,16 +89,17 @@ function plugins ({ $from, opts })
 }
 
 
-var mpipe = require('multipipe')
-var get_true = require('../../util/get-true')
-var nothing  = require('../../unit/nothing')
-
 function final (context)
 {
 	if (! context.opts.final)
 	{
+		var nothing  = require('../../unit/nothing')
+
 		return nothing()
 	}
+
+	var get_true = require('../../util/get-true')
+	var mpipe    = require('multipipe')
 
 	var presets =
 	[
