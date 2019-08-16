@@ -2,23 +2,9 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-var guif = require('gulp-if')
-var mpipe = require('multipipe')
-
-
-var less = require('../../unit/less')
-var prefix = require('../../unit/autoprefixer')
-var cssnano = require('../../unit/cssnano')
-var stamp = require('../../unit/hash-stamp')
-
-var postcss = require('gulp-postcss')
-var rebase  = require('postcss-url')
-
-var in_uri = require('../../util/hash-stamp').in_uri
-
 
 var live = require('../../util/live')
-var get_true = require('../../util/get-true')
+var less = require('../../unit/less')
 
 
 module.exports = function css (context)
@@ -44,19 +30,10 @@ module.exports = function css (context)
 	}
 }
 
-function final (context)
-{
-	var minify = get_true(context.opts, 'minify')
-	var hash = context.opts.hash
 
-	return guif(context.opts.final,
-		mpipe(
-			prefix(),
-			guif(minify, cssnano()),
-			guif(!! hash, stamp(hash)),
-		)
-	)
-}
+var postcss = require('gulp-postcss')
+var rebase  = require('postcss-url')
+var in_uri  = require('../../util/hash-stamp').in_uri
 
 function rewrite_uri (context)
 {
@@ -78,4 +55,38 @@ function rewrite_uri (context)
 			}
 		})
 	])
+}
+
+
+var mpipe    = require('multipipe')
+var get_true = require('../../util/get-true')
+var nothing  = require('../../unit/nothing')
+
+function final (context)
+{
+	if (! context.opts.final)
+	{
+		return nothing()
+	}
+
+	var pipe = []
+
+	var prefix = require('../../unit/autoprefixer')
+	pipe.push(prefix())
+
+	var minify = get_true(context.opts, 'minify')
+	if (minify)
+	{
+		var cssnano = require('../../unit/cssnano')
+		pipe.push(cssnano())
+	}
+
+	var hash = context.opts.hash
+	if (hash)
+	{
+		var stamp = require('../../unit/hash-stamp')
+		pipe.push(stamp(hash))
+	}
+
+	return mpipe(...pipe)
 }

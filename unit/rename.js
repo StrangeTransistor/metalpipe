@@ -1,10 +1,10 @@
 
-var through = require('through2')
+var { obj: through } = require('through2')
 
 
 module.exports = function rename (rename_fn)
 {
-	return through.obj((file, encoding, done) =>
+	return through((file, encoding, done) =>
 	{
 		var filename = rename_fn(file.path)
 
