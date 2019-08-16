@@ -5,15 +5,9 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-var guif = require('gulp-if')
-var mpipe = require('multipipe')
 
-
+var live   = require('../../util/live')
 var rollup = require('../../unit/rollup')
-var stamp  = require('../../unit/hash-stamp')
-
-var live = require('../../util/live')
-var get_true = require('../../util/get-true')
 
 var onwarn = require('./onwarn')
 
@@ -58,23 +52,23 @@ function config (context)
 }
 
 
-var resolve  = require('rollup-plugin-node-resolve')
-var globals  = require('rollup-plugin-node-globals')
-var builtins = require('rollup-plugin-node-builtins')
-var commonjs = require('rollup-plugin-commonjs')
-
-var json     = require('rollup-plugin-json')
-var aliases  = require('rollup-plugin-import-alias')
-var virtual  = require('rollup-plugin-virtual')
-
-var mustache = require('rollup-plugin-mustache')
-var pug      = require('rollup-plugin-pug')
-
-var sucrase  = require('rollup-plugin-sucrase')
-
-
 function plugins ({ $from, opts })
 {
+	var resolve  = require('rollup-plugin-node-resolve')
+	var globals  = require('rollup-plugin-node-globals')
+	var builtins = require('rollup-plugin-node-builtins')
+	var commonjs = require('rollup-plugin-commonjs')
+
+	var json     = require('rollup-plugin-json')
+	var aliases  = require('rollup-plugin-import-alias')
+	var virtual  = require('rollup-plugin-virtual')
+
+	var mustache = require('rollup-plugin-mustache')
+	var pug      = require('rollup-plugin-pug')
+
+	var sucrase  = require('rollup-plugin-sucrase')
+
+
 	var plugins =
 	[
 		pug({ basedir: $from(), pugRuntime: 'pug-runtime' }),
@@ -95,10 +89,17 @@ function plugins ({ $from, opts })
 }
 
 
-var babel = require('gulp-babel')
+var mpipe = require('multipipe')
+var get_true = require('../../util/get-true')
+var nothing  = require('../../unit/nothing')
 
 function final (context)
 {
+	if (! context.opts.final)
+	{
+		return nothing()
+	}
+
 	var presets =
 	[
 		require('@babel/preset-env'),
@@ -109,16 +110,17 @@ function final (context)
 		presets.push(require('babel-preset-minify'))
 	}
 
-	var hash = context.opts.hash
+	var hash  = context.opts.hash
 
-	return guif(context.opts.final,
-		mpipe(
-			babel(
-			{
-				presets,
-				comments: false,
-			}),
-			stamp(hash)
-		)
+	var babel = require('gulp-babel')
+	var stamp = require('../../unit/hash-stamp')
+
+	return mpipe(
+		babel(
+		{
+			presets,
+			comments: false,
+		}),
+		stamp(hash)
 	)
 }
