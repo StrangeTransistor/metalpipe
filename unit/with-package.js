@@ -1,9 +1,4 @@
 
-var noop = require('gulp-noop')
-var file = require('gulp-file')
-
-var { dump } = require('../util/json')
-
 
 module.exports = function WithPackage (context, fn)
 {
@@ -11,19 +6,26 @@ module.exports = function WithPackage (context, fn)
 
 	if (! p)
 	{
+		var nothing = require('./nothing')
+
 		console.warn('WithPackage: No package.json found')
 
-		return noop()
+		return nothing()
 	}
 
 	var p = fn(p, context)
 
 	if (! p)
 	{
+		var nothing = require('./nothing')
+
 		console.warn('WithPackage: transform fn eliminated package.json')
 
-		return noop()
+		return nothing()
 	}
+
+	var file = require('gulp-file')
+	var { dump } = require('../util/json')
 
 	return file('package.json', dump(p), { src: true })
 }
