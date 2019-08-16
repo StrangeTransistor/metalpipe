@@ -4,7 +4,7 @@ var { basename } = require('path')
 var Clean = require('../pipeline/clean')
 var WithPackage = require('../pipeline/backend/with-package')
 var Javascript = require('../pipeline/javascript/single')
-var Other = require('../pipeline/backend/other')
+var Other = require('../pipeline/other')
 var Digest = require('../pipeline/digest')
 var Serve = require('../pipeline/backend/serve')
 

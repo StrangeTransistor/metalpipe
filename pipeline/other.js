@@ -1,5 +1,5 @@
 
-var copy = require('../../unit/copy')
+var copy = require('../unit/copy')
 
 
 module.exports = function Other (context, options = {})

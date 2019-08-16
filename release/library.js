@@ -2,7 +2,7 @@
 var Clean = require('../pipeline/clean')
 var WithPackage = require('../pipeline/library/with-package')
 var Javascript = require('../pipeline/javascript/single')
-var Other = require('../pipeline/backend/other')
+var Other = require('../pipeline/other')
 
 
 var Ignore = require('../util/Ignore')
