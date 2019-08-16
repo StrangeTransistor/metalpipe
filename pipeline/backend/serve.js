@@ -1,11 +1,7 @@
 
-// var shell = require('gulp-shell')
-var { spawn } = require('child_process')
-
-
 var is_live = require('../../util/is-live')
-var fnom = require('../../util/fnom')
 
+var fnom = require('../../util/fnom')
 var label = 'SERVE'
 
 
@@ -24,7 +20,8 @@ module.exports = function Serve (context)
 	{
 		setTimeout(() =>
 		{
-			// shell([ 'npm run serve' ])
+			var { spawn } = require('child_process')
+
 			spawn('npm', [ 'run', 'serve' ], { stdio: 'inherit' })
 		}
 		, 2e3)

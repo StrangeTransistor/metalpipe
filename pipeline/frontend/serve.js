@@ -1,10 +1,8 @@
 
-var srv = require('gulp-serve')
-
 var get_true = require('../../util/get-true')
 var is_live = require('../../util/is-live')
-var fnom = require('../../util/fnom')
 
+var fnom = require('../../util/fnom')
 var label = 'SERVE'
 
 
@@ -17,6 +15,8 @@ module.exports = function serve (context)
 
 	var { $to } = context
 	var port = (+context.opts.serve || 8080)
+
+	var srv = require('gulp-serve')
 
 	return fnom(label, srv(
 	{
