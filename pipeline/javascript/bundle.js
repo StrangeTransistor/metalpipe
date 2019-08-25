@@ -80,7 +80,7 @@ function plugins ({ $from, opts })
 
 		globals(),
 		builtins(),
-		resolve({ mainFields: [ 'module', 'main', 'browser' ] }),
+		resolve({ mainFields: [ 'browser', 'module', 'main' ] }),
 		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
 	]
