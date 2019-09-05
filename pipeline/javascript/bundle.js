@@ -78,11 +78,11 @@ function plugins ({ $from, opts })
 		virtual({ '~metalpipe': 'export var dev = ' + opts.dev }),
 		sucrase({ transforms: [ 'flow' ] }),
 
-		globals(),
 		builtins(),
 		resolve({ mainFields: [ 'browser', 'module', 'main' ] }),
 		aliases({ Paths: { '~lib': $from() }, }),
 		commonjs(),
+		globals(),
 	]
 
 	return plugins
