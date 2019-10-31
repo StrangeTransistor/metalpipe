@@ -2,6 +2,15 @@
 	   "name": "metalpipe",
 	"version": "0.1.2",
 
+	"description": "JavaScript builder for Frontend, Backend & Library targets",
+
+	"license": "ISC",
+	"author":  "Strider <strange.transistor@gmail.com>",
+
+	"homepage":            "https://github.com/StrangeTransistor/metalpipe",
+	"bugs":       { "url": "https://github.com/StrangeTransistor/metalpipe/issues" },
+	"repository": { "url": "https://github.com/StrangeTransistor/metalpipe.git", "type": "git" },
+
 	"scripts":
 	{
 		"test": "npm run st && npm run unit",
