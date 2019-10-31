@@ -19,12 +19,19 @@ module.exports = (dst, tmp) =>
 	}
 	else
 	{
-		var differences = r.differences
-		var diff = r.diffSet.filter(it => it.state !== 'equal')
+		// var diff = r.diffSet.filter(it => it.state !== 'equal')
+		// console.warn(diff)
 
-		console.warn(diff)
+		var differences = r.differences
 		console.error('release differs: %s files differences', differences)
+
 		console.log('\n', bold(`meld ${tmp} ${dst}`))
+
+		if (dst.match('minify'))
+		{
+			console.log('\n',
+				bold(`prettier --write ${tmp}/static/**.js ${dst}/static/**.js`))
+		}
 
 		return false
 	}
