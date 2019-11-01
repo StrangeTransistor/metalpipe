@@ -44,4 +44,4 @@ exports.default = require('metalpipe/prefab')('library', require('gulp'))
 ```
 
 ## license
-ISC.
+ISC. © Strider, 2019.
