@@ -60,7 +60,7 @@ function plugins ({ $from, opts })
 	var builtins = require('rollup-plugin-node-builtins')
 	var commonjs = require('rollup-plugin-commonjs')
 
-	var json     = require('rollup-plugin-json')
+	var json     = require('@rollup/plugin-json')
 	var aliases  = require('rollup-plugin-import-alias')
 	var virtual  = require('rollup-plugin-virtual')
 

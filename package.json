@@ -135,7 +135,7 @@
 		"rollup-plugin-commonjs":
 			"9",
 
-		"rollup-plugin-json":
+		"@rollup/plugin-json":
 			"4",
 
 		"rollup-plugin-sucrase":
