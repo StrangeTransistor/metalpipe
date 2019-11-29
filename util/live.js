@@ -32,7 +32,9 @@ module.exports = function live (context, glob, task)
 
 		var options = { ...watch_default, ignored }
 
-		return watch(glob, options, task)
+		return watch(glob, options /*, task */)
+		.on('add', task)
+		.on('change', task)
 		.on('error', watch_error)
 	}
 

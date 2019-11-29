@@ -30,9 +30,11 @@ module.exports = function javascript (context, options = {})
 
 		var pr = context.notify.process('JAVASCRIPT')
 
-		return live(context, from, function javascript$ ()
+		return live(context, from, function javascript$ (filename)
 		{
-			return src(from, { allowEmpty: true })
+			filename || (filename = from)
+
+			return src(filename, { base: $from(), allowEmpty: true })
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			// .pipe(final(context))
