@@ -1,5 +1,5 @@
 
-declare module '*.json'
+// declare module '*.json'
 
 declare module 'the-answer'
 
