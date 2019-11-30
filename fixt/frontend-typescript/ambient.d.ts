@@ -1,4 +1,6 @@
 
+declare module '*.json'
+
 declare module 'the-answer'
 
 declare module 'noop3'

@@ -8,6 +8,9 @@ console.log('other', other)
 import cjs from '../other/cjs'
 console.log('cjs', cjs)
 
+import json from '../other/other.json'
+console.log(json)
+
 
 /* node_modules */
 import answer from 'the-answer'
