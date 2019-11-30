@@ -1,4 +1,5 @@
 
+declare module '~metalpipe'
 declare module '*.pug'
 declare module '*.mst.html'
 

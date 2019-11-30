@@ -3,13 +3,13 @@ var yes: string = 'yes'
 console.log(yes)
 
 import other from '~lib/other/other'
-console.log(other)
+console.log('other', other)
 
 import cjs from '~lib/other/cjs'
-console.log(cjs)
+console.log('cjs', cjs)
 
 import json from '../other/other.json'
-console.log(json)
+console.log('json', json)
 
 
 /* node_modules */
@@ -24,10 +24,10 @@ console.log('curry', curry)
 
 
 /* node */
-console.log(!! global.global)
+console.log('global', !! global.global)
 
 import p from 'process'
-console.log(p)
+console.log('process', p)
 
 
 /* templating: */
@@ -39,3 +39,13 @@ console.log(pug_static)
 
 import pug from './index.pug'
 console.log(pug({ other: 'Other', some: 'Some' }))
+
+
+/* metalpipe */
+import { dev } from '~metalpipe'
+function debug (...args: any[])
+{
+	dev && console.log(...args)
+}
+console.log('~metalpipe/dev', dev)
+debug(1, 2, 3)
