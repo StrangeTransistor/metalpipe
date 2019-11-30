@@ -1,5 +1,7 @@
 
-// declare module '*.json'
+declare module '*.pug'
+declare module '*.mst.html'
+
 
 declare module 'the-answer'
 

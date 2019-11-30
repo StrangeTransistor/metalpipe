@@ -2,11 +2,11 @@
 var yes: string = 'yes'
 console.log(yes)
 
-import other from '../other/other'
-console.log('other', other)
+import other from '~lib/other/other'
+console.log(other)
 
-import cjs from '../other/cjs'
-console.log('cjs', cjs)
+import cjs from '~lib/other/cjs'
+console.log(cjs)
 
 import json from '../other/other.json'
 console.log(json)
@@ -28,3 +28,14 @@ console.log(!! global.global)
 
 import p from 'process'
 console.log(p)
+
+
+/* templating: */
+import mst from '../other/other.mst.html'
+console.log(mst.render({ data: 'yes' }))
+
+import pug_static from '../other/some.static.pug'
+console.log(pug_static)
+
+import pug from './index.pug'
+console.log(pug({ other: 'Other', some: 'Some' }))

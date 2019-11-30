@@ -15,6 +15,12 @@
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 
+		"baseUrl": ".",
+		"paths":
+		{
+			"~lib/*": [ "./lib/*" ]
+		},
+
 		"allowJs": true,
 		"checkJs": false
 	}
