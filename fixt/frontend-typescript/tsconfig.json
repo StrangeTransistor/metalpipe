@@ -14,16 +14,14 @@
 		"moduleResolution": "Node",
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-
+		"allowJs": true,
+		"checkJs": false,
 		"skipLibCheck": true,
 
 		"baseUrl": ".",
 		"paths":
 		{
 			"~lib/*": [ "./lib/*" ]
-		},
-
-		"allowJs": true,
-		"checkJs": false
+		}
 	}
 }
