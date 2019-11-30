@@ -1,0 +1,20 @@
+{
+	"files": [ "lib/index/index.ts" ],
+
+	"include": [ "ambient.d.ts" ],
+
+	"compilerOptions":
+	{
+		"noEmit": true,
+		"pretty": true,
+
+		"strict": true,
+
+		"target": "ES6",
+		"moduleResolution": "Node",
+		"allowSyntheticDefaultImports": true,
+
+		"allowJs": true,
+		"checkJs": false
+	}
+}

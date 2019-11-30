@@ -1,0 +1,50 @@
+{
+	   "name": "fixt-frontend-typescript",
+	"version": "0.0.0",
+	"private":  true,
+
+	"browserslist":
+	[
+		"last 2 Chrome versions",
+		"last 2 ChromeAndroid versions",
+		"last 2 Firefox versions",
+		"last 2 FirefoxAndroid versions",
+		"last 2 iOS versions",
+		"last 2 Safari versions",
+
+		"IE >= 10"
+	],
+
+	"scripts":
+	{
+		"start": "gulp",
+
+		"test": "npm run check1 && npm run check2",
+
+		"t": "tsc",
+
+		"check1": "gulp --once",
+		"check2": "gulp --final --no-minify"
+	},
+
+	"dependencies":
+	{
+		"the-answer":
+			"1.0.0",
+
+		"noop3":
+			"1000.0.0",
+
+		"rambda":
+			"2.10.2"
+	},
+
+	"devDependencies":
+	{
+		"typescript":
+			"^3.7",
+
+		"@types/node":
+			"12.12"
+	}
+}
