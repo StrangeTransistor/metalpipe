@@ -9,28 +9,37 @@ var { dest: dst } = require('gulp')
 
 var live   = require('../../util/live')
 var rollup = require('../../unit/rollup')
+var js_ext = require('../../unit/js-ext')
 
 var onwarn = require('./onwarn')
+
+
+var ext_input = [ 'js', 'ts' ]
+
+var ext_all =
+[
+	...ext_input,
+	'mst.html', 'pug',
+]
 
 
 module.exports = function javascript (context)
 {
 	return function JAVASCRIPT ()
 	{
+		var pr = context.notify.process('JAVASCRIPT')
+
 		var { $from, $to } = context
 
-		var from = [ 'js', 'mst.html', 'pug' ].map(ext =>
-		{
-			return $from(`**/*.${ ext }`)
-		})
-
-		var pr = context.notify.process('JAVASCRIPT')
+		var from = ext_all.map(ext => $from(`**/*.${ ext }`))
+		var from_input = ext_input.map(ext => $from(`index/*.${ ext }`))
 
 		return live(context, from, function javascript$ ()
 		{
-			return src($from('index/*.js'), { allowEmpty: true })
+			return src(from_input, { allowEmpty: true })
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
+			.pipe(js_ext())
 			.pipe(final(context))
 			.pipe(dst($to.$static()))
 		})
@@ -77,7 +86,7 @@ function plugins ({ $from, opts })
 		/* pug must precede extended syntaxes (flow) */
 		json(),
 		virtual({ '~metalpipe': 'export var dev = ' + opts.dev }),
-		sucrase({ transforms: [ 'flow' ] }),
+		sucrase({ transforms: [ 'typescript' ] }),
 
 		builtins(),
 		resolve({ mainFields: [ 'browser', 'module', 'main' ] }),
