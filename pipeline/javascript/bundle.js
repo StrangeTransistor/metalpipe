@@ -82,7 +82,7 @@ function config (context)
 }
 
 
-function plugins ({ $from, opts })
+function plugins ({ $from, opts, typescript })
 {
 	var resolve  = require('rollup-plugin-node-resolve')
 	var globals  = require('rollup-plugin-node-globals')
@@ -98,6 +98,12 @@ function plugins ({ $from, opts })
 
 	var sucrase  = require('rollup-plugin-sucrase')
 
+	var sucrase_transforms = [ 'flow' ]
+	if (typescript)
+	{
+		sucrase_transforms = [ 'typescript' ]
+	}
+
 
 	var plugins =
 	[
@@ -106,7 +112,7 @@ function plugins ({ $from, opts })
 		/* pug must precede extended syntaxes (flow) */
 		json(),
 		virtual({ '~metalpipe': 'export var dev = ' + opts.dev }),
-		sucrase({ transforms: [ 'typescript' ] }),
+		sucrase({ transforms: sucrase_transforms }),
 
 		builtins(),
 		resolve({ mainFields: [ 'browser', 'module', 'main' ] }),
