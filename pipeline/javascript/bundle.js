@@ -1,7 +1,8 @@
 // TODO: vendor concat
 // TODO: jsx
-// TODO: ts
 // TODO: code split
+
+var { existsSync: exists } = require('fs')
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
@@ -14,29 +15,20 @@ var js_ext = require('../../unit/js-ext')
 var onwarn = require('./onwarn')
 
 
-var ext_input = [ 'js', 'ts' ]
-
-var ext_all =
-[
-	...ext_input,
-	'mst.html', 'pug',
-]
-
-
 module.exports = function javascript (context)
 {
 	return function JAVASCRIPT ()
 	{
+		var { $root /*, $from */, $to } = context
+
+		context.typescript = exists($root('tsconfig.json'))
+
 		var pr = context.notify.process('JAVASCRIPT')
 
-		var { $from, $to } = context
-
-		var from = ext_all.map(ext => $from(`**/*.${ ext }`))
-		var from_input = ext_input.map(ext => $from(`index/*.${ ext }`))
-
-		return live(context, from, function javascript$ ()
+		return live(context, glob_activator(context),
+		function javascript$ ()
 		{
-			return src(from_input, { allowEmpty: true })
+			return src(glob_entry(context), { allowEmpty: true })
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
@@ -44,6 +36,34 @@ module.exports = function javascript (context)
 			.pipe(dst($to.$static()))
 		})
 	}
+}
+
+
+var ext_rs    = [ 'mst.html', 'pug', ]
+var ext_input = [ 'js' ]
+
+function glob_activator (context)
+{
+	var ext = [ ...ext_rs, ...ext_input ]
+
+	if (context.typescript)
+	{
+		ext = [ ...ext, 'ts' ]
+	}
+
+	return ext.map(ext => context.$from(`**/*.${ ext }`))
+}
+
+function glob_entry (context)
+{
+	var ext = [ ...ext_input ]
+
+	if (context.typescript)
+	{
+		ext = [ ...ext, 'ts' ]
+	}
+
+	return ext.map(ext => context.$from(`index/*.${ ext }`))
 }
 
 
