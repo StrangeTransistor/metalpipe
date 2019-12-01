@@ -32,8 +32,10 @@ console.log(!! global.global)
 import p from 'process'
 console.log(p)
 
-var yes: string = 'yes'
-console.log(yes)
+type Foo = { yes: string }
+
+var foo: Foo = { yes: 'yes' }
+console.log(foo)
 
 /* templating: */
 import mst from '~lib/other/other.mst.html'

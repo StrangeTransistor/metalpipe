@@ -1382,8 +1382,10 @@
             console.log(!! global$1.global);
             console.log(p);
 
-            var yes = 'yes';
-            console.log(yes);
+
+
+            var foo = { yes: 'yes' };
+            console.log(foo);
             console.log(mst.render({ data: 'yes' }));
             console.log(pug_static);
             console.log(pug({ other: 'Other', some: 'Some' }));

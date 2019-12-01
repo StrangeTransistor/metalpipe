@@ -1334,8 +1334,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   console.log(dev$1);
   console.log(!!global$1.global);
   console.log(p);
-  var yes = 'yes';
-  console.log(yes);
+  var foo = {
+    yes: 'yes'
+  };
+  console.log(foo);
   console.log(mst.render({
     data: 'yes'
   }));

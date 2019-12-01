@@ -1,6 +1,8 @@
 
-var yes: string = 'yes'
-console.log(yes)
+type Foo = { yes: string }
+
+var foo: Foo = { yes: 'yes' }
+console.log(foo)
 
 import other from '~lib/other/other'
 console.log('other', other)
