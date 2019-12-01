@@ -39,7 +39,7 @@ console.log(mst.render({ data: 'yes' }))
 import pug_static from '../other/some.static.pug'
 console.log(pug_static)
 
-import pug from './index.pug'
+import pug from '../other2/other2.pug'
 console.log(pug({ other: 'Other', some: 'Some' }))
 
 
