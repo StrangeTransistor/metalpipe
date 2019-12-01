@@ -115,8 +115,16 @@ function plugins ({ $from, opts, typescript })
 		sucrase({ transforms: sucrase_transforms }),
 
 		builtins(),
-		resolve({ mainFields: [ 'browser', 'module', 'main' ] }),
-		aliases({ Paths: { '~lib': $from() }, }),
+		resolve(
+		{
+			mainFields: [ 'browser', 'module', 'main' ],
+			extensions: [ '.ts', '.js' ],
+		}),
+		aliases(
+		{
+			Paths: { '~lib': $from() },
+			Extensions: [ 'ts', 'js' ],
+		}),
 		commonjs(),
 		globals(),
 	]

@@ -1,5 +1,5 @@
 
 export default function ()
 {
-	return 'Other TS'
+	return 'Other TypeScript'
 }
