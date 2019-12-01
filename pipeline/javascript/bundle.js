@@ -123,7 +123,7 @@ function plugins ({ $from, opts, typescript })
 		aliases(
 		{
 			Paths: { '~lib': $from() },
-			Extensions: [ 'ts', 'js' ],
+			Extensions: [ 'ts', 'js', 'json', 'mst.html', 'static.pug', 'pug' ],
 		}),
 		commonjs(),
 		globals(),

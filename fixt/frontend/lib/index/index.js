@@ -15,7 +15,7 @@ console.log(other)
 import cjs from '~lib/other/cjs'
 console.log(cjs)
 
-import json from '../other/other.json'
+import json from '~lib/other/other.json'
 console.log(json)
 
 
@@ -36,10 +36,10 @@ var yes: string = 'yes'
 console.log(yes)
 
 /* templating: */
-import mst from '../other/other.mst.html'
+import mst from '~lib/other/other.mst.html'
 console.log(mst.render({ data: 'yes' }))
 
-import pug_static from '../other/some.static.pug'
+import pug_static from '~lib/other/some.static.pug'
 console.log(pug_static)
 
 import pug from './index.pug'
