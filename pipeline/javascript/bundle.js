@@ -2,8 +2,6 @@
 // TODO: jsx
 // TODO: code split
 
-var { existsSync: exists } = require('fs')
-
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
@@ -13,15 +11,16 @@ var rollup = require('../../unit/rollup')
 var js_ext = require('../../unit/js-ext')
 
 var onwarn = require('./onwarn')
+var is_typescript = require('./is-typescript')
 
 
 module.exports = function javascript (context)
 {
 	return function JAVASCRIPT ()
 	{
-		var { $root /*, $from */, $to } = context
+		var $static = context.$to.$static
 
-		context.typescript = exists($root('tsconfig.json'))
+		context.typescript = is_typescript(context)
 
 		var pr = context.notify.process('JAVASCRIPT')
 
@@ -33,7 +32,7 @@ module.exports = function javascript (context)
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
 			.pipe(final(context))
-			.pipe(dst($to.$static()))
+			.pipe(dst($static()))
 		})
 	}
 }
