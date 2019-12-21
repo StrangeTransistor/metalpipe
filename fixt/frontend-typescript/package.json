@@ -20,9 +20,9 @@
 		"start": "gulp",
 
 		"st": "eslint --ext js --ext ts .",
-		"test": "npm run check1 && npm run check2",
-
 		"t": "tsc",
+
+		"test": "npm run check1 && npm run check2",
 
 		"check1": "gulp --once",
 		"check2": "gulp --final --no-minify"
@@ -42,6 +42,9 @@
 
 	"devDependencies":
 	{
+		"gulp":
+			"4",
+
 		"eslint":
 			"6",
 

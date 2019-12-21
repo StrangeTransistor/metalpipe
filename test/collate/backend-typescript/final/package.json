@@ -1,0 +1,13 @@
+{
+  "name": "fixt-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "echo pm2",
+    "check1": "gulp --once",
+    "check2": "gulp --final"
+  },
+  "dependencies": {
+    "the-answer": "1"
+  }
+}
