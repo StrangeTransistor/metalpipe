@@ -39,53 +39,40 @@ module.exports = function javascript (context)
 
 
 var ext_rs    = [ 'mst.html', 'pug', ]
-var ext_input = [ 'js' ]
 
 function glob_activator (context)
 {
-	var ext = [ ...ext_rs, ...ext_input ]
+	var ext = [ ...ext_rs, ...ext_input(context) ]
 
-	if (context.typescript)
-	{
-		ext = [ ...ext, 'ts' ]
-	}
-
-	var glob = ext.map(ext => `**/*.${ ext }`)
-
-	if (context.typescript)
-	{
-		glob =
-		[
-			...glob,
-			'**/*.ts',
-			'!**/*.d.ts',
-		]
-	}
-
-	return glob.map(glob => context.$from(glob))
+	return ext.map(ext => context.$from(`**/*.${ ext }`))
 }
+
 
 function glob_entry (context)
 {
-	var ext = [ ...ext_input ]
-
-	if (context.typescript)
-	{
-		ext = [ ...ext, 'ts' ]
-	}
+	var ext = ext_input(context)
 
 	var glob = ext.map(ext => `index/*.${ ext }`)
 
 	if (context.typescript)
 	{
-		glob =
-		[
-			...glob,
-			'!**/*.d.ts',
-		]
+		glob = [ ...glob, '!**/*.d.ts' ]
 	}
 
 	return glob.map(glob => context.$from(glob))
+}
+
+
+function ext_input ({ typescript })
+{
+	var ext = [ 'js' ]
+
+	if (typescript)
+	{
+		ext = [ ...ext, 'ts' ]
+	}
+
+	return ext
 }
 
 
