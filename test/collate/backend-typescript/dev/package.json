@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "gulp",
+    "st": "eslint --ext js --ext ts .",
+    "t": "tsc",
     "test": "npm run check1 && npm run check2",
     "check1": "gulp --once",
     "check2": "gulp --final"
@@ -15,6 +17,9 @@
     "the-answer": "1"
   },
   "devDependencies": {
-    "gulp": "4"
+    "gulp": "4",
+    "eslint": "6",
+    "js-outlander": "StrangeTransistor/js-outlander#2.5.1",
+    "typescript": "^3.7"
   }
 }

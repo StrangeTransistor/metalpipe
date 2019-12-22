@@ -6,10 +6,12 @@ var { dest: dst } = require('gulp')
 
 
 var rollup = require('../../unit/rollup')
+var js_ext = require('../../unit/js-ext')
 
 var live = require('../../util/live')
 
 var onwarn = require('./onwarn')
+var is_typescript = require('./is-typescript')
 
 
 module.exports = function javascript (context, options = {})
@@ -18,16 +20,20 @@ module.exports = function javascript (context, options = {})
 	{
 		var { $from, $to } = context
 
-		var glob = '**/*.js'
+		context.typescript = is_typescript(context)
 
-		var ignore = []
-		if (options.ignore)
+		var glob = glob_entry(context)
+
 		{
-			ignore = options.ignore.view()
-			options.ignore.add(glob)
+			var ignored = []
+			if (options.ignore)
+			{
+				ignored = options.ignore.view()
+				options.ignore.add(glob)
+			}
 		}
 
-		var from = [ glob, ...ignore ].map(glob => $from(glob))
+		var from = [ ...glob, ...ignored ].map(glob => $from(glob))
 
 		var pr = context.notify.process('JAVASCRIPT')
 
@@ -38,10 +44,24 @@ module.exports = function javascript (context, options = {})
 			return src(filename, { base: $from(), allowEmpty: true })
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
-			// .pipe(final(context))
+			.pipe(js_ext())
+			// .pipe(final(context)) TODO: final
 			.pipe(dst($to()))
 		})
 	}
+}
+
+
+function glob_entry (context)
+{
+	var ext = [ '**/*.js' ]
+
+	if (context.typescript)
+	{
+		ext = [ ...ext, '**/*.ts' ]
+	}
+
+	return ext
 }
 
 
@@ -64,11 +84,17 @@ function config (context)
 
 var sucrase  = require('rollup-plugin-sucrase')
 
-function plugins (/*{ $from }*/)
+function plugins ({ typescript })
 {
+	var sucrase_transforms = [ 'flow' ]
+	if (typescript)
+	{
+		sucrase_transforms = [ 'typescript' ]
+	}
+
 	var plugins =
 	[
-		sucrase({ transforms: [ 'flow' ] }),
+		sucrase({ transforms: sucrase_transforms }),
 	]
 
 	return plugins
