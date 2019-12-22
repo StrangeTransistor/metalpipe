@@ -82,19 +82,13 @@ function config (context)
 }
 
 
-var sucrase  = require('rollup-plugin-sucrase')
+var sucrase = require('./sucrase')
 
-function plugins ({ typescript })
+function plugins (context)
 {
-	var sucrase_transforms = [ 'flow' ]
-	if (typescript)
-	{
-		sucrase_transforms = [ 'typescript' ]
-	}
-
 	var plugins =
 	[
-		sucrase({ transforms: sucrase_transforms }),
+		sucrase(context),
 	]
 
 	return plugins
