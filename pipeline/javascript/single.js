@@ -26,10 +26,16 @@ module.exports = function javascript (context, options = {})
 
 		{
 			var ignored = []
+
 			if (options.ignore)
 			{
 				ignored = options.ignore.view()
 				options.ignore.add(glob)
+
+				if (context.typescript)
+				{
+					options.ignore.add([ '*.d.ts', 'tsconfig.json' ])
+				}
 			}
 		}
 
@@ -54,14 +60,19 @@ module.exports = function javascript (context, options = {})
 
 function glob_entry (context)
 {
-	var ext = [ '**/*.js' ]
+	var glob = [ '**/*.js' ]
 
 	if (context.typescript)
 	{
-		ext = [ ...ext, '**/*.ts' ]
+		glob =
+		[
+			...glob,
+			'**/*.ts',
+			'!*.d.ts',
+		]
 	}
 
-	return ext
+	return glob
 }
 
 

@@ -50,7 +50,19 @@ function glob_activator (context)
 		ext = [ ...ext, 'ts' ]
 	}
 
-	return ext.map(ext => context.$from(`**/*.${ ext }`))
+	var glob = ext.map(ext => `**/*.${ ext }`)
+
+	if (context.typescript)
+	{
+		glob =
+		[
+			...glob,
+			'**/*.ts',
+			'!**/*.d.ts',
+		]
+	}
+
+	return glob.map(glob => context.$from(glob))
 }
 
 function glob_entry (context)
@@ -62,7 +74,18 @@ function glob_entry (context)
 		ext = [ ...ext, 'ts' ]
 	}
 
-	return ext.map(ext => context.$from(`index/*.${ ext }`))
+	var glob = ext.map(ext => `index/*.${ ext }`)
+
+	if (context.typescript)
+	{
+		glob =
+		[
+			...glob,
+			'!**/*.d.ts',
+		]
+	}
+
+	return glob.map(glob => context.$from(glob))
 }
 
 

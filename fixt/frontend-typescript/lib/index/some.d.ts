@@ -1,0 +1,2 @@
+
+type N = number
