@@ -1,6 +1,6 @@
-// TODO: vendor concat
 // TODO: jsx
-// TODO: code split
+// TODO: code split?
+// TODO: vendor concat
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')

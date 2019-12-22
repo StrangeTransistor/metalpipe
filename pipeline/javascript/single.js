@@ -51,6 +51,7 @@ module.exports = function javascript (context, options = {})
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
+			// TODO: test
 			// .pipe(final(context)) TODO: final
 			.pipe(dst($to()))
 		})
