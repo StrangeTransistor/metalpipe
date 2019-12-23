@@ -1,3 +1,4 @@
+// TODO: impr jsx (pragma, imports ext)
 
 var sucrase = require('rollup-plugin-sucrase')
 
