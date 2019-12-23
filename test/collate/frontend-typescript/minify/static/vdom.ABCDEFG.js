@@ -1,0 +1,1 @@
+"use strict";var index=function(){'use strict';return function(){return React.createElement("div",null)}}();

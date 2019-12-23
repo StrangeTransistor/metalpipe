@@ -4,12 +4,20 @@ var sucrase = require('rollup-plugin-sucrase')
 
 module.exports = ({ typescript }) =>
 {
-	var transforms = [ 'flow' ]
+	var transforms = [ 'jsx' ]
 
 	if (typescript)
 	{
-		transforms = [ 'typescript' ]
+		transforms = [ ...transforms, 'typescript' ]
+	}
+	else
+	{
+		transforms = [ ...transforms, 'flow' ]
 	}
 
-	return sucrase({ transforms })
+	return sucrase(
+	{
+		production: true,
+		transforms,
+	})
 }

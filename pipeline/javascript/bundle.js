@@ -1,4 +1,3 @@
-// TODO: jsx
 // TODO: code split?
 // TODO: vendor concat
 
