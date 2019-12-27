@@ -16,7 +16,7 @@ var watch_default =
 
 module.exports = function live (context, glob, task)
 {
-	task = progress(task)
+	task = progress(task, context)
 
 	if (! is_live(context))
 	{
@@ -69,13 +69,18 @@ var enospc = debounce((task, context, error) =>
 , 100)
 
 
-function progress (task)
+function progress (task, context)
 {
+	var { $from } = context
+
 	var holistic = (! task.length) /* arguments */
 
 	var task_indicated = (...args) =>
 	{
-		console.warn('change', args[0])
+		if (args.length)
+		{
+			console.warn('~', $from.relative(args[0]))
+		}
 
 		var mark = tick()
 
