@@ -5,9 +5,10 @@ var { dest: dst } = require('gulp')
 
 var rename = require('../../unit/rename')
 
-var stamp = require('../../util/hash-stamp')
+var stamp  = require('../../util/hash-stamp')
+var fnom   = require('../../util/fnom')
 var series = require('../../util/series')
-var live = require('../../util/live')
+var live   = require('../../util/live')
 
 
 module.exports = function assets (context)
@@ -20,11 +21,12 @@ module.exports = function assets (context)
 
 		var to = $to.$static(stamp(context.opts.hash, 'assets'))
 
-		return live(context, watch, series(
-				assets_plain(context, to),
-				assets_bundle(context, to)
-			)
-		)
+		var task = fnom('assets$', series(
+			assets_plain(context, to),
+			assets_bundle(context, to)
+		))
+
+		return live(context, watch, task)
 	}
 }
 
