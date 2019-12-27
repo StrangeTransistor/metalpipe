@@ -16,7 +16,7 @@ var watch_default =
 
 module.exports = function live (context, glob, task)
 {
-	var { watch } = context.gulp
+	task = progress(task)
 
 	if (! is_live(context))
 	{
@@ -24,8 +24,6 @@ module.exports = function live (context, glob, task)
 	}
 	else
 	{
-		task = progress(task)
-
 		var { $from, $to } = context
 
 		var ignored =
@@ -37,6 +35,7 @@ module.exports = function live (context, glob, task)
 			// dot(),
 		]
 
+		var { watch } = context.gulp
 		var options = { ...watch_default, ignored }
 
 		return watch(glob, options /*, task */)
@@ -78,18 +77,23 @@ function progress (task)
 
 		var mark = tick()
 
-		settle(() => task(...args), (error, result) =>
+		return new Promise((rs, rj) =>
 		{
-			if (error)
+			settle(() => task(...args), (error, result) =>
 			{
-				// TODO: watch_error (-> live_error)
-				return
-			}
+				if (error)
+				{
+					// TODO: watch_error (-> live_error)
+					return rj(error)
+				}
 
-			mark = tick(mark)
+				mark = tick(mark)
 
-			console.log('~', task.name, pretty_hr(mark))
-			result && console.log(result)
+				console.log('~', task.name, pretty_hr(mark))
+				result && console.log(result)
+
+				rs()
+			})
 		})
 	}
 }
