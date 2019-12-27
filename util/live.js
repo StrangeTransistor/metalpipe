@@ -1,5 +1,10 @@
 
 
+var tick = process.hrtime
+
+var settle    = require('async-done')
+var pretty_hr = require('pretty-hrtime')
+
 var is_live = require('./is-live')
 
 var watch_default =
@@ -19,6 +24,8 @@ module.exports = function live (context, glob, task)
 	}
 	else
 	{
+		task = progress(task)
+
 		var { $from, $to } = context
 
 		var ignored =
@@ -61,3 +68,28 @@ var enospc = debounce((task, context, error) =>
 	process.exit()
 }
 , 100)
+
+
+function progress (task)
+{
+	return (...args) =>
+	{
+		console.warn('change', args[0])
+
+		var mark = tick()
+
+		settle(() => task(...args), (error, result) =>
+		{
+			if (error)
+			{
+				// TODO: watch_error (-> live_error)
+				return
+			}
+
+			mark = tick(mark)
+
+			console.log('~', task.name, pretty_hr(mark))
+			result && console.log(result)
+		})
+	}
+}
