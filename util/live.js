@@ -71,7 +71,9 @@ var enospc = debounce((task, context, error) =>
 
 function progress (task)
 {
-	return (...args) =>
+	var holistic = (! task.length) /* arguments */
+
+	var task_indicated = (...args) =>
 	{
 		console.warn('change', args[0])
 
@@ -96,4 +98,11 @@ function progress (task)
 			})
 		})
 	}
+
+	if (holistic)
+	{
+		task_indicated = debounce(task_indicated, 1000, /* immediate = */ true)
+	}
+
+	return task_indicated
 }
