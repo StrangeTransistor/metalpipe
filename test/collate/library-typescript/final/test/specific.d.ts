@@ -1,0 +1,2 @@
+
+type Specific = { s: boolean }

@@ -30,12 +30,8 @@ module.exports = function javascript (context, options = {})
 			if (options.ignore)
 			{
 				ignored = options.ignore.view()
-				options.ignore.add(glob)
 
-				if (context.typescript)
-				{
-					options.ignore.add([ '**/tsconfig.json' ])
-				}
+				options.ignore.add(glob_ignore(context))
 			}
 		}
 
@@ -48,6 +44,7 @@ module.exports = function javascript (context, options = {})
 			filename || (filename = from)
 
 			return src(filename, { base: $from(), allowEmpty: true })
+			.pipe(require('../../unit/log')())
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
@@ -69,7 +66,25 @@ function glob_entry (context)
 		[
 			...glob,
 			'**/*.ts',
-			'!*.d.ts',
+			'!**/*.d.ts',
+		]
+	}
+
+	return glob
+}
+
+function glob_ignore (context)
+{
+	var glob = [ '**/*.js' ]
+
+	if (context.typescript)
+	{
+		glob =
+		[
+			...glob,
+			'**/tsconfig.json',
+			'!**/*.d.ts',
+			'**/*.ts',
 		]
 	}
 

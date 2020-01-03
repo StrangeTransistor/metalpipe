@@ -18,6 +18,7 @@ function Ignore (list, list_append)
 		return list
 		.map(x => '!' + x)
 		.map(x => x.replace(/^!!/, ''))
+		.reverse()
 	}
 
 	return { add, view }
