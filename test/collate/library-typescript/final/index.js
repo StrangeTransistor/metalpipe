@@ -7,4 +7,6 @@ var mod = _interopDefault(require('./src/mod'));
 
 console.log(answer);
 
-console.log(mod());
+
+
+console.log(mod({ s: true }));
