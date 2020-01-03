@@ -34,7 +34,7 @@ module.exports = function javascript (context, options = {})
 
 				if (context.typescript)
 				{
-					options.ignore.add([ '*.d.ts', 'tsconfig.json' ])
+					options.ignore.add([ '**/tsconfig.json' ])
 				}
 			}
 		}
