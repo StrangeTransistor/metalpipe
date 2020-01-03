@@ -44,7 +44,6 @@ module.exports = function javascript (context, options = {})
 			filename || (filename = from)
 
 			return src(filename, { base: $from(), allowEmpty: true })
-			.pipe(require('../../unit/log')())
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
