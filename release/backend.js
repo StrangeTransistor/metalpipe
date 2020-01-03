@@ -8,6 +8,7 @@ var Other = require('../pipeline/other')
 var Digest = require('../pipeline/digest')
 var Serve = require('../pipeline/backend/serve')
 
+var is_typescript = require('../pipeline/javascript/is-typescript')
 
 var Ignore = require('../util/Ignore')
 var fallback = require('../util/get-fallback')
@@ -19,6 +20,8 @@ module.exports = function frontend (context)
 	{
 		return basename(context.$to())
 	})
+
+	context.typescript = is_typescript(context)
 
 	context.describe()
 

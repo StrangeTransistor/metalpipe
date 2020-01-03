@@ -11,9 +11,9 @@ var Ignore = require('../util/Ignore')
 
 module.exports = function frontend (context)
 {
-	context.describe()
-
 	context.typescript = is_typescript(context)
+
+	context.describe()
 
 	var ignore = Ignore()
 	ignore.test_aware(context)

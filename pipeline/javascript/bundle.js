@@ -10,7 +10,6 @@ var rollup = require('../../unit/rollup')
 var js_ext = require('../../unit/js-ext')
 
 var onwarn = require('./onwarn')
-var is_typescript = require('./is-typescript')
 
 
 module.exports = function javascript (context)
@@ -18,8 +17,6 @@ module.exports = function javascript (context)
 	return function JAVASCRIPT ()
 	{
 		var $static = context.$to.$static
-
-		context.typescript = is_typescript(context)
 
 		var pr = context.notify.process('JAVASCRIPT')
 

@@ -7,11 +7,15 @@ var Assets = require('../pipeline/frontend/assets')
 var Serve = require('../pipeline/frontend/serve')
 var Digest = require('../pipeline/digest')
 
+var is_typescript = require('../pipeline/javascript/is-typescript')
+
 var get_hash = require('../util/get-hash')
 
 
 module.exports = function frontend (context)
 {
+	context.typescript = is_typescript(context)
+
 	context.$from = context.$root.partial('lib')
 	context.$to.$static = context.$to.partial('static')
 	context.opts.hash = get_hash(context.opts)

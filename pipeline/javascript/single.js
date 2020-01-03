@@ -11,7 +11,6 @@ var js_ext = require('../../unit/js-ext')
 var live = require('../../util/live')
 
 var onwarn = require('./onwarn')
-var is_typescript = require('./is-typescript')
 
 
 module.exports = function javascript (context, options = {})
@@ -19,8 +18,6 @@ module.exports = function javascript (context, options = {})
 	return function JAVASCRIPT ()
 	{
 		var { $from, $to } = context
-
-		context.typescript = is_typescript(context)
 
 		var glob = glob_entry(context)
 
