@@ -150,12 +150,6 @@
 		"rollup-plugin-sucrase":
 			"2",
 
-		"rollup-plugin-dts":
-			"1",
-
-		"@wessberg/rollup-plugin-ts":
-			"1",
-
 		"rollup-plugin-import-alias":
 			"1",
 
@@ -170,7 +164,7 @@
 
 
 		"gulp-typescript":
-			"latest",
+			"6.0.0-alpha.1",
 
 		"typescript":
 			"3.7",
