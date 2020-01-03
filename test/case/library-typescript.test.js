@@ -19,7 +19,6 @@ describe('TypeScript Library', () =>
 		expect_release(cl, tmp.partial('release/dev'))
 	})
 
-	// TODO: ignore test
 	it('final', () =>
 	{
 		var tmp =  origin('library-typescript')

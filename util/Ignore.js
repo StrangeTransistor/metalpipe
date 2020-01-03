@@ -21,7 +21,16 @@ function Ignore (list, list_append)
 		.reverse()
 	}
 
-	return { add, view }
+	function test_aware (context)
+	{
+		if (context.opts.final)
+		{
+			add('test/**')
+			add('tests/**')
+		}
+	}
+
+	return { add, view, test_aware }
 }
 
 
