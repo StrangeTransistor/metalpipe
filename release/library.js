@@ -22,18 +22,20 @@ module.exports = function frontend (context)
 	var { series, parallel } = context.gulp
 
 	var clean = Clean(context)
+
 	var pkg = WithPackage(context)
 	var dts = Typings(context, { ignore })
 	var javascript = Javascript(context, { ignore })
+
 	var other = Other(context, { ignore })
 
 	return series(
 		clean,
 		parallel(
 			pkg,
-			javascript,
 			dts,
-			other
-		)
+			javascript
+		),
+		other
 	)
 }
