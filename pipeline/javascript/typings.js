@@ -31,10 +31,29 @@ module.exports = function Typings (context, { ignore })
 
 	var Typescript = require('gulp-typescript')
 
+	/*
+	var ts = Typescript.createProject($from('tsconfig.json'),
+	{
+		declaration: true,
+		emitDeclarationOnly: true,
+		// typescript: require('typescript'),
+	})
+	//*/
+
 	return function TYPINGS ()
 	{
+		var ts = Typescript(
+		{
+			declaration: true,
+			emitDeclarationOnly: true
+		}
+		, Typescript.reporter.nullReporter())
+		//*/
+
 		var streams = src(glob)
-		.pipe(Typescript({ declaration: true }))
+		//.pipe(ts())
+		.pipe(ts)
+		.on('error', () => {})
 
 		return streams.dts.pipe(dst($to()))
 	}
