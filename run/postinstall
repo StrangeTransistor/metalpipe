@@ -8,4 +8,8 @@ install ()
 }
 
 install fixt/frontend
+install fixt/frontend-typescript
 install fixt/backend
+install fixt/backend-typescript
+install fixt/library
+install fixt/library-typescript
