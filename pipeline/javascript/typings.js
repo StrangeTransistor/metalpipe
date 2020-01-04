@@ -18,8 +18,15 @@ module.exports = function Typings (context, { ignore })
 
 	var { $from, $to } = context
 
-	var
-	glob = [ '**/*.ts', '!**/*.d.ts', ...ignored ]
+	var glob =
+	[
+		'**/*.ts',
+		'!**/*.d.ts',
+		'!test/**',
+		'!tests/**',
+		...ignored,
+	]
+
 	glob = glob.map(glob => $from(glob))
 
 	var Typescript = require('gulp-typescript')
