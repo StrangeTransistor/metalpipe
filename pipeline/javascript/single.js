@@ -15,27 +15,24 @@ var onwarn = require('./onwarn')
 
 module.exports = function javascript (context, options = {})
 {
+	var ignored = []
+	if (options.ignore)
+	{
+		ignored = options.ignore.view()
+
+		options.ignore.add(glob_ignore(context))
+	}
+
+	var { $from, $to } = context
+
+	var glob = glob_entry(context)
+	var from = [ ...glob, ...ignored ].map(glob => $from(glob))
+
+	var pr = context.notify.process('JAVASCRIPT')
+
+
 	return function JAVASCRIPT ()
 	{
-		var { $from, $to } = context
-
-		var glob = glob_entry(context)
-
-		{
-			var ignored = []
-
-			if (options.ignore)
-			{
-				ignored = options.ignore.view()
-
-				options.ignore.add(glob_ignore(context))
-			}
-		}
-
-		var from = [ ...glob, ...ignored ].map(glob => $from(glob))
-
-		var pr = context.notify.process('JAVASCRIPT')
-
 		return live(context, from, function javascript$ (filename)
 		{
 			filename || (filename = from)
@@ -74,11 +71,12 @@ function glob_ignore (context)
 
 	if (context.typescript)
 	{
+		/* reversed after */
 		glob =
 		[
 			...glob,
 			'**/tsconfig.json',
-			'!**/*.d.ts',
+			'!**/*.d.ts', /* required, because of next line */
 			'**/*.ts',
 		]
 	}
