@@ -3,6 +3,8 @@ var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 var nothing = require('../../unit/nothing')
 
+// var live = require('../../util/live')
+
 
 module.exports = function Typings (context, { ignore })
 {
@@ -42,19 +44,22 @@ module.exports = function Typings (context, { ignore })
 
 	return function TYPINGS ()
 	{
-		var ts = Typescript(
-		{
-			declaration: true,
-			emitDeclarationOnly: true
-		}
-		, Typescript.reporter.nullReporter())
-		//*/
+		//return live(context, glob, function typings$ ()
+		//{
+			var ts = Typescript(
+			{
+				declaration: true,
+				emitDeclarationOnly: true
+			}
+			, Typescript.reporter.nullReporter())
+			//*/
 
-		var streams = src(glob)
-		//.pipe(ts())
-		.pipe(ts)
-		.on('error', () => {})
+			var streams = src(glob)
+			//.pipe(ts())
+			.pipe(ts)
+			.on('error', () => {})
 
-		return streams.dts.pipe(dst($to()))
+			return streams.dts.pipe(dst($to()))
+		//})
 	}
 }
