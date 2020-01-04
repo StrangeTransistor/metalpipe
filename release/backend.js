@@ -25,7 +25,7 @@ module.exports = function frontend (context)
 
 	context.describe()
 
-	var ignore = Ignore(null, 'web/**')
+	var ignore = Ignore(null, [ 'web/**', '*.d.ts' ])
 	ignore.test_aware(context)
 
 	var { series, parallel } = context.gulp
