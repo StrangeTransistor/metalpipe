@@ -50,4 +50,4 @@ exports.default = require('metalpipe/prefab')('library', require('gulp'))
 ## TODO: impr test cases (all features, file names, cross false positives)
 
 ## license
-ISC. © Strider, 2019.
+ISC. © Strider, 2020.
