@@ -91,14 +91,14 @@ function plugins (context)
 {
 	var { $from, opts } = context
 
-	var resolve  = require('rollup-plugin-node-resolve')
+	var resolve  = require('@rollup/plugin-node-resolve')
 	var globals  = require('rollup-plugin-node-globals')
 	var builtins = require('rollup-plugin-node-builtins')
-	var commonjs = require('rollup-plugin-commonjs')
+	var commonjs = require('@rollup/plugin-commonjs')
 
 	var json     = require('@rollup/plugin-json')
 	var aliases  = require('rollup-plugin-import-alias')
-	var virtual  = require('rollup-plugin-virtual')
+	var virtual  = require('@rollup/plugin-virtual')
 
 	var mustache = require('rollup-plugin-mustache')
 	var pug      = require('rollup-plugin-pug')

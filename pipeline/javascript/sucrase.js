@@ -1,6 +1,6 @@
 // TODO: impr jsx (pragma, imports ext)
 
-var sucrase = require('rollup-plugin-sucrase')
+var sucrase = require('@rollup/plugin-sucrase')
 
 
 module.exports = ({ typescript }) =>
