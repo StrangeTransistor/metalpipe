@@ -30,9 +30,9 @@
 
 ## pick prefab (`gulpfile.js`)
 ```js
-exports.default = require('metalpipe/prefab')('frontend', require('gulp'))
-exports.default = require('metalpipe/prefab')('backend', require('gulp'))
-exports.default = require('metalpipe/prefab')('library', require('gulp'))
+module.exports.default = require('metalpipe/prefab')('frontend', require('gulp'))
+module.exports.default = require('metalpipe/prefab')('backend', require('gulp'))
+module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 ```
 
 ## pick release commands (`package.json`)
