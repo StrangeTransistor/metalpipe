@@ -14,6 +14,9 @@
     "rollup":
       "1",
 
+    "typescript":
+      "^3.7",
+
     "metalpipe":
       "*"
   },
