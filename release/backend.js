@@ -45,8 +45,8 @@ module.exports = function frontend (context)
 			pkg,
 			javascript,
 			digest,
-			serve
-		),
-		other
+			serve,
+			other
+		)
 	)
 }

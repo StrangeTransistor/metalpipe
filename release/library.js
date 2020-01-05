@@ -34,8 +34,8 @@ module.exports = function frontend (context)
 		parallel(
 			pkg,
 			dts,
-			javascript
+			javascript,
+			other
 		),
-		other
 	)
 }

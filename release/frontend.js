@@ -40,7 +40,7 @@ module.exports = function frontend (context)
 			html,
 			javascript,
 			assets,
-			digest,
+			digest
 		)
 	)
 }
