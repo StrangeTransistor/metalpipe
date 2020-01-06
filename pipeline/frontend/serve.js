@@ -20,6 +20,7 @@ module.exports = function serve (context)
 
 	return fnom(label, srv(
 	{
+		hostname: '0.0.0.0',
 		port,
 		root: [ $to() ],
 	}))
