@@ -43,8 +43,7 @@ function assets_plain (context, to)
 }
 
 
-var { sep }  = require('path')
-var { join } = require('path')
+var { sep } = require('path')
 
 function assets_bundle (context, to)
 {
@@ -64,9 +63,7 @@ function assets_bundle (context, to)
 
 			filename = filename.split(sep)
 			filename.splice(1, 1)
-			filename = join(...filename)
-
-			filename = $from(filename)
+			filename = $from(...filename)
 
 			return filename
 		}
