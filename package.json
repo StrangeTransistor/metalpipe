@@ -13,9 +13,11 @@
 
 	"scripts":
 	{
-		"test": "npm run st && npm run unit",
-		  "st": "eslint .",
-		"unit": "mocha -t 10000 test/case/*.test.js"
+		 "test": "npm run st && npm run unit",
+		   "st": "eslint .",
+		 "unit": "mocha -t 10000 test/case/*.test.js",
+
+		"cover": "c8 -r text -r html --all -n pipeline/ -n release/ -n unit/ -n util/ -n Context.js npm run unit"
 	},
 
 	"peerDependencies":
@@ -221,6 +223,10 @@
 			"4",
 
 		"dir-compare":
-			"2"
+			"2",
+
+
+		"c8":
+			"7"
 	}
 }
