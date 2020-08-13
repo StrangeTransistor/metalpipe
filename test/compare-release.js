@@ -1,3 +1,4 @@
+/* eslint-disable template-curly-spacing */
 
 var console = require('console-ultimate/default')
 var { bold } = console.color
