@@ -1259,7 +1259,7 @@
              */
 
             var pug_match_html = /["&<>]/;
-            var escape = pug_escape;
+            var _escape = pug_escape;
             function pug_escape(_html){
               var html = '' + _html;
               var regexResult = pug_match_html.exec(html);
@@ -1331,7 +1331,7 @@
             	style: style,
             	attr: attr,
             	attrs: attrs,
-            	escape: escape,
+            	escape: _escape,
             	rethrow: rethrow
             };
 
