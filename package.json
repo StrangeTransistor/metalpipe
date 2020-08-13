@@ -64,7 +64,7 @@
 			"1",
 
 		"replace-ext":
-			"1",
+			"2",
 
 		"randomstring":
 			"1",
@@ -76,14 +76,14 @@
 			"1",
 
 		"node-notifier":
-			"7",
+			"8",
 
 
 		"gulp-file":
 			"0.4",
 
 		"through2":
-			"3",
+			"4",
 
 		"multipipe":
 			"4",
