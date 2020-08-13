@@ -152,6 +152,9 @@
 		"@rollup/plugin-json":
 			"4",
 
+		"@rollup/plugin-replace":
+			"2",
+
 		"@rollup/plugin-sucrase":
 			"3",
 

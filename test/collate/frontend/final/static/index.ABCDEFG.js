@@ -1336,6 +1336,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   console.log(cjs);
   console.log(json);
   console.log(dev$1);
+  console.log('production');
   console.log(!!global$1.global);
   console.log(p);
   var foo = {

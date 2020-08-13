@@ -113,6 +113,7 @@ function plugins (context)
 		/* pug must precede extended syntaxes (flow) */
 		json(),
 		virtual({ '~metalpipe': 'export var dev = ' + opts.dev }),
+		env(context),
 		sucrase(context),
 
 		builtins(),
@@ -131,6 +132,23 @@ function plugins (context)
 	]
 
 	return plugins
+}
+
+
+function env (context)
+{
+	var replace = require('@rollup/plugin-replace')
+
+	var mode = 'development'
+	if (context.opts.final)
+	{
+		mode = 'production'
+	}
+
+	return replace(
+	{
+		'process.env.NODE_ENV': `'${ mode }'`,
+	})
 }
 
 

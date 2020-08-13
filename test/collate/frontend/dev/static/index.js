@@ -1379,6 +1379,8 @@
             console.log(dev$1);
             debug(1, 2, 3);
 
+            console.log('development');
+
             console.log(!! global$1.global);
             console.log(p);
 

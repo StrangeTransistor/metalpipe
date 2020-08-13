@@ -51,3 +51,5 @@ function debug (...args: any[])
 }
 console.log('~metalpipe/dev', dev)
 debug(1, 2, 3)
+
+console.log(process.env.NODE_ENV)

@@ -27,6 +27,8 @@ function debug (...args)
 console.log(dev)
 debug(1, 2, 3)
 
+console.log(process.env.NODE_ENV)
+
 console.log(!! global.global)
 
 import p from 'process'

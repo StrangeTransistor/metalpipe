@@ -1387,4 +1387,6 @@
 	console.log('~metalpipe/dev', dev$1);
 	debug(1, 2, 3);
 
+	console.log('development');
+
 }());
