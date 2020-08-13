@@ -190,6 +190,9 @@
 		"metalpipe":
 			"./",
 
+		"typescript":
+			"^3.7",
+
 
 		"gulp":
 			"4",
