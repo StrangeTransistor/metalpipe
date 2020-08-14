@@ -127,7 +127,10 @@ function plugins (context)
 			Paths: { '~lib': $from() },
 			Extensions: [ 'ts', 'js', 'json', 'mst.html', 'static.pug', 'pug' ],
 		}),
-		commonjs(),
+		commonjs(
+		{
+			requireReturnsDefault: 'preferred', /* auto */
+		}),
 		globals(),
 	]
 
