@@ -95,7 +95,11 @@ function config (context)
 		onwarn,
 	}
 
-	var output = { format: 'cjs' }
+	var output =
+	{
+		format:  'cjs',
+		exports: 'auto',
+	}
 
 	return [ input, output ]
 }
