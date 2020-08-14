@@ -283,10 +283,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     uptime: uptime
   };
 
-  function createCommonjsModule(fn, module) {
+  function createCommonjsModule(fn, basedir, module) {
     return module = {
-      exports: {}
+      path: basedir,
+      exports: {},
+      require: function require(path, base) {
+        return commonjsRequire(path, base === undefined || base === null ? module.path : base);
+      }
     }, fn(module, module.exports), module.exports;
+  }
+
+  function commonjsRequire() {
+    throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
   }
 
   var compiler = createCommonjsModule(function (module, exports) {
