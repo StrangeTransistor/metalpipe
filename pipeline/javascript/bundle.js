@@ -91,7 +91,7 @@ function plugins (context)
 {
 	var { $from, opts } = context
 
-	var resolve  = require('@rollup/plugin-node-resolve')
+	var resolve  = require('@rollup/plugin-node-resolve').default
 	var globals  = require('rollup-plugin-node-globals')
 	var builtins = require('rollup-plugin-node-builtins')
 	var commonjs = require('@rollup/plugin-commonjs')
