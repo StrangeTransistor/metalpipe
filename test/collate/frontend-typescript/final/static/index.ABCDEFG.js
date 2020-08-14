@@ -22,9 +22,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   }
 
   var index = 42;
+  var foo1 = 'foo1';
   var cjs = {
     cjs: 'yes',
-    answer: index
+    answer: index,
+    mixed: foo1
   };
   var other$2 = "json";
   var json = {

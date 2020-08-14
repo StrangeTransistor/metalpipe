@@ -63,7 +63,9 @@
             	return 'Other'
             }
 
-            var cjs = { cjs: 'yes', answer: index };
+            var foo1 = 'foo1';
+
+            var cjs = { cjs: 'yes', answer: index, mixed: foo1 };
 
             var other$2 = "json";
             var json = {
