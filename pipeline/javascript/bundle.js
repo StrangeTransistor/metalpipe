@@ -91,7 +91,6 @@ function plugins (context)
 {
 	var { $from, opts } = context
 
-	var resolve  = require('@rollup/plugin-node-resolve').default
 	var globals  = require('rollup-plugin-node-globals')
 	var builtins = require('rollup-plugin-node-builtins')
 	var commonjs = require('@rollup/plugin-commonjs')
@@ -117,11 +116,7 @@ function plugins (context)
 		sucrase(context),
 
 		builtins(),
-		resolve(
-		{
-			mainFields: [ 'browser', 'module', 'main' ],
-			extensions: [ '.ts', '.js' ],
-		}),
+		resolve(context),
 		aliases(
 		{
 			Paths: { '~lib': $from() },
@@ -137,6 +132,23 @@ function plugins (context)
 	return plugins
 }
 
+
+function resolve (context)
+{
+	var resolve  = require('@rollup/plugin-node-resolve').default
+
+	var mainFields = [ 'browser', 'module', 'main' ]
+	if (context.opts.cjs)
+	{
+		mainFields = [ 'browser', 'main' ]
+	}
+
+	return resolve(
+	{
+		mainFields,
+		extensions: [ '.ts', '.js' ],
+	})
+}
 
 function env (context)
 {
