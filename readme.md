@@ -46,10 +46,26 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 }
 ```
 
+## opts
+```sh
+--to       - [string] - build destination = 'release/dev/'
+
+--dev      - [bool]   - = true
+--final    - [bool]   - = false
+--once     - [bool]   - run once and stop = false
+--serve    - [*]      - serve static [bool | number] where number is port = 8080
+
+--hash     - [string] - hash for builds and release.json = [7 random lowercase letters for frontend --final]
+--instance - [string] - instance name in release.json
+
+--minify   - [bool]   - = true
+--cjs      - [bool]   - compatibility with synthetic imports (mostly for React plugins to work)
+```
+
 ## TODO: inline-resources css (postcss inline), html (web-resource-inliner)
 ## TODO: obfuscate
 ## TODO: features
 ## TODO: impr test cases (all features, file names, cross false positives)
 
 ## license
-ISC. © Strider, 2020.
+ISC. © Strider, 2021.
