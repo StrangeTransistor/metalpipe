@@ -62,6 +62,14 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 --cjs      - [bool]   - compatibility with synthetic imports (mostly for React plugins to work)
 ```
 
+## virtual
+### frontend ← javascript/bundle
+* js: `~lib` root = ./lib/
+* js: `~metalpipe` = { dev }
+* pug: global var { dev }
+* less: global var { dev }
+* less, pug, html: replace uris that start with static/ in CSS and HTML to actual static
+
 ## TODO: inline-resources css (postcss inline), html (web-resource-inliner)
 ## TODO: obfuscate
 ## TODO: features
