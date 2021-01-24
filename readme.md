@@ -74,6 +74,7 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 ## TODO: obfuscate
 ## TODO: features
 ## TODO: impr test cases (all features, file names, cross false positives)
+## TODO: sourcemaps
 
 ## license
 ISC. © Strider, 2021.
