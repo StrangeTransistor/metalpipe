@@ -11,6 +11,9 @@
     "less":
       "3",
 
+    "postcss":
+      "8",
+
     "rollup":
       "1",
 
