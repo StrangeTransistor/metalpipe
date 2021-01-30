@@ -31,7 +31,7 @@ module.exports = (dst, tmp) =>
 		if (dst.match('minify'))
 		{
 			console.log('\n',
-				bold(`prettier --write ${tmp}/static/**.js ${dst}/static/**.js`))
+				bold(`pnpx prettier --write ${tmp}/static/**.js ${dst}/static/**.js`))
 		}
 
 		return false
