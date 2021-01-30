@@ -33,5 +33,8 @@ var index = function (exports) {
   exports.A = A;
   exports.B = B;
   exports.C = C;
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
   return exports;
 }({});

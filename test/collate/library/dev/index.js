@@ -1,12 +1,15 @@
 'use strict';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+var answer = require('the-answer');
+var mod = require('./src/mod');
 
-var answer = _interopDefault(require('the-answer'));
-var mod = _interopDefault(require('./src/mod'));
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var answer__default = /*#__PURE__*/_interopDefaultLegacy(answer);
+var mod__default = /*#__PURE__*/_interopDefaultLegacy(mod);
 
 /*  */
 
-console.log(answer);
+console.log(answer__default['default']);
 
-console.log(mod());
+console.log(mod__default['default']());
