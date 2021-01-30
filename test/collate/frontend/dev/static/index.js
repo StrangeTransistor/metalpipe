@@ -296,21 +296,11 @@
               uptime: uptime
             };
 
-            function createCommonjsModule(fn, basedir, module) {
-            	return module = {
-            		path: basedir,
-            		exports: {},
-            		require: function (path, base) {
-            			return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-            		}
-            	}, fn(module, module.exports), module.exports;
+            function createCommonjsModule(fn) {
+              var module = { exports: {} };
+            	return fn(module, module.exports), module.exports;
             }
 
-            function commonjsRequire () {
-            	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-            }
-
-            var compiler = createCommonjsModule(function (module, exports) {
             /*
              *  Copyright 2011 Twitter, Inc.
              *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -326,6 +316,7 @@
              *  limitations under the License.
              */
 
+            var compiler = createCommonjsModule(function (module, exports) {
             (function (Hogan) {
               // Setup regex  assignments
               // remove whitespace according to Mustache spec
@@ -735,6 +726,21 @@
               };
             })( exports );
             });
+
+            /*
+             *  Copyright 2011 Twitter, Inc.
+             *  Licensed under the Apache License, Version 2.0 (the "License");
+             *  you may not use this file except in compliance with the License.
+             *  You may obtain a copy of the License at
+             *
+             *  http://www.apache.org/licenses/LICENSE-2.0
+             *
+             *  Unless required by applicable law or agreed to in writing, software
+             *  distributed under the License is distributed on an "AS IS" BASIS,
+             *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+             *  See the License for the specific language governing permissions and
+             *  limitations under the License.
+             */
 
             var template = createCommonjsModule(function (module, exports) {
 
