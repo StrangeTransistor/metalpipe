@@ -18,7 +18,7 @@ module.exports = function css (context)
 
 		return live(context, $from('**/*.less'), function css$ ()
 		{
-			return src($from('index/*.less'), { allowEmpty: true })
+			return src($from('index/*.less'))
 			.pipe(maps.init())
 			.pipe(less(context))
 

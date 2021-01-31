@@ -24,7 +24,7 @@ module.exports = function javascript (context)
 		return live(context, glob_activator(context),
 		function javascript$ ()
 		{
-			return src(glob_entry(context), { allowEmpty: true })
+			return src(glob_entry(context))
 			.pipe(maps.init())
 			.pipe(rollup(...config(context)))
 			.pipe(maps.tidy_tree(path =>
