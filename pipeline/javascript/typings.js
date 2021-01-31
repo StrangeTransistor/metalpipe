@@ -44,6 +44,7 @@ module.exports = function Typings (context, { ignore })
 
 	return function TYPINGS ()
 	{
+		// TODO: live typings
 		//return live(context, glob, function typings$ ()
 		//{
 			var ts = Typescript(
