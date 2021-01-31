@@ -1,6 +1,8 @@
 // TODO: code split?
 // TODO: vendor concat
 
+var { join } = require('path')
+
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
@@ -21,12 +23,20 @@ module.exports = function javascript (context)
 		var pr = context.notify.process('JAVASCRIPT')
 		var maps = sourcemaps(context)
 
+		var pathdelta = context.$from.relative(context.$root)
+
 		return live(context, glob_activator(context),
 		function javascript$ ()
 		{
 			return src(glob_entry(context), { allowEmpty: true })
 			.pipe(maps.init())
 			.pipe(rollup(...config(context)))
+			.pipe(maps.mapSources((path) =>
+			{
+				path = path.replace(/^(..\/)+/, '')
+				path = join(pathdelta, path)
+				return path
+			}))
 			.pipe(maps.write())
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())

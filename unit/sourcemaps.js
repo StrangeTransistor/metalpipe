@@ -25,5 +25,6 @@ module.exports = function (context)
 var empty =
 {
 	init:  nothing,
+	mapSources: nothing,
 	write: nothing,
 }
