@@ -4,9 +4,9 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-
 var live   = require('../../util/live')
 var rollup = require('../../unit/rollup')
+var sourcemaps = require('../../unit/sourcemaps')
 var js_ext = require('../../unit/js-ext')
 
 var onwarn = require('./onwarn')
@@ -19,12 +19,15 @@ module.exports = function javascript (context)
 		var $static = context.$to.$static
 
 		var pr = context.notify.process('JAVASCRIPT')
+		var maps = sourcemaps(context)
 
 		return live(context, glob_activator(context),
 		function javascript$ ()
 		{
 			return src(glob_entry(context), { allowEmpty: true })
+			.pipe(maps.init())
 			.pipe(rollup(...config(context)))
+			.pipe(maps.write())
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
 			.pipe(final(context))
@@ -34,7 +37,7 @@ module.exports = function javascript (context)
 }
 
 
-var ext_rs    = [ 'mst.html', 'pug', ]
+var ext_rs = [ 'mst.html', 'pug', ]
 
 function glob_activator (context)
 {
@@ -135,7 +138,7 @@ function plugins (context)
 
 function resolve (context)
 {
-	var resolve  = require('@rollup/plugin-node-resolve').default
+	var resolve = require('@rollup/plugin-node-resolve').default
 
 	var mainFields = [ 'browser', 'module', 'main' ]
 	if (context.opts.cjs)
@@ -171,7 +174,7 @@ function final (context)
 {
 	if (! context.opts.final)
 	{
-		var nothing  = require('../../unit/nothing')
+		var nothing = require('../../unit/nothing')
 
 		return nothing()
 	}

@@ -53,16 +53,16 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 ```sh
 --to       - [string] - build destination = 'release/dev/'
 
---dev      - [bool]   - = true
---final    - [bool]   - = false
+--final    - [bool]   - final build = false
 --once     - [bool]   - run once and stop = false
 --serve    - [*]      - serve static [bool | number] where number is port = 8080
 
---hash     - [string] - hash for builds and release.json = [7 random lowercase letters for frontend --final]
+--hash     - [string] - hash for builds and release.json = [7 random lowercase letters for frontend --final] = null
 --instance - [string] - instance name in release.json
 
---minify   - [bool]   - = true
---cjs      - [bool]   - compatibility with synthetic imports (mostly for React plugins to work)
+--minify   - [bool]   - minify content = [true for frontend --final] = false
+--maps     - [bool]   - sourcemaps = true
+--cjs      - [bool]   - compatibility with synthetic imports (mostly for React plugins to work) = false
 ```
 
 ## virtual

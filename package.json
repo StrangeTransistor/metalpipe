@@ -105,6 +105,10 @@
 			"1",
 
 
+		"gulp-sourcemaps":
+			"3",
+
+
 		"gulp-less":
 			"4",
 
