@@ -5,6 +5,7 @@ var { dest: dst } = require('gulp')
 
 var live = require('../../util/live')
 var less = require('../../unit/less')
+var sourcemaps = require('../../unit/sourcemaps')
 
 
 module.exports = function css (context)
@@ -14,16 +15,28 @@ module.exports = function css (context)
 		var { $from, $to } = context
 
 		var pr = context.notify.process('CSS')
+		var maps = sourcemaps(context)
 
 		return live(context, $from('**/*.less'), function css$ ()
 		{
 			return src($from('index/*.less'), { allowEmpty: true })
+			.pipe(maps.init())
 			.pipe(less(context))
 
 			.on('error', pr.error).on('end', pr.stable)
 			.on('error', pr.error.end)
 
 			.pipe(rewrite_uri(context))
+			/*.pipe(maps.mapSources((path) =>
+			{
+				console.log(path)
+				var x = $from('index', path)
+				x = context.$from.relative(x)
+				console.warn(x)
+				return x
+			}))
+			*/
+			.pipe(maps.write())
 			.pipe(final(context))
 			.pipe(dst($to.$static()))
 		})
