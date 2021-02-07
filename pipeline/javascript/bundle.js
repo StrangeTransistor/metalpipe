@@ -30,6 +30,7 @@ module.exports = function javascript (context)
 			.pipe(maps.tidy_tree(path =>
 			{
 				path = path.replace(/^(..\/)+/, '')
+				path = path.replace(/\.pnpm\/.+?\/.+?\//, '')
 				return path
 			}))
 			.pipe(maps.write())
