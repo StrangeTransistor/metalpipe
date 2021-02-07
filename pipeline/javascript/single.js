@@ -106,12 +106,14 @@ function config (context)
 
 
 var sucrase = require('./sucrase')
+var label   = require('./label')
 
 function plugins (context)
 {
 	var plugins =
 	[
 		sucrase(context),
+		label(context),
 	]
 
 	return plugins

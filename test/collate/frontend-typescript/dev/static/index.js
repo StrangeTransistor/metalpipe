@@ -1407,4 +1407,8 @@
 
 	console.log('development');
 
+	 console.log('dev');
+
+	 console.log('test');
+
 }());

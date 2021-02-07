@@ -48,3 +48,9 @@ console.log(pug_static)
 
 import pug from './index.pug'
 console.log(pug({ other: 'Other', some: 'Some' }))
+
+dev: console.log('dev')
+
+final: console.log('final')
+
+test: console.log('test')

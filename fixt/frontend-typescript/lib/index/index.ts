@@ -53,3 +53,9 @@ console.log('~metalpipe/dev', dev)
 debug(1, 2, 3)
 
 console.log(process.env.NODE_ENV)
+
+dev: console.log('dev')
+
+final: console.log('final')
+
+test: console.log('test')

@@ -13,3 +13,7 @@ console.log(answer__default['default']);
 
 
 console.log(mod__default['default']({ s: true }));
+
+ console.log('dev');
+
+ console.log('test');

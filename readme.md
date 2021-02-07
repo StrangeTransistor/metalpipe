@@ -69,6 +69,7 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 ### frontend ← javascript/bundle
 * js: `~lib` root = ./lib/
 * js: `~metalpipe` = { dev }
+* js: labels `dev`, `test` and `final`
 * pug: global var { dev }
 * less: global var { dev }
 * less, pug, html: replace uris that start with static/ in CSS and HTML to actual static

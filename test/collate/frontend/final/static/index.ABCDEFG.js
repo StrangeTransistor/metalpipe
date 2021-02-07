@@ -1354,4 +1354,5 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     other: 'Other',
     some: 'Some'
   }));
+  console.log('final');
 })();

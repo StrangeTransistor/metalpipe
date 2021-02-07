@@ -29,6 +29,6 @@ describe('Library', () =>
 		expect_release(cl, tmp.partial('release/final'))
 	})
 
-	// TODO: test target
+	// TODO: test target, check test label
 	// xit('test target?')
 })

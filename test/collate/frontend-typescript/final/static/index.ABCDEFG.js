@@ -1352,4 +1352,5 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   }));
   console.log('~metalpipe/dev', dev$1);
   console.log('production');
+  console.log('final');
 })();

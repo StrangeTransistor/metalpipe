@@ -13,3 +13,5 @@ var mod__default = /*#__PURE__*/_interopDefaultLegacy(mod);
 console.log(answer__default['default']);
 
 console.log(mod__default['default']());
+
+ console.log('final');

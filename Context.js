@@ -20,7 +20,9 @@ module.exports = function Context (options)
 
 	var opts = minimist(process.argv.slice(2))
 
-	opts.dev = (! opts.final)
+	opts.final = (!! opts.final)
+	opts.dev   = (!  opts.final)
+	opts.test  = fallback(opts, 'test', () => opts.dev)
 
 	var $root = rootpath()
 

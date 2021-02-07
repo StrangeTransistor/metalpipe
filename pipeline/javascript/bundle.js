@@ -111,6 +111,8 @@ function plugins (context)
 	var pug      = require('rollup-plugin-pug')
 
 	var sucrase  = require('./sucrase')
+	var label    = require('./label')
+
 
 
 	var plugins =
@@ -122,6 +124,7 @@ function plugins (context)
 		virtual({ '~metalpipe': 'export var dev = ' + opts.dev }),
 		env(context),
 		sucrase(context),
+		label(context),
 
 		builtins(),
 		resolve(context),

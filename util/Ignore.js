@@ -23,7 +23,7 @@ function Ignore (list, list_append)
 
 	function test_aware (context)
 	{
-		if (context.opts.final)
+		if (! context.opts.test)
 		{
 			add('test/**')
 			add('tests/**')

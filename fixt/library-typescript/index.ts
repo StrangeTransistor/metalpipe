@@ -8,3 +8,9 @@ import mod from './src/mod'
 export type Specific = { s: boolean }
 
 console.log(mod({ s: true }))
+
+dev: console.log('dev')
+
+final: console.log('final')
+
+test: console.log('test')

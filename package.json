@@ -177,6 +177,9 @@
 		"@rollup/plugin-virtual":
 			"2",
 
+		"@rollup/plugin-strip":
+			"2",
+
 
 		"gulp-typescript":
 			"6.0.0-alpha.1",
