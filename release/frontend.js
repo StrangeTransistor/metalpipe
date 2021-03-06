@@ -1,4 +1,6 @@
 
+var get_hash = require('../util/get-hash')
+
 var Clean = require('../pipeline/clean')
 var Css = require('../pipeline/frontend/css')
 var Html = require('../pipeline/frontend/html')
@@ -8,8 +10,6 @@ var Serve = require('../pipeline/frontend/serve')
 var Digest = require('../pipeline/digest')
 
 var is_typescript = require('../pipeline/javascript/is-typescript')
-
-var get_hash = require('../util/get-hash')
 
 
 module.exports = function frontend (context)

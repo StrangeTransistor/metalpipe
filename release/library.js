@@ -7,8 +7,6 @@ var Other = require('../pipeline/other')
 
 var is_typescript = require('../pipeline/javascript/is-typescript')
 
-var Ignore = require('../util/Ignore')
-
 
 module.exports = function frontend (context)
 {
@@ -16,18 +14,15 @@ module.exports = function frontend (context)
 
 	context.describe()
 
-	var ignore = Ignore()
-	ignore.test_aware(context)
-
 	var { series, parallel } = context.gulp
 
 	var clean = Clean(context)
 
 	var pkg = WithPackage(context)
-	var dts = Typings(context, { ignore })
-	var javascript = Javascript(context, { ignore })
+	var dts = Typings(context)
+	var javascript = Javascript(context)
 
-	var other = Other(context, { ignore })
+	var other = Other(context)
 
 	return series(
 		clean,

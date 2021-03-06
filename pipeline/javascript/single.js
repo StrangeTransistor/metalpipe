@@ -8,27 +8,23 @@ var rollup = require('../../unit/rollup')
 var js_ext = require('../../unit/js-ext')
 
 var live = require('../../util/live')
+var Fileset = require('../../util/Fileset')
 
 var onwarn = require('./onwarn')
 
 
-module.exports = function javascript (context, options = {})
+module.exports = function javascript (context)
 {
-	var ignored = []
-	if (options.ignore)
-	{
-		ignored = options.ignore.view()
-
-		options.ignore.add(glob_ignore(context))
-	}
-
 	var { $from, $to } = context
+	var { other } = context
 
 	var glob = glob_entry(context)
-	var from = [ ...glob, ...ignored ].map(glob => $from(glob))
+	var ignored = other.ignored.negate().view()
+	var from = Fileset(glob, ignored).base($from).view()
+
+	other.handled.append(glob_handled(context))
 
 	var pr = context.notify.process('JAVASCRIPT')
-
 
 	return function JAVASCRIPT ()
 	{
@@ -64,19 +60,18 @@ function glob_entry (context)
 	return glob
 }
 
-function glob_ignore (context)
+function glob_handled (context)
 {
 	var glob = [ '**/*.js' ]
 
 	if (context.typescript)
 	{
-		/* reversed after */
 		glob =
 		[
 			...glob,
 			'**/tsconfig.json',
-			'!**/*.d.ts', /* required, because of next line */
 			'**/*.ts',
+			'!**/*.d.ts',
 		]
 	}
 

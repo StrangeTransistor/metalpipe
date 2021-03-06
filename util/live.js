@@ -31,7 +31,7 @@ module.exports = function live (context, glob, task)
 			$to(),
 			$from('release'),
 			'**/node_modules',
-			// $from('web'), // TODO: exclude web // use Ignore()
+			// $from('web'), // TODO: exclude web // use other.ignored()
 			// dot(),
 		]
 

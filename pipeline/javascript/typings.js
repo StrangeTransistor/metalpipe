@@ -3,10 +3,11 @@ var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 var nothing = require('../../unit/nothing')
 
+var Fileset = require('../../util/Fileset')
 // var live = require('../../util/live')
 
 
-module.exports = function Typings (context, { ignore })
+module.exports = function Typings (context)
 {
 	if (! context.typescript)
 	{
@@ -16,9 +17,8 @@ module.exports = function Typings (context, { ignore })
 		}
 	}
 
-	var ignored = ignore.view()
-
 	var { $from, $to } = context
+	var ignored = context.other.ignored.negate().view()
 
 	var glob =
 	[
@@ -26,10 +26,8 @@ module.exports = function Typings (context, { ignore })
 		'!**/*.d.ts',
 		'!test/**',
 		'!tests/**',
-		...ignored,
 	]
-
-	glob = glob.map(glob => $from(glob))
+	var from = Fileset(glob, ignored).base($from).view()
 
 	var Typescript = require('gulp-typescript')
 
@@ -45,7 +43,7 @@ module.exports = function Typings (context, { ignore })
 	return function TYPINGS ()
 	{
 		// TODO: live typings
-		//return live(context, glob, function typings$ ()
+		//return live(context, from, function typings$ ()
 		//{
 			var ts = Typescript(
 			{
@@ -55,8 +53,7 @@ module.exports = function Typings (context, { ignore })
 			, Typescript.reporter.nullReporter())
 			//*/
 
-			var streams = src(glob)
-			//.pipe(ts())
+			var streams = src(from)
 			.pipe(ts)
 			.on('error', () => {})
 

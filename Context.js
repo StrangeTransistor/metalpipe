@@ -3,8 +3,10 @@ var minimist = require('minimist')
 
 var rootpath = require('./util/rootpath')
 var fallback = require('./util/get-fallback')
+
 var Package  = require('./util/Package')
 var Notify   = require('./util/Notify')
+var Other    = require('./util/Other')
 
 
 module.exports = function Context (options)
@@ -25,7 +27,6 @@ module.exports = function Context (options)
 	opts.test  = fallback(opts, 'test', () => opts.dev)
 
 	var $root = rootpath()
-
 	var $from = $root.partial()
 	var $to   = $root.partial('release', fallback(opts, 'to', () =>
 	{
@@ -33,6 +34,7 @@ module.exports = function Context (options)
 	}))
 
 	var notify = Notify()
+	var other = Other({ ignore_test: (! opts.test) })
 
 	function describe ()
 	{
@@ -48,6 +50,7 @@ module.exports = function Context (options)
 		opts,
 		describe,
 		notify,
+		other,
 	}
 
 	return context

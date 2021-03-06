@@ -2,26 +2,19 @@
 var copy = require('../unit/copy')
 
 
-module.exports = function Other (context, options = {})
+module.exports = function Other (context)
 {
 	return function OTHER ()
 	{
 		var { $from, $to } = context
-		var { ignore } = options
+		var { other } = context
 
-		var from =
-		[
-			'**/*',
-			...ignore.view(),
-		]
-		.map(glob => $from(glob))
+		var from = other
+		.fileset()
+		.base($from)
+		.view()
+		var to = $to()
 
-		return copy(
-		{
-			context,
-			from,
-			to: $to(),
-			name: 'other$',
-		})
+		return copy({ context, from, to, name: 'other$' })
 	}
 }
