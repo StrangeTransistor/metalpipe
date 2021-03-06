@@ -29,10 +29,8 @@ module.exports = function live (context, glob, task)
 		var ignored =
 		[
 			$to(),
-			$from('release'),
-			'**/node_modules',
-			// $from('web'), // TODO: exclude web // use other.ignored()
-			// dot(),
+			...context.other.ignored.base($from).view(),
+			// dot() ?
 		]
 
 		var { watch } = context.gulp
