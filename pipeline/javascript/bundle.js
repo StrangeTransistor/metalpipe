@@ -10,21 +10,24 @@ var sourcemaps = require('../../unit/sourcemaps')
 var js_ext = require('../../unit/js-ext')
 
 var onwarn = require('./onwarn')
+var Exts = require('./Exts')
 
 
 module.exports = function javascript (context)
 {
+	var $static = context.$to.$static
+
+	var exts = Exts(context)
+
 	return function JAVASCRIPT ()
 	{
-		var $static = context.$to.$static
-
-		var pr = context.notify.process('JAVASCRIPT')
 		var maps = sourcemaps(context)
+		var pr = context.notify.process('JAVASCRIPT')
 
-		return live(context, glob_activator(context),
+		return live(context, glob_activator(exts, context),
 		function javascript$ ()
 		{
-			return src(glob_entry(context))
+			return src(glob_entry(exts, context))
 			.pipe(maps.init())
 			.pipe(rollup(...config(context)))
 			.pipe(maps.tidy_tree(path =>
@@ -43,41 +46,16 @@ module.exports = function javascript (context)
 }
 
 
-var ext_rs = [ 'mst.html', 'pug', ]
-
-function glob_activator (context)
+function glob_activator (exts, context)
 {
-	var ext = [ ...ext_rs, ...ext_input(context) ]
+	exts = exts.add([ 'mst.html', 'pug' ])
 
-	return ext.map(ext => context.$from(`**/*.${ ext }`))
+	return exts.view_onto(context.$from('**/*'))
 }
 
-
-function glob_entry (context)
+function glob_entry (exts, context)
 {
-	var ext = ext_input(context)
-
-	var glob = ext.map(ext => `index/*.${ ext }`)
-
-	if (context.typescript)
-	{
-		glob = [ ...glob, '!**/*.d.ts' ]
-	}
-
-	return glob.map(glob => context.$from(glob))
-}
-
-
-function ext_input ({ typescript })
-{
-	var ext = [ 'js' ]
-
-	if (typescript)
-	{
-		ext = [ ...ext, 'ts' ]
-	}
-
-	return ext
+	return exts.view_onto(context.$from('index/*'))
 }
 
 

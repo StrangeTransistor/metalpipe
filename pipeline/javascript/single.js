@@ -11,6 +11,7 @@ var live = require('../../util/live')
 var Fileset = require('../../util/Fileset')
 
 var onwarn = require('./onwarn')
+var Exts = require('./Exts')
 
 
 module.exports = function javascript (context)
@@ -18,16 +19,22 @@ module.exports = function javascript (context)
 	var { $from, $to } = context
 	var { other } = context
 
-	var glob = glob_entry(context)
+	var exts = Exts(context)
+
+	var glob = glob_entry(exts)
 	var ignored = other.ignored.negate().view()
 	var from = Fileset(glob, ignored).base($from).view()
 
-	other.handled.append(glob_handled(context))
-
-	var pr = context.notify.process('JAVASCRIPT')
+	other.handled.append(glob)
+	if (context.typescript)
+	{
+		other.handled.append($from('tsconfig.json'))
+	}
 
 	return function JAVASCRIPT ()
 	{
+		var pr = context.notify.process('JAVASCRIPT')
+
 		return live(context, from, function javascript$ (filename)
 		{
 			filename || (filename = from)
@@ -43,39 +50,9 @@ module.exports = function javascript (context)
 }
 
 
-function glob_entry (context)
+function glob_entry (exts)
 {
-	var glob = [ '**/*.js' ]
-
-	if (context.typescript)
-	{
-		glob =
-		[
-			...glob,
-			'**/*.ts',
-			'!**/*.d.ts',
-		]
-	}
-
-	return glob
-}
-
-function glob_handled (context)
-{
-	var glob = [ '**/*.js' ]
-
-	if (context.typescript)
-	{
-		glob =
-		[
-			...glob,
-			'**/tsconfig.json',
-			'**/*.ts',
-			'!**/*.d.ts',
-		]
-	}
-
-	return glob
+	return exts.view_onto('**/*')
 }
 
 
