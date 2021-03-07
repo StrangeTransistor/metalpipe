@@ -110,7 +110,7 @@ function plugins (context)
 		aliases(
 		{
 			Paths: { '~lib': $from() },
-			Extensions: [ 'ts', 'js', 'json', 'mst.html', 'static.pug', 'pug' ],
+			Extensions: [ 'tsx', 'ts', 'jsx', 'js', 'json', 'mst.html', 'static.pug', 'pug' ],
 		}),
 		commonjs(
 		{
@@ -136,7 +136,7 @@ function resolve (context)
 	return resolve(
 	{
 		mainFields,
-		extensions: [ '.ts', '.js' ],
+		extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
 	})
 }
 
