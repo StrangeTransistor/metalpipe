@@ -26,4 +26,5 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   }
 
   console.log(React__default['default'].createElement(App, null));
+  console.log('final');
 })(React);

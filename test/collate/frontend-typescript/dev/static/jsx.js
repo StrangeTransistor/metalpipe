@@ -19,4 +19,10 @@
 
 	console.log(React__default['default'].createElement(App, null ));
 
+	 console.log('dev');
+
+	 console.log('test');
+
+	debugger
+
 }(React));

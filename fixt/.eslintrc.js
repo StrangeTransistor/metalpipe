@@ -3,6 +3,8 @@ module.exports =
 {
 	rules:
 	{
+		'no-debugger': 0,
+
 		'node/exports-style': 0,
 		'node/no-extraneous-require': 0,
 		'node/no-unpublished-require': 0,

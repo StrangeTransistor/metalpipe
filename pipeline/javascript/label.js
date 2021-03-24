@@ -15,10 +15,10 @@ module.exports = (context) =>
 
 	return strip(
 	{
-		include: '**/*.(js|ts)',
+		include: '**/*.(js|ts|jsx|tsx)',
 		labels,
 		sourceMap: true,
-		debugger:  true,
+		debugger:  (! opts.test),
 		functions: [],
 	})
 }

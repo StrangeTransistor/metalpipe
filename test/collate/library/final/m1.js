@@ -11,4 +11,6 @@ function Foo ()
 	return React__default['default'].createElement('div', { class: "foo",} )
 }
 
+ console.log('final');
+
 module.exports = Foo;

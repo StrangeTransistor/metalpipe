@@ -15,3 +15,5 @@ console.log(mod__default['default']());
  console.log('dev');
 
  console.log('test');
+
+debugger
