@@ -26,11 +26,11 @@ module.exports = function frontend (context)
 
 	return series(
 		clean,
+		pkg,
+		dts,
 		parallel(
-			pkg,
-			dts,
 			javascript,
-			other
+			other,
 		),
 	)
 }

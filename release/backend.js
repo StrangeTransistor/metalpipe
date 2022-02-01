@@ -38,10 +38,10 @@ module.exports = function frontend (context)
 
 	return series(
 		clean,
+		pkg,
+		digest,
 		parallel(
-			pkg,
 			javascript,
-			digest,
 			serve,
 			other
 		)
