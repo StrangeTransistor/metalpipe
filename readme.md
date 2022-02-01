@@ -81,4 +81,4 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 ## TODO: sourcemaps
 
 ## license
-ISC. © Strider, 2021.
+ISC. © Strider, 2022.
