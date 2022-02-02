@@ -55,4 +55,5 @@ var ignore_test =
 [
 	 'test/**',
 	'tests/**',
+	 'perf/**',
 ]
