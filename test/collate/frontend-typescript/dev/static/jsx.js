@@ -7,22 +7,22 @@
 
 	function Foo ()
 	{
-		return React__default['default'].createElement('div', { class: "foo",} )
+		return React__default["default"].createElement('div', { class: "foo",} )
 	}
 
 	function App ()
 	{
-		return React__default['default'].createElement('div', { class: "app",}
-	, React__default['default'].createElement(Foo, null )
+		return React__default["default"].createElement('div', { class: "app",}
+	, React__default["default"].createElement(Foo, null )
 	)
 	}
 
-	console.log(React__default['default'].createElement(App, null ));
+	console.log(React__default["default"].createElement(App, null ));
 
-	 console.log('dev');
+	console.log('dev');
 
-	 console.log('test');
+	console.log('test');
 
 	debugger
 
-}(React));
+})(React);

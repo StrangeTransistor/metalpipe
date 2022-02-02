@@ -39,7 +39,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
   }
 
-  function other$1() {
+  function other$2() {
     return 'Other';
   }
 
@@ -49,9 +49,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     answer: index,
     mixed: foo1
   };
-  var other$2 = "json";
+  var other$1 = "json";
   var json = {
-    other: other$2
+    other: other$1
   };
   var dev$1 = false;
 
@@ -1335,7 +1335,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   console.log('answer', index);
   console.log('noop', noop3);
   console.log('curry', curry);
-  console.log(other$1);
+  console.log(other$2);
   console.log(cjs);
   console.log(json);
   console.log(dev$1);

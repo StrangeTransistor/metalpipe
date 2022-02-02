@@ -14,17 +14,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   var React__default = _interopDefaultLegacy(React);
 
   function Foo() {
-    return React__default['default'].createElement('div', {
+    return React__default["default"].createElement('div', {
       class: "foo"
     });
   }
 
   function App() {
-    return React__default['default'].createElement('div', {
+    return React__default["default"].createElement('div', {
       class: "app"
-    }, React__default['default'].createElement(Foo, null));
+    }, React__default["default"].createElement(Foo, null));
   }
 
-  console.log(React__default['default'].createElement(App, null));
+  console.log(React__default["default"].createElement(App, null));
   console.log('final');
 })(React);

@@ -8,9 +8,9 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function Foo ()
 {
-	return React__default['default'].createElement('div', { class: "foo",} )
+	return React__default["default"].createElement('div', { class: "foo",} )
 }
 
- console.log('final');
+console.log('final');
 
 module.exports = Foo;

@@ -8,4 +8,4 @@ var index = (function () {
 
 	return Component;
 
-}());
+})();

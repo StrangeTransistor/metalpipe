@@ -10,12 +10,12 @@ var mod__default = /*#__PURE__*/_interopDefaultLegacy(mod);
 
 /*  */
 
-console.log(answer__default['default']);
+console.log(answer__default["default"]);
 
-console.log(mod__default['default']());
+console.log(mod__default["default"]());
 
- console.log('dev');
+console.log('dev');
 
- console.log('test');
+console.log('test');
 
 debugger

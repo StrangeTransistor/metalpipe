@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	function other$1 ()
+	function other$2 ()
 	{
 		return 'Other TypeScript'
 	}
@@ -12,9 +12,9 @@
 
 	var cjs = { cjs: 'yes', answer: index, mixed: foo1 };
 
-	var other$2 = "json";
+	var other$1 = "json";
 	var json = {
-		other: other$2
+		other: other$1
 	};
 
 	var factory = () => () => {};
@@ -722,7 +722,7 @@
 	    template = this.generate(this.parse(this.scan(text, options.delimiters), text, options), text, options);
 	    return this.cache[key] = template;
 	  };
-	})( exports );
+	})(exports );
 	});
 
 	/*
@@ -1063,7 +1063,7 @@
 	    return Object.prototype.toString.call(a) === '[object Array]';
 	  };
 
-	})( exports );
+	})(exports );
 	});
 
 	/*
@@ -1384,7 +1384,7 @@
 
 	var foo = { yes: 'yes' };
 	console.log(foo);
-	console.log('other', other$1);
+	console.log('other', other$2);
 	console.log('cjs', cjs);
 	console.log('json', json);
 	console.log('answer', index);
@@ -1400,17 +1400,17 @@
 	console.log(pug({ other: 'Other', some: 'Some' }));
 	function debug (...args)
 	{
-		 console.log(...args);
+		console.log(...args);
 	}
 	console.log('~metalpipe/dev', dev$1);
 	debug(1, 2, 3);
 
 	console.log('development');
 
-	 console.log('dev');
+	console.log('dev');
 
-	 console.log('test');
+	console.log('test');
 
 	debugger
 
-}());
+})();

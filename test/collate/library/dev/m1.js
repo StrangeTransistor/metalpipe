@@ -8,12 +8,12 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function Foo ()
 {
-	return React__default['default'].createElement('div', { class: "foo",} )
+	return React__default["default"].createElement('div', { class: "foo",} )
 }
 
- console.log('dev');
+console.log('dev');
 
- console.log('test');
+console.log('test');
 
 debugger
 
