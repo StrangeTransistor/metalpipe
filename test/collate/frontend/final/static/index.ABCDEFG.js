@@ -24,7 +24,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return function () {};
   };
 
-  var noop3 = factory();
+  var noopFactory = factory;
+  var noop3 = noopFactory();
 
   function curry(fn) {
     var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
@@ -44,10 +45,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   }
 
   var foo1 = 'foo1';
+  var answer = index;
+  var mixed = foo1;
   var cjs = {
     cjs: 'yes',
-    answer: index,
-    mixed: foo1
+    answer: answer,
+    mixed: mixed
   };
   var other$1 = "json";
   var json = {
@@ -285,15 +288,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     config: config,
     uptime: uptime
   };
+  var compiler = {};
 
-  function createCommonjsModule(fn) {
-    var module = {
-      exports: {}
-    };
-    return fn(module, module.exports), module.exports;
-  }
-
-  var compiler = createCommonjsModule(function (module, exports) {
+  (function (exports) {
     (function (Hogan) {
       var rIsWhitespace = /\S/,
           rQuot = /\"/g,
@@ -743,8 +740,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return this.cache[key] = template;
       };
     })(exports);
-  });
-  var template = createCommonjsModule(function (module, exports) {
+  })(compiler);
+
+  var template = {};
+
+  (function (exports) {
     (function (Hogan) {
       Hogan.Template = function (codeObj, text, compiler, options) {
         codeObj = codeObj || {};
@@ -1040,10 +1040,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return Object.prototype.toString.call(a) === '[object Array]';
       };
     })(exports);
-  });
-  compiler.Template = template.Template;
-  compiler.template = compiler.Template;
-  var hogan = compiler;
+  })(template);
+
+  var Hogan = compiler;
+  Hogan.Template = template.Template;
+  Hogan.template = Hogan.Template;
+  var hogan = Hogan;
   var mst = new hogan.Template({
     code: function code(c, p, i) {
       var t = this;
@@ -1055,9 +1057,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     subs: {}
   });
   var pug_static = "<div>Some Static</div>";
+  var pugRuntime = {};
   var require$$0 = {};
   var pug_has_own_property = Object.prototype.hasOwnProperty;
-  var merge = pug_merge;
+  pugRuntime.merge = pug_merge;
 
   function pug_merge(a, b) {
     if (arguments.length === 1) {
@@ -1088,7 +1091,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return a;
   }
 
-  var classes = pug_classes;
+  pugRuntime.classes = pug_classes;
 
   function pug_classes_array(val, escaping) {
     var classString = '',
@@ -1131,7 +1134,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   }
 
-  var style = pug_style;
+  pugRuntime.style = pug_style;
 
   function pug_style(val) {
     if (!val) return '';
@@ -1151,7 +1154,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   }
 
-  var attr = pug_attr;
+  pugRuntime.attr = pug_attr;
 
   function pug_attr(key, val, escaped, terse) {
     if (val === false || val == null || !val && (key === 'class' || key === 'style')) {
@@ -1180,7 +1183,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return ' ' + key + '="' + val + '"';
   }
 
-  var attrs = pug_attrs;
+  pugRuntime.attrs = pug_attrs;
 
   function pug_attrs(obj, terse) {
     var attrs = '';
@@ -1207,7 +1210,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   }
 
   var pug_match_html = /["&<>]/;
-  var _escape = pug_escape;
+  pugRuntime.escape = pug_escape;
 
   function pug_escape(_html) {
     var html = '' + _html;
@@ -1246,7 +1249,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     if (lastIndex !== i) return result + html.substring(lastIndex, i);else return result;
   }
 
-  var rethrow = pug_rethrow;
+  pugRuntime.rethrow = pug_rethrow;
 
   function pug_rethrow(err, filename, lineno, str) {
     if (!(err instanceof Error)) throw err;
@@ -1274,16 +1277,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     err.message = (filename || 'Pug') + ':' + lineno + '\n' + context + '\n\n' + err.message;
     throw err;
   }
-
-  var pugRuntime = {
-    merge: merge,
-    classes: classes,
-    style: style,
-    attr: attr,
-    attrs: attrs,
-    escape: _escape,
-    rethrow: rethrow
-  };
 
   function pug(locals) {
     var pug_html = "",

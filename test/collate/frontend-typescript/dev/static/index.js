@@ -10,7 +10,11 @@
 
 	var foo1 = 'foo1';
 
-	var cjs = { cjs: 'yes', answer: index, mixed: foo1 };
+	var answer = index;
+	var mixed  = foo1;
+
+
+	var cjs = { cjs: 'yes', answer, mixed };
 
 	var other$1 = "json";
 	var json = {
@@ -19,7 +23,9 @@
 
 	var factory = () => () => {};
 
-	var noop3 = factory();
+	const noopFactory = factory;
+
+	var noop3 = noopFactory();
 
 	/**
 	 * taken from the last comment of https://gist.github.com/mkuklis/5294248
@@ -294,10 +300,7 @@
 	  uptime: uptime
 	};
 
-	function createCommonjsModule(fn) {
-	  var module = { exports: {} };
-		return fn(module, module.exports), module.exports;
-	}
+	var compiler = {};
 
 	/*
 	 *  Copyright 2011 Twitter, Inc.
@@ -314,7 +317,7 @@
 	 *  limitations under the License.
 	 */
 
-	var compiler = createCommonjsModule(function (module, exports) {
+	(function (exports) {
 	(function (Hogan) {
 	  // Setup regex  assignments
 	  // remove whitespace according to Mustache spec
@@ -723,7 +726,9 @@
 	    return this.cache[key] = template;
 	  };
 	})(exports );
-	});
+	}(compiler));
+
+	var template = {};
 
 	/*
 	 *  Copyright 2011 Twitter, Inc.
@@ -740,7 +745,7 @@
 	 *  limitations under the License.
 	 */
 
-	var template = createCommonjsModule(function (module, exports) {
+	(function (exports) {
 
 	(function (Hogan) {
 	  Hogan.Template = function (codeObj, text, compiler, options) {
@@ -1064,7 +1069,7 @@
 	  };
 
 	})(exports );
-	});
+	}(template));
 
 	/*
 	 *  Copyright 2011 Twitter, Inc.
@@ -1083,14 +1088,16 @@
 
 	// This file is for use with Node.js. See dist/ for browser files.
 
-
-	compiler.Template = template.Template;
-	compiler.template = compiler.Template;
-	var hogan = compiler;
+	var Hogan = compiler;
+	Hogan.Template = template.Template;
+	Hogan.template = Hogan.Template;
+	var hogan = Hogan;
 
 	var mst = new hogan.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b(t.v(t.f("data",c,p,0)));return t.fl(); },partials: {}, subs: {  }});
 
 	var pug_static = "<div>Some Static</div>";
+
+	var pugRuntime = {};
 
 	var require$$0 = {};
 
@@ -1108,7 +1115,7 @@
 	 * @api private
 	 */
 
-	var merge = pug_merge;
+	pugRuntime.merge = pug_merge;
 	function pug_merge(a, b) {
 	  if (arguments.length === 1) {
 	    var attrs = a[0];
@@ -1152,7 +1159,7 @@
 	 * @param {?Array.<string>} escaping
 	 * @return {String}
 	 */
-	var classes = pug_classes;
+	pugRuntime.classes = pug_classes;
 	function pug_classes_array(val, escaping) {
 	  var classString = '', className, padding = '', escapeEnabled = Array.isArray(escaping);
 	  for (var i = 0; i < val.length; i++) {
@@ -1191,7 +1198,7 @@
 	 * @return {String}
 	 */
 
-	var style = pug_style;
+	pugRuntime.style = pug_style;
 	function pug_style(val) {
 	  if (!val) return '';
 	  if (typeof val === 'object') {
@@ -1216,7 +1223,7 @@
 	 * @param {Boolean} terse
 	 * @return {String}
 	 */
-	var attr = pug_attr;
+	pugRuntime.attr = pug_attr;
 	function pug_attr(key, val, escaped, terse) {
 	  if (val === false || val == null || !val && (key === 'class' || key === 'style')) {
 	    return '';
@@ -1244,7 +1251,7 @@
 	 * @param {Object} terse whether to use HTML5 terse boolean attributes
 	 * @return {String}
 	 */
-	var attrs = pug_attrs;
+	pugRuntime.attrs = pug_attrs;
 	function pug_attrs(obj, terse){
 	  var attrs = '';
 
@@ -1275,7 +1282,7 @@
 	 */
 
 	var pug_match_html = /["&<>]/;
-	var _escape = pug_escape;
+	pugRuntime.escape = pug_escape;
 	function pug_escape(_html){
 	  var html = '' + _html;
 	  var regexResult = pug_match_html.exec(html);
@@ -1309,7 +1316,7 @@
 	 * @api private
 	 */
 
-	var rethrow = pug_rethrow;
+	pugRuntime.rethrow = pug_rethrow;
 	function pug_rethrow(err, filename, lineno, str){
 	  if (!(err instanceof Error)) throw err;
 	  if ((typeof window != 'undefined' || !filename) && !str) {
@@ -1341,15 +1348,6 @@
 	    + '\n' + context + '\n\n' + err.message;
 	  throw err;
 	}
-	var pugRuntime = {
-		merge: merge,
-		classes: classes,
-		style: style,
-		attr: attr,
-		attrs: attrs,
-		escape: _escape,
-		rethrow: rethrow
-	};
 
 	function pug(locals) {var pug_html = "", pug_interp;var pug_debug_filename, pug_debug_line;try {var pug_debug_sources = {};
 	;var locals_for_with = (locals || {});(function (dev, other) {
