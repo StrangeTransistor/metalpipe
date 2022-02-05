@@ -132,7 +132,7 @@
 
 
 		"gulp-pug":
-			"4",
+			"5",
 
 		"pug-runtime":
 			"2",
