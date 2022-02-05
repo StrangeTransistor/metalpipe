@@ -1099,8 +1099,6 @@
 
 	var pugRuntime = {};
 
-	var require$$0 = {};
-
 	var pug_has_own_property = Object.prototype.hasOwnProperty;
 
 	/**
@@ -1324,7 +1322,7 @@
 	    throw err;
 	  }
 	  try {
-	    str = str || require$$0.readFileSync(filename, 'utf8');
+	    str = str || require('fs').readFileSync(filename, 'utf8');
 	  } catch (ex) {
 	    pug_rethrow(err, null, lineno);
 	  }
