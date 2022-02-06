@@ -1,6 +1,10 @@
 
 module.exports =
 {
+	root: true,
+
+	extends: require.resolve('js-outlander'),
+
 	rules:
 	{
 		'no-debugger': 0,
@@ -9,5 +13,7 @@ module.exports =
 		'node/no-extraneous-require': 0,
 		'node/no-unpublished-require': 0,
 		'node/no-missing-import': 0,
+
+		// '@typescript-eslint/no-unused-expressions': 0,
 	},
 }

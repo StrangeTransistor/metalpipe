@@ -11,6 +11,8 @@
 	"bugs":       { "url": "https://github.com/StrangeTransistor/metalpipe/issues" },
 	"repository": { "url": "https://github.com/StrangeTransistor/metalpipe.git", "type": "git" },
 
+	"engines": { "node": ">= 8.3" },
+
 	"scripts":
 	{
 		 "test": "npm run st && npm run unit",
@@ -229,10 +231,10 @@
 
 
 		"eslint":
-			"7",
+			"8",
 
 		"js-outlander":
-			"StrangeTransistor/js-outlander#2.10.0",
+			"StrangeTransistor/js-outlander#2.11.0",
 
 		"eslint-plugin-node":
 			"11",
