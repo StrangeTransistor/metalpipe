@@ -149,6 +149,13 @@
 			"1",
 
 
+		"eslint":
+			"^8.7",
+
+		"js-outlander":
+			"StrangeTransistor/js-outlander#2.11.0",
+
+
 		"gulp-better-rollup":
 			"4",
 
@@ -188,6 +195,8 @@
 		"@rollup/plugin-strip":
 			"2",
 
+		"gulp-eslint":
+			"6",
 
 		"gulp-typescript":
 			"6.0.0-alpha.1",
@@ -229,12 +238,6 @@
 		"rollup":
 			"2.67",
 
-
-		"eslint":
-			"8",
-
-		"js-outlander":
-			"StrangeTransistor/js-outlander#2.11.0",
 
 		"eslint-plugin-node":
 			"11",

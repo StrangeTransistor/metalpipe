@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
 function mod ()
 {
-	console.log('mod');
+	console.log('mod')
 }
 
-module.exports = mod;
+module.exports = mod

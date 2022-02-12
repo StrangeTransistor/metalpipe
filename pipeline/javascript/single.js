@@ -1,4 +1,3 @@
-// TODO: clear files (iop, autolint, comments, spaces)
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
@@ -43,6 +42,7 @@ module.exports = function javascript (context)
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
+			.pipe(dev(context))
 			// .pipe(final(context)) TODO: final
 			.pipe(dst($to()))
 		})
@@ -89,4 +89,19 @@ function plugins (context)
 	]
 
 	return plugins
+}
+
+
+function dev (context)
+{
+	if (! context.opts.dev)
+	{
+		var nothing = require('../../unit/nothing')
+
+		return nothing()
+	}
+
+	var outlander = require('./outlander')
+
+	return outlander()
 }
