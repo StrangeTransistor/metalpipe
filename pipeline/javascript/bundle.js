@@ -5,9 +5,11 @@ var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
 var live   = require('../../util/live')
+
 var rollup = require('../../unit/rollup')
 var sourcemaps = require('../../unit/sourcemaps')
 var js_ext = require('../../unit/js-ext')
+var nothing = require('../../unit/nothing')
 
 var onwarn = require('./onwarn')
 var Exts = require('./Exts')
@@ -39,6 +41,7 @@ module.exports = function javascript (context)
 			.pipe(maps.write())
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
+			.pipe(dev(context))
 			.pipe(final(context))
 			.pipe(dst($static()))
 		})
@@ -157,12 +160,22 @@ function env (context)
 }
 
 
+function dev (context)
+{
+	if (! context.opts.dev)
+	{
+		return nothing()
+	}
+
+	var outlander = require('./outlander')
+
+	return outlander()
+}
+
 function final (context)
 {
 	if (! context.opts.final)
 	{
-		var nothing = require('../../unit/nothing')
-
 		return nothing()
 	}
 
