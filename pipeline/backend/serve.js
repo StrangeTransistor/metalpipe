@@ -1,3 +1,4 @@
+// TODO: nodemon first?
 
 var is_live = require('../../util/is-live')
 
