@@ -176,7 +176,10 @@ function final (context)
 
 	if (get_true(context.opts, 'minify'))
 	{
-		presets.push(require('babel-preset-minify'))
+		presets.push([ require('babel-preset-minify'),
+		{
+			simplify: false,
+		}])
 	}
 
 	var hash  = context.opts.hash
