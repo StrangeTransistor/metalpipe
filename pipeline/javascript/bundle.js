@@ -30,6 +30,7 @@ module.exports = function javascript (context)
 			return src(glob_entry(exts, context))
 			.pipe(maps.init())
 			.pipe(rollup(...config(context)))
+			.on('error', pr.error).on('end', pr.stable)
 			.pipe(maps.tidy_tree(path =>
 			{
 				path = path.replace(/^(..\/)+/, '')
@@ -37,7 +38,6 @@ module.exports = function javascript (context)
 				return path
 			}))
 			.pipe(maps.write())
-			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
 			.pipe(final(context))
 			.pipe(dst($static()))
