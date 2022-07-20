@@ -1376,7 +1376,11 @@
 	pug_html = pug_html + "\u003Ca href=\"localhost:8080\u002Fstatic\u002Fassets\u002Fred.png\"\u003E\u003C\u002Fa\u003E\u003C\u002Fbody\u003E";
 	}.call(this,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
 
-	var dev$1 = true;
+	const final = false;
+	const dev$1 = true;
+	const test = true;
+	const hash = null;
+	const instance = null;
 
 	var foo = { yes: 'yes' };
 	console.log(foo);
@@ -1400,6 +1404,7 @@
 	}
 	console.log('~metalpipe/dev', dev$1);
 	debug(1, 2, 3);
+	console.log({ final, test, hash, instance });
 
 	console.log('development');
 

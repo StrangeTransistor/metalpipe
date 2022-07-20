@@ -4,9 +4,10 @@ var minimist = require('minimist')
 var rootpath = require('./util/rootpath')
 var fallback = require('./util/get-fallback')
 
-var Package  = require('./util/Package')
-var Notify   = require('./util/Notify')
-var Other    = require('./util/Other')
+var ExportOpts = require('./util/ExportOpts')
+var Package = require('./util/Package')
+var Notify  = require('./util/Notify')
+var Other   = require('./util/Other')
 
 
 module.exports = function Context (options)
@@ -33,6 +34,7 @@ module.exports = function Context (options)
 		return (opts.final && 'final' || 'dev')
 	}))
 
+	var exp_opts = ExportOpts(opts)
 	var notify = Notify()
 	var other = Other({ ignore_test: (! opts.test) })
 
@@ -49,6 +51,7 @@ module.exports = function Context (options)
 		$root, $from, $to,
 		opts,
 		describe,
+		exp_opts,
 		notify,
 		other,
 	}

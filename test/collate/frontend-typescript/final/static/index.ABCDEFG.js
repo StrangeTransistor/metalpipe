@@ -1321,7 +1321,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return pug_html;
   }
 
+  var final = true;
   var dev$1 = false;
+  var test = false;
+  var hash = "ABCDEFG";
+  var instance = null;
   var foo = {
     yes: 'yes'
   };
@@ -1343,6 +1347,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     some: 'Some'
   }));
   console.log('~metalpipe/dev', dev$1);
+  console.log({
+    final: final,
+    test: test,
+    hash: hash,
+    instance: instance
+  });
   console.log('production');
   console.log('final');
 })();

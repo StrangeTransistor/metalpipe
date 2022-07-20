@@ -76,7 +76,7 @@ function config (context)
 
 function plugins (context)
 {
-	var { $from, opts } = context
+	var { $from } = context
 
 	var globals  = require('rollup-plugin-node-globals')
 	var builtins = require('rollup-plugin-node-builtins')
@@ -84,7 +84,6 @@ function plugins (context)
 
 	var json     = require('@rollup/plugin-json')
 	var aliases  = require('rollup-plugin-import-alias')
-	var virtual  = require('@rollup/plugin-virtual')
 
 	var mustache = require('rollup-plugin-mustache')
 	var pug      = require('rollup-plugin-pug')
@@ -92,15 +91,18 @@ function plugins (context)
 	var sucrase  = require('./sucrase')
 	var label    = require('./label')
 
-
-
 	var plugins =
 	[
-		pug({ basedir: $from(), pugRuntime: 'pug-runtime' }),
+		pug(
+		{
+			pugRuntime: 'pug-runtime',
+			basedir: $from(),
+			locals: context.exp_opts.as_map(),
+		}),
 		mustache({ include: '**/*.mst.html' }),
 		/* pug must precede extended syntaxes (flow) */
 		json(),
-		virtual({ '~metalpipe': 'export var dev = ' + opts.dev }),
+		virtual(context),
 		env(context),
 		sucrase(context),
 		label(context),
@@ -110,6 +112,7 @@ function plugins (context)
 		aliases(
 		{
 			Paths: { '~lib': $from() },
+			// TODO: extset
 			Extensions: [ 'tsx', 'ts', 'jsx', 'js', 'json', 'mst.html', 'static.pug', 'pug' ],
 		}),
 		commonjs(
@@ -136,6 +139,7 @@ function resolve (context)
 	return resolve(
 	{
 		mainFields,
+		// TODO: extset
 		extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
 	})
 }
@@ -154,6 +158,18 @@ function env (context)
 	{
 		'process.env.NODE_ENV': `'${ mode }'`,
 	})
+}
+
+function virtual (context)
+{
+	var virtual = require('@rollup/plugin-virtual')
+
+	var mod = context.exp_opts
+	.as_pairs()
+	.map(([ key, value ]) => `export const ${ key } = ${ JSON.stringify(value) }`)
+	.join('\n')
+
+	return virtual({ '~metalpipe': mod })
 }
 
 
@@ -182,7 +198,7 @@ function final (context)
 		}])
 	}
 
-	var hash  = context.opts.hash
+	var hash = context.opts.hash
 
 	var babel = require('gulp-babel')
 	var stamp = require('../../unit/hash-stamp')

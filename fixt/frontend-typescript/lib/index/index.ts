@@ -52,6 +52,9 @@ function debug (...args: any[])
 console.log('~metalpipe/dev', dev)
 debug(1, 2, 3)
 
+import { final, test, hash, instance } from '~metalpipe'
+console.log({ final, test, hash, instance })
+
 console.log(process.env.NODE_ENV)
 
 dev: console.log('dev')

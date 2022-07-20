@@ -56,7 +56,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var json = {
     other: other$1
   };
+  var final$1 = true;
   var dev$1 = false;
+  var test$1 = false;
+  var hash$1 = "ABCDEFG";
+  var instance$1 = null;
 
   function defaultSetTimout() {
     throw new Error('setTimeout has not been defined');
@@ -1056,7 +1060,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     partials: {},
     subs: {}
   });
-  var pug_static = "<div>Some Static</div>";
+  var pug_static = "<div>Some Static</div><div class=\"dev\">false</div><div class=\"test\">false</div><div class=\"final\">true</div><div class=\"hash\">ABCDEFG</div><div class=\"instance\"></div>";
   var pugRuntime = {};
   var pug_has_own_property = Object.prototype.hasOwnProperty;
   pugRuntime.merge = pug_merge;
@@ -1286,7 +1290,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var pug_debug_sources = {};
       ;
       var locals_for_with = locals || {};
-      (function (dev, other, some) {
+      (function (dev, final, hash, instance, other, some, test) {
         pug_html = pug_html + "<!DOCTYPE html>";
         pug_html = pug_html + "<head>";
         pug_html = pug_html + "<meta charset=\"utf-8\">";
@@ -1301,6 +1305,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         pug_html = pug_html + pugRuntime.escape(null == (pug_interp = other) ? "" : pug_interp) + "</div>";
         pug_html = pug_html + "<div class=\"dev\">";
         pug_html = pug_html + pugRuntime.escape(null == (pug_interp = dev) ? "" : pug_interp) + "</div>";
+        pug_html = pug_html + "<div class=\"test\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = test) ? "" : pug_interp) + "</div>";
+        pug_html = pug_html + "<div class=\"final\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = final) ? "" : pug_interp) + "</div>";
+        pug_html = pug_html + "<div class=\"hash\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = hash) ? "" : pug_interp) + "</div>";
+        pug_html = pug_html + "<div class=\"instance\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = instance) ? "" : pug_interp) + "</div>";
 
         if (dev) {
           pug_html = pug_html + "<div class=\"dev\">";
@@ -1316,7 +1328,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         pug_html = pug_html + "<div class=\"bg img4\"></div>";
         pug_html = pug_html + "<img src=\"static/assets/index/dir/blue.png\">";
         pug_html = pug_html + "<a href=\"localhost:8080/static/assets/red.png\"></a></body>";
-      }).call(this, "dev" in locals_for_with ? locals_for_with.dev : typeof dev !== "undefined" ? dev : undefined, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined, "some" in locals_for_with ? locals_for_with.some : typeof some !== "undefined" ? some : undefined);
+      }).call(this, "dev" in locals_for_with ? locals_for_with.dev : typeof dev !== "undefined" ? dev : undefined, "final" in locals_for_with ? locals_for_with.final : typeof final !== "undefined" ? final : undefined, "hash" in locals_for_with ? locals_for_with.hash : typeof hash !== "undefined" ? hash : undefined, "instance" in locals_for_with ? locals_for_with.instance : typeof instance !== "undefined" ? instance : undefined, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined, "some" in locals_for_with ? locals_for_with.some : typeof some !== "undefined" ? some : undefined, "test" in locals_for_with ? locals_for_with.test : typeof test !== "undefined" ? test : undefined);
     } catch (err) {
       pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
     }
@@ -1331,6 +1343,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   console.log(cjs);
   console.log(json);
   console.log(dev$1);
+  console.log({
+    final: final$1,
+    test: test$1,
+    hash: hash$1,
+    instance: instance$1
+  });
   console.log('production');
   console.log(!!global$1.global);
   console.log(p);

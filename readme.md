@@ -68,10 +68,10 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 ## virtual
 ### frontend ← javascript/bundle
 * js: `~lib` root = ./lib/
-* js: `~metalpipe` = { dev }
+* js: `~metalpipe` = { final, dev, test, hash, instance }
 * js: labels `dev`, `test` and `final`
-* pug: global var { dev }
-* less: global var { dev }
+* pug: global var { final, dev, test, hash, instance }
+* less: global var { final, dev, test, hash, instance }
 * less, pug, html: replace uris that start with static/ in CSS and HTML to actual static
 
 ## TODO: inline-resources css (postcss inline), html (web-resource-inliner)
