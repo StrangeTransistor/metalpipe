@@ -11,7 +11,7 @@
 	"bugs":       { "url": "https://github.com/StrangeTransistor/metalpipe/issues" },
 	"repository": { "url": "https://github.com/StrangeTransistor/metalpipe.git", "type": "git" },
 
-	"engines": { "node": ">= 8.3" },
+	"engines": { "node": ">= 12" },
 
 	"scripts":
 	{
@@ -169,7 +169,7 @@
 			"2",
 
 		"@rollup/plugin-commonjs":
-			"21",
+			"22",
 
 		"@rollup/plugin-json":
 			"4",
@@ -236,7 +236,7 @@
 
 
 		"rollup":
-			"2.70",
+			"2.79",
 
 
 		"eslint-plugin-node":

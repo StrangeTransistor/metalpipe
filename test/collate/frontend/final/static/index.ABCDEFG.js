@@ -1062,6 +1062,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   });
   var pug_static = "<div>Some Static</div><div class=\"dev\">false</div><div class=\"test\">false</div><div class=\"final\">true</div><div class=\"hash\">ABCDEFG</div><div class=\"instance\"></div>";
   var pugRuntime = {};
+  var require$$0 = {};
   var pug_has_own_property = Object.prototype.hasOwnProperty;
   pugRuntime.merge = pug_merge;
 
@@ -1263,7 +1264,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
 
     try {
-      str = str || require('fs').readFileSync(filename, 'utf8');
+      str = str || require$$0.readFileSync(filename, 'utf8');
     } catch (ex) {
       pug_rethrow(err, null, lineno);
     }
