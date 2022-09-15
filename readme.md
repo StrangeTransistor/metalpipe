@@ -74,6 +74,10 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 * less: global var { final, dev, test, hash, instance }
 * less, pug, html: replace uris that start with static/ in CSS and HTML to actual static
 
+### backend
+* `scripts:final`
+* ignore `web/` if it contains gulpfile
+
 ## TODO: inline-resources css (postcss inline), html (web-resource-inliner)
 ## TODO: obfuscate
 ## TODO: features

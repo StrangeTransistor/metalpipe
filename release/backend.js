@@ -1,5 +1,6 @@
 
 var { basename } = require('path')
+var { existsSync: exists } = require('fs')
 
 var fallback = require('../util/get-fallback')
 
@@ -21,7 +22,11 @@ module.exports = function frontend (context)
 	})
 
 	context.typescript = is_typescript(context)
-	context.other.ignored.append([ 'web/**', '*.d.ts' ])
+	context.other.ignored.append('*.d.ts')
+	if (exists(context.$from('web/gulpfile.js')))
+	{
+		context.other.ignored.append('web/**')
+	}
 
 	context.describe()
 
