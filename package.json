@@ -102,9 +102,9 @@
 		"end-of-stream":
 			"1",
 
+		"del":
+			"6",
 
-		"gulp-clean":
-			"0.4",
 
 		"gulp-serve":
 			"1",

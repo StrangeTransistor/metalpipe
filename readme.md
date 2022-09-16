@@ -59,6 +59,7 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 --test     - [bool]   - test  build = dev
 --once     - [bool]   - run once and stop = false
 --serve    - [*]      - serve static [bool | number] where number is port = 8080
+--clean    - [bool]   - clean destination = final
 
 --hash     - [string] - hash for builds and release.json = [7 random lowercase letters for frontend --final] = null
 --instance - [string] - instance name in release.json

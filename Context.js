@@ -29,6 +29,8 @@ module.exports = function Context (options)
 	opts.dev   = (!  opts.final)
 	opts.test  = fallback(opts, 'test', () => opts.dev)
 
+	opts.clean = fallback(opts, 'clean', () => opts.final)
+
 	var $root = rootpath()
 	var $from = $root.partial()
 

@@ -1,18 +1,31 @@
 
-var assert = require('assert')
-
-var { src } = require('gulp')
-
-var rm = require('gulp-clean')
+// var assert = require('assert')
+var del = require('del')
 
 
-module.exports = function clean ({ $to })
+module.exports = function clean ({ opts, $to })
 {
-	assert($to().match(/release/), 'must be `/release/*` destination')
+	// assert($to().match(/release/), 'must be `/release/*` destination')
 
 	return function CLEAN ()
 	{
-		return src($to('*'), { read: false })
-		.pipe(rm())
+		if (! opts.clean)
+		{
+			return Promise.resolve()
+		}
+
+		if (! $to().match(/release/))
+		{
+			console.warn('clean: destination is not `release/*`, skip clean')
+
+			return Promise.resolve()
+		}
+
+		return del($to('*'))
+		.catch((e) =>
+		{
+			console.warn('clean: cannot clean due to safety restrictions, skip clean')
+			console.warn(e)
+		})
 	}
 }
