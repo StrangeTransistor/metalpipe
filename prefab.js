@@ -1,6 +1,6 @@
 
 
-module.exports = function prefab (name, gulp)
+module.exports = function prefab (name, gulp, preoptions)
 {
 	require('console-ultimate')
 
@@ -9,5 +9,5 @@ module.exports = function prefab (name, gulp)
 	var Context = require('./Context')
 	var Release = require('./release/' + name)
 
-	return Release(Context({ gulp }))
+	return Release(Context({ gulp, preoptions }))
 }

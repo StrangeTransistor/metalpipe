@@ -14,14 +14,16 @@ module.exports = function Context (options)
 {
 	options || (options = {})
 
-	var { gulp } = options
+	var gulp = options.gulp
 	if (! gulp)
 	{
 		console.warn(`Context needs gulp instance`)
 		gulp = require('gulp')
 	}
 
-	var opts = minimist(process.argv.slice(2))
+	var
+	opts = options.preoptions
+	opts = { ...opts, ...minimist(process.argv.slice(2)) }
 
 	opts.final = (!! opts.final)
 	opts.dev   = (!  opts.final)
@@ -29,10 +31,11 @@ module.exports = function Context (options)
 
 	var $root = rootpath()
 	var $from = $root.partial()
-	var $to   = $root.partial('release', fallback(opts, 'to', () =>
-	{
-		return (opts.final && 'final' || 'dev')
-	}))
+
+	var base = fallback(opts, 'to-base', () => 'release/')
+	var to   = fallback(opts, 'to', () => (opts.final && 'final' || 'dev'))
+	var rel  = fallback(opts, 'to-rel', () => '')
+	var $to  = $root.partial(base, to, rel)
 
 	var exp_opts = ExportOpts(opts)
 	var notify = Notify()

@@ -33,9 +33,9 @@
 
 ## pick prefab (`gulpfile.js`)
 ```js
-module.exports.default = require('metalpipe/prefab')('frontend', require('gulp'))
-module.exports.default = require('metalpipe/prefab')('backend', require('gulp'))
-module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
+module.exports.default = require('metalpipe/prefab')('frontend', require('gulp'), {})
+module.exports.default = require('metalpipe/prefab')('backend', require('gulp'), {})
+module.exports.default = require('metalpipe/prefab')('library', require('gulp'), {})
 ```
 
 ## pick release commands (`package.json`)
@@ -51,9 +51,12 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'))
 
 ## opts
 ```sh
---to       - [string] - build destination = 'release/dev/'
+--to       - [string] - build name = 'dev' (for `release/dev`)
+--to-base  - [string] - build base = 'release/' (for `release/dev`)
+--to-rel   - [string] - build path inside base = ''
 
 --final    - [bool]   - final build = false
+--test     - [bool]   - test  build = dev
 --once     - [bool]   - run once and stop = false
 --serve    - [*]      - serve static [bool | number] where number is port = 8080
 
