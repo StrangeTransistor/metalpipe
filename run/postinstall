@@ -4,7 +4,7 @@ install ()
 {
 	d=$(pwd)
 	echo 'install:' "${1}"
-	cd "${1}" && pnpm i || npm i && cd "${d}"
+	cd "${1}" && pnpm i && cd "${d}"
 }
 
 install fixt/frontend
