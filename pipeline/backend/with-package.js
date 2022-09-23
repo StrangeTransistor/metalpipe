@@ -23,6 +23,11 @@ module.exports = function WithPackage (context)
 			}
 		}
 
+		if (context.opts.esm)
+		{
+			p.type = 'module'
+		}
+
 		return p
 	})
 }

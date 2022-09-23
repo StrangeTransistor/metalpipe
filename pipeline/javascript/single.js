@@ -2,7 +2,6 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-
 var rollup = require('../../unit/rollup')
 var js_ext = require('../../unit/js-ext')
 
@@ -42,8 +41,8 @@ module.exports = function javascript (context)
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
+			.pipe(js_ext_import(context))
 			.pipe(dev(context))
-			// .pipe(final(context)) TODO: final
 			.pipe(dst($to()))
 		})
 	}
@@ -67,9 +66,15 @@ function config (context)
 		onwarn,
 	}
 
+	var format = 'cjs'
+	if (context.opts.esm)
+	{
+		format = 'esm'
+	}
+
 	var output =
 	{
-		format:  'cjs',
+		format,
 		exports: 'auto',
 	}
 
@@ -104,4 +109,23 @@ function dev (context)
 	var outlander = require('./outlander')
 
 	return outlander()
+}
+
+
+function js_ext_import (context)
+{
+	if (! context.opts.esm)
+	{
+		var nothing = require('../../unit/nothing')
+
+		return nothing()
+	}
+
+	var babel = require('gulp-babel')
+	var plugins = [ require('babel-plugin-add-import-extension') ]
+
+	return babel(
+	{
+		plugins,
+	})
 }

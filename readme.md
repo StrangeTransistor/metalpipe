@@ -65,8 +65,9 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 --instance - [string] - instance name in release.json
 
 --minify   - [bool]   - minify content = [true for frontend --final] = false
+--esm      - [bool]   - output node native esm for backend = false
 --maps     - [bool]   - sourcemaps = true
---cjs      - [bool]   - compatibility with synthetic imports (mostly for React plugins to work) = false
+--cjs      - [bool]   - ignore module field, prefer main/browser field for frontend, compatibility with synthetic imports (mostly for React plugins to work) = false
 ```
 
 ## virtual
@@ -81,6 +82,7 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 ### backend
 * `scripts:final`
 * ignore `web/` if it contains gulpfile
+* js: labels `dev`, `test` and `final`
 
 ## TODO: inline-resources css (postcss inline), html (web-resource-inliner)
 ## TODO: obfuscate
