@@ -93,6 +93,11 @@ function plugins (context)
 		label(context),
 	]
 
+	if (! context.opts.esm)
+	{
+		plugins = [ ...plugins, dynamic_import() ]
+	}
+
 	return plugins
 }
 
@@ -128,4 +133,15 @@ function js_ext_import (context)
 	{
 		plugins,
 	})
+}
+
+
+function dynamic_import ()
+{
+	function renderDynamicImport ()
+	{
+		return { left: 'import(', right: ')' }
+	}
+
+	return { renderDynamicImport }
 }
