@@ -6,6 +6,5 @@ var index = function () {
   function Component() {
     return React.createElement('div', null);
   }
-
   return Component;
 }();

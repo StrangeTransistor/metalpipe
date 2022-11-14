@@ -8,13 +8,11 @@
       class: "foo"
     });
   }
-
   function App() {
     return React.createElement('div', {
       class: "app"
     }, React.createElement(Foo, null));
   }
-
   console.log(React.createElement(App, null));
   console.log('final');
 })(React);
