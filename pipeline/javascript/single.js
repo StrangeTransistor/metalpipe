@@ -76,6 +76,8 @@ function config (context)
 	{
 		format,
 		exports: 'auto',
+		// interop: 'auto',
+		interop: 'compat',
 	}
 
 	return [ input, output ]

@@ -1,12 +1,13 @@
 // TODO: code split?
 // TODO: vendor concat
+// TODO: fix sourcemap?
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
 var live   = require('../../util/live')
 var rollup = require('../../unit/rollup')
-var sourcemaps = require('../../unit/sourcemaps')
+// var sourcemaps = require('../../unit/sourcemaps')
 var js_ext = require('../../unit/js-ext')
 
 var onwarn = require('./onwarn')
@@ -21,23 +22,23 @@ module.exports = function javascript (context)
 
 	return function JAVASCRIPT ()
 	{
-		var maps = sourcemaps(context)
+		// var maps = sourcemaps(context)
 		var pr = context.notify.process('JAVASCRIPT')
 
 		return live(context, glob_activator(exts, context),
 		function javascript$ ()
 		{
 			return src(glob_entry(exts, context))
-			.pipe(maps.init())
+			// .pipe(maps.init({ clone: true }))
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
-			.pipe(maps.tidy_tree(path =>
+			/*.pipe(maps.tidy_tree(path =>
 			{
 				path = path.replace(/^(..\/)+/, '')
 				path = path.replace(/\.pnpm\/.+?\/.+?\//, '')
 				return path
-			}))
-			.pipe(maps.write())
+			}))*/
+			// .pipe(maps.write())
 			.pipe(js_ext())
 			.pipe(final(context))
 			.pipe(dst($static()))

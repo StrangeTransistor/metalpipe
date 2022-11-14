@@ -2,13 +2,13 @@
 
 var React = require('react');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+function _interopDefaultCompat (e) { return e && typeof e === 'object' && 'default' in e ? e : { default: e }; }
 
-var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var React__default = /*#__PURE__*/_interopDefaultCompat(React);
 
 function Foo ()
 {
-	return React__default["default"].createElement('div', { class: "foo",} )
+	return React__default.default.createElement('div', { class: "foo",} )
 }
 
 console.log('final');
