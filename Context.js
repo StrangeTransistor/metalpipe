@@ -39,9 +39,11 @@ module.exports = function Context (options)
 	var rel  = fallback(opts, 'to-rel', () => '')
 	var $to  = $root.partial(base, to, rel)
 
+	var ignore = opts.ignore
+
 	var exp_opts = ExportOpts(opts)
 	var notify = Notify()
-	var other = Other({ ignore_test: (! opts.test) })
+	var other = Other({ ignore, ignore_test: (! opts.test) })
 
 	function describe ()
 	{

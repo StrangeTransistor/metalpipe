@@ -64,6 +64,7 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 --hash     - [string] - hash for builds and release.json = [7 random lowercase letters for frontend --final] = null
 --instance - [string] - instance name in release.json
 
+--ignore   - [string, string[]] - global stop list for all units
 --minify   - [bool]   - minify content = [true for frontend --final] = false
 --esm      - [bool]   - output node native esm for backend = false
 --maps     - [bool]   - sourcemaps = true

@@ -3,7 +3,6 @@ var Fileset = require('./Fileset')
 
 var defaults =
 {
-	// ignore_generic: true,
 	ignore_test: false,
 }
 
@@ -11,16 +10,18 @@ module.exports = function Other (options)
 {
 	options = { ...defaults, ...options }
 
-	var handled  = Fileset()
-	var ignored  = Fileset()
+	var handled = Fileset()
+	var ignored = Fileset()
 
-//	if (options.ignore_generic)
-//	{
 	ignored.append(ignore_generic)
-//	}
+
 	if (options.ignore_test)
 	{
 		ignored.append(ignore_test)
+	}
+	if (options.ignore)
+	{
+		ignored.append(options.ignore)
 	}
 
 	function fileset ()
