@@ -1,3 +1,3 @@
-export declare type Specific = {
+export type Specific = {
     s: boolean;
 };

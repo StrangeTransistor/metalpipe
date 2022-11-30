@@ -17,7 +17,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   };
   var noopFactory = factory;
   var noop3 = noopFactory();
-
   function curry(fn) {
     var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     return function () {
@@ -49,7 +48,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var test$1 = false;
   var hash$1 = "ABCDEFG";
   var instance$1 = null;
-
   function defaultSetTimout() {
     throw new Error('setTimeout has not been defined');
   }
@@ -188,12 +186,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   function umask() {
     return 0;
   }
-
   var performance = global$1.performance || {};
   var performanceNow = performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {
     return new Date().getTime();
   };
-
   function hrtime(previousTimestamp) {
     var clocktime = performanceNow.call(performance) * 1e-3;
     var seconds = Math.floor(clocktime);
@@ -240,7 +236,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     uptime: uptime
   };
   var compiler = {};
-
   (function (exports) {
     (function (Hogan) {
       var rIsWhitespace = /\S/,
@@ -406,7 +401,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
         return true;
       }
-
       var allowedInSuper = {
         '_t': true,
         '\n': true,
@@ -621,7 +615,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     })(exports);
   })(compiler);
   var template = {};
-
   (function (exports) {
     (function (Hogan) {
       Hogan.Template = function (codeObj, text, compiler, options) {
@@ -648,7 +641,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         },
         ep: function ep(symbol, partials) {
           var partial = this.partials[symbol];
-
           var template = partials[partial.name];
           if (partial.instance && partial.base == template) {
             return partial.instance;
@@ -662,7 +654,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (!template) {
             return null;
           }
-
           this.partials[symbol].base = template;
           if (partial.subs) {
             if (!partials.stackText) partials.stackText = {};
@@ -811,13 +802,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         }
       };
-
       function findInScope(key, scope, doModelGet) {
         var val;
         if (scope && _typeof(scope) == 'object') {
           if (scope[key] !== undefined) {
             val = scope[key];
-
           } else if (doModelGet && scope.get && typeof scope.get == 'function') {
             val = scope.get(key);
           }
@@ -871,7 +860,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       };
     })(exports);
   })(template);
-
   var Hogan = compiler;
   Hogan.Template = template.Template;
   Hogan.template = Hogan.Template;
@@ -890,7 +878,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var pugRuntime = {};
   var require$$0 = {};
   var pug_has_own_property = Object.prototype.hasOwnProperty;
-
   pugRuntime.merge = pug_merge;
   function pug_merge(a, b) {
     if (arguments.length === 1) {
@@ -951,7 +938,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return val || '';
     }
   }
-
   pugRuntime.style = pug_style;
   function pug_style(val) {
     if (!val) return '';
@@ -1007,7 +993,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
     return attrs;
   }
-
   var pug_match_html = /["&<>]/;
   pugRuntime.escape = pug_escape;
   function pug_escape(_html) {
@@ -1039,7 +1024,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
     if (lastIndex !== i) return result + html.substring(lastIndex, i);else return result;
   }
-
   pugRuntime.rethrow = pug_rethrow;
   function pug_rethrow(err, filename, lineno, str) {
     if (!(err instanceof Error)) throw err;
@@ -1056,12 +1040,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       lines = str.split('\n'),
       start = Math.max(lineno - context, 0),
       end = Math.min(lines.length, lineno + context);
-
     var context = lines.slice(start, end).map(function (line, i) {
       var curr = i + start + 1;
       return (curr == lineno ? '  > ' : '    ') + curr + '| ' + line;
     }).join('\n');
-
     err.path = filename;
     err.message = (filename || 'Pug') + ':' + lineno + '\n' + context + '\n\n' + err.message;
     throw err;
