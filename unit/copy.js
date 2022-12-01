@@ -12,7 +12,7 @@ module.exports = function copy ({ context, from, to, name })
 
 	return live(context, from, fnom(name, () =>
 	{
-		return src(from)
+		return src(from, { nodir: true })
 		.pipe(dst(to))
 	}))
 }
