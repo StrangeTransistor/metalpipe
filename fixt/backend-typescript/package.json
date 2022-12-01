@@ -3,6 +3,8 @@
 	"version": "0.0.0",
 	"private":  true,
 
+	"main": "index.js",
+
 	"scripts":
 	{
 		"start": "gulp",
@@ -10,10 +12,11 @@
 		"st": "eslint --ext js --ext ts .",
 		"t": "tsc",
 
-		"test": "npm run check1 && npm run check2",
+		"test": "npm run check1 && npm run check2 && npm run check3",
 
 		"check1": "gulp --once",
-		"check2": "gulp --final"
+		"check2": "gulp --final",
+		"check3": "gulp --final --bundle --to bundle"
 	},
 
 	"scripts:final":

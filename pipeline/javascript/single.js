@@ -1,6 +1,9 @@
+/* eslint complexity: [ 1, 6 ] */
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
+
+var ext = require('replace-ext')
 
 var rollup = require('../../unit/rollup')
 var js_ext = require('../../unit/js-ext')
@@ -18,10 +21,32 @@ module.exports = function javascript (context)
 	var { other } = context
 
 	var exts = Exts(context)
-
 	var glob = glob_entry(exts)
 	var ignored = other.ignored.negate().view()
-	var from = Fileset(glob, ignored).base($from).view()
+
+	var bundle = context.opts.bundle
+	if (! bundle)
+	{
+		var from = Fileset(glob, ignored).base($from).view()
+	}
+	else
+	{
+		if (Array.isArray(bundle))
+		{
+			var from = bundle
+		}
+		else
+		{
+			var from = [ context.package.main || 'index.js' ]
+		}
+
+		if (context.typescript)
+		{
+			from = from.map(path => ext(path, '.ts'))
+		}
+
+		from = Fileset(from, ignored).base($from).view()
+	}
 
 	other.handled.append(glob)
 	if (context.typescript)
@@ -57,11 +82,20 @@ function glob_entry (exts)
 
 function config (context)
 {
+	if (! context.opts.bundle)
+	{
+		var external = { external () { return true } }
+	}
+	else
+	{
+		var external = { external: /node_modules/ }
+	}
+
 	var input =
 	{
 		plugins: plugins(context),
 
-		external () { return true },
+		...external,
 
 		onwarn,
 	}
@@ -83,9 +117,11 @@ function config (context)
 	return [ input, output ]
 }
 
-
-var sucrase = require('./sucrase')
-var label   = require('./label')
+var sucrase  = require('./sucrase')
+var virtual  = require('./virtual')
+var label    = require('./label')
+var resolve  = require('./node-resolve')
+var commonjs = require('./commonjs')
 
 function plugins (context)
 {
@@ -94,6 +130,18 @@ function plugins (context)
 		sucrase(context),
 		label(context),
 	]
+
+	if (context.opts.bundle)
+	{
+		var plugins =
+		[
+			sucrase(context),
+			virtual(context),
+			label(context),
+			resolve(context),
+			commonjs(context),
+		]
+	}
 
 	if (! context.opts.esm)
 	{
