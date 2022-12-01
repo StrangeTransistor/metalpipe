@@ -1,0 +1,18 @@
+
+module.exports = function node_resolve (context)
+{
+	var resolve = require('@rollup/plugin-node-resolve').default
+
+	var mainFields = [ 'browser', 'module', 'main' ]
+	if (context.opts.cjs)
+	{
+		mainFields = [ 'browser', 'main' ]
+	}
+
+	return resolve(
+	{
+		mainFields,
+		// TODO: extset
+		extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
+	})
+}

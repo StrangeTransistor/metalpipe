@@ -81,7 +81,8 @@ function plugins (context)
 
 	var globals  = require('rollup-plugin-node-globals')
 	var builtins = require('rollup-plugin-node-builtins')
-	var commonjs = require('@rollup/plugin-commonjs')
+	var commonjs = require('./commonjs')
+	var resolve  = require('./node-resolve')
 
 	var json     = require('@rollup/plugin-json')
 	var aliases  = require('rollup-plugin-import-alias')
@@ -91,6 +92,7 @@ function plugins (context)
 
 	var sucrase  = require('./sucrase')
 	var label    = require('./label')
+	var virtual  = require('./virtual')
 
 	var plugins =
 	[
@@ -116,34 +118,13 @@ function plugins (context)
 			// TODO: extset
 			Extensions: [ 'tsx', 'ts', 'jsx', 'js', 'json', 'mst.html', 'static.pug', 'pug' ],
 		}),
-		commonjs(
-		{
-			requireReturnsDefault: 'preferred', /* auto */
-		}),
+		commonjs(),
 		globals(),
 	]
 
 	return plugins
 }
 
-
-function resolve (context)
-{
-	var resolve = require('@rollup/plugin-node-resolve').default
-
-	var mainFields = [ 'browser', 'module', 'main' ]
-	if (context.opts.cjs)
-	{
-		mainFields = [ 'browser', 'main' ]
-	}
-
-	return resolve(
-	{
-		mainFields,
-		// TODO: extset
-		extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
-	})
-}
 
 function env (context)
 {
@@ -159,18 +140,6 @@ function env (context)
 	{
 		'process.env.NODE_ENV': `'${ mode }'`,
 	})
-}
-
-function virtual (context)
-{
-	var virtual = require('@rollup/plugin-virtual')
-
-	var mod = context.exp_opts
-	.as_pairs()
-	.map(([ key, value ]) => `export const ${ key } = ${ JSON.stringify(value) }`)
-	.join('\n')
-
-	return virtual({ '~metalpipe': mod })
 }
 
 
