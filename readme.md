@@ -86,7 +86,6 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 * js: labels `dev`, `test` and `final`
 
 ## TODO: inline-resources css (postcss inline), html (web-resource-inliner)
-## TODO: obfuscate
 ## TODO: features
 ## TODO: impr test cases (all features, file names, cross false positives)
 

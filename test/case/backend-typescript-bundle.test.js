@@ -32,6 +32,19 @@ describe('TypeScript Backend (bundle)', () =>
 		})
 	})
 
+	it('final minify', () =>
+	{
+		var tmp =  origin('backend-typescript')
+		var  cl = collate('backend-typescript-bundle/minify')
+
+		run('gulp', [ '--final', '--bundle', '--minify' ], tmp)
+
+		expect_release(cl, tmp.partial('release/final'),
+		{
+			inst: { instance: 'final', name: 'fixt-backend/final' },
+		})
+	})
+
 	// TODO: test target
 	// xit('test target?')
 })

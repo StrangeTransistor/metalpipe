@@ -7,6 +7,7 @@ var ext = require('replace-ext')
 
 var rollup = require('../../unit/rollup')
 var js_ext = require('../../unit/js-ext')
+var nothing = require('../../unit/nothing')
 
 var live = require('../../util/live')
 var Fileset = require('../../util/Fileset')
@@ -68,6 +69,7 @@ module.exports = function javascript (context)
 			.pipe(js_ext())
 			.pipe(js_ext_import(context))
 			.pipe(dev(context))
+			.pipe(final(context))
 			.pipe(dst($to()))
 		})
 	}
@@ -77,6 +79,19 @@ module.exports = function javascript (context)
 function glob_entry (exts)
 {
 	return exts.view_onto('**/*')
+}
+
+function js_ext_import (context)
+{
+	if (! context.opts.esm) return nothing()
+
+	var babel = require('gulp-babel')
+	var plugins = [ require('babel-plugin-add-import-extension') ]
+
+	return babel(
+	{
+		plugins,
+	})
 }
 
 
@@ -131,7 +146,7 @@ function plugins (context)
 		label(context),
 	]
 
-	if (context.opts.bundle)
+	if (context.opts.final && context.opts.bundle)
 	{
 		var plugins =
 		[
@@ -151,41 +166,6 @@ function plugins (context)
 	return plugins
 }
 
-
-function dev (context)
-{
-	if (! context.opts.dev)
-	{
-		var nothing = require('../../unit/nothing')
-
-		return nothing()
-	}
-
-	var outlander = require('./outlander')
-
-	return outlander()
-}
-
-
-function js_ext_import (context)
-{
-	if (! context.opts.esm)
-	{
-		var nothing = require('../../unit/nothing')
-
-		return nothing()
-	}
-
-	var babel = require('gulp-babel')
-	var plugins = [ require('babel-plugin-add-import-extension') ]
-
-	return babel(
-	{
-		plugins,
-	})
-}
-
-
 function dynamic_import ()
 {
 	function renderDynamicImport ()
@@ -194,4 +174,28 @@ function dynamic_import ()
 	}
 
 	return { renderDynamicImport }
+}
+
+
+function dev (context)
+{
+	if (! context.opts.dev) return nothing()
+
+	var outlander = require('./outlander')
+	return outlander()
+}
+
+function final (context)
+{
+	if (! context.opts.minify) return nothing()
+
+	/* simplify: false, */
+	var presets = [ require('babel-preset-minify') ]
+
+	var babel = require('gulp-babel')
+	return babel(
+	{
+		presets,
+		comments: false,
+	})
 }
