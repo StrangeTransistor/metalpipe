@@ -1,5 +1,7 @@
+import noop from 'noop3'
 import answer from 'the-answer'
 import mod from './src/mod.js'
+console.log(noop())
 console.log(answer)
 console.log(mod())
 function async_import ()

@@ -1,5 +1,9 @@
 /* @flow */
 
+import noop from 'noop3'
+
+console.log(noop())
+
 import answer from 'the-answer'
 
 console.log(answer)

@@ -12,7 +12,8 @@
     "check3": "gulp --final --bundle --to bundle"
   },
   "dependencies": {
-    "the-answer": "1"
+    "the-answer": "1",
+    "noop3": "1000.0.0"
   },
   "type": "module"
 }

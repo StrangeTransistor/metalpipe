@@ -1,9 +1,11 @@
 'use strict'
 
+var noop = require('noop3')
 var answer = require('the-answer')
 
 function _interopDefaultCompat (e) { return e && typeof e === 'object' && 'default' in e ? e : { default: e } }
 
+var noop__default = /*#__PURE__*/_interopDefaultCompat(noop)
 var answer__default = /*#__PURE__*/_interopDefaultCompat(answer)
 
 function mod ()
@@ -15,6 +17,8 @@ var mod$1 = /*#__PURE__*/Object.freeze({
 	__proto__: null,
 	default: mod
 })
+
+console.log(noop__default.default())
 
 console.log(answer__default.default)
 

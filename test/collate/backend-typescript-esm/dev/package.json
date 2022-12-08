@@ -16,7 +16,8 @@
     "start": "echo pm2"
   },
   "dependencies": {
-    "the-answer": "1"
+    "the-answer": "1",
+    "noop3": "1000.0.0"
   },
   "devDependencies": {
     "gulp": "4",
