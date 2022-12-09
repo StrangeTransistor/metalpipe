@@ -69,6 +69,8 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 --esm      - [bool]   - output node native esm for backend = false
 --maps     - [bool]   - sourcemaps = true
 --cjs      - [bool]   - ignore module field, prefer main/browser field for frontend, compatibility with synthetic imports (mostly for React plugins to work) = false
+
+--bundle   - [bool|string[]] - bundle content for backend = false
 ```
 
 ## virtual
