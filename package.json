@@ -195,6 +195,9 @@
 		"@rollup/plugin-strip":
 			"3",
 
+		"@rollup/plugin-terser":
+			"0.2",
+
 		"gulp-eslint":
 			"6",
 

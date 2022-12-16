@@ -69,7 +69,7 @@ module.exports = function javascript (context)
 			.pipe(js_ext())
 			.pipe(js_ext_import(context))
 			.pipe(dev(context))
-			.pipe(final(context))
+			// .pipe(final(context))
 			.pipe(dst($to()))
 		})
 	}
@@ -161,6 +161,7 @@ var virtual  = require('./virtual')
 var label    = require('./label')
 var resolve  = require('./node-resolve')
 var commonjs = require('./commonjs')
+var terser   = require('@rollup/plugin-terser')
 
 function plugins (context)
 {
@@ -180,6 +181,11 @@ function plugins (context)
 			resolve(context),
 			commonjs(context),
 		]
+	}
+
+	if (context.opts.minify)
+	{
+		plugins = [ ...plugins, terser({ toplevel: true }) ]
 	}
 
 	if (! context.opts.esm)
@@ -207,19 +213,4 @@ function dev (context)
 
 	var outlander = require('./outlander')
 	return outlander()
-}
-
-function final (context)
-{
-	if (! context.opts.minify) return nothing()
-
-	/* simplify: false, */
-	var presets = [ require('babel-preset-minify') ]
-
-	var babel = require('gulp-babel')
-	return babel(
-	{
-		presets,
-		comments: false,
-	})
 }
