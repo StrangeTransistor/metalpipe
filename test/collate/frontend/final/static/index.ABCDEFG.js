@@ -17,6 +17,46 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   };
   var noopFactory = factory;
   var noop3 = noopFactory();
+
+  /**
+   * taken from the last comment of https://gist.github.com/mkuklis/5294248
+   * Returns a curried equivalent of the provided function. The curried function
+   * has two unusual capabilities. First, its arguments needn't be provided one
+   * at a time. If `f` is a ternary function and `g` is `R.curry(f)`, the
+   * following are equivalent:
+   *
+   *   - `g(1)(2)(3)`
+   *   - `g(1)(2, 3)`
+   *   - `g(1, 2)(3)`
+   *   - `g(1, 2, 3)`
+   *
+   * Secondly, the special placeholder value [`R.__`](#__) may be used to specify
+   * "gaps", allowing partial application of any combination of arguments,
+   * regardless of their positions. If `g` is as above and `_` is [`R.__`](#__),
+   * the following are equivalent:
+   *
+   *   - `g(1, 2, 3)`
+   *   - `g(_, 2, 3)(1)`
+   *   - `g(_, _, 3)(1)(2)`
+   *   - `g(_, _, 3)(1, 2)`
+   *   - `g(_, 2)(1)(3)`
+   *   - `g(_, 2)(1, 3)`
+   *   - `g(_, 2)(_, 3)(1)`
+   *
+   * @func
+   * @category Function
+   * @sig (* -> a) -> (* -> a)
+   * @param {Function} fn The function to curry.
+   * @return {Function} A new, curried function.
+   * @example
+   *
+   *      const addFourNumbers = (a, b, c, d) => a + b + c + d;
+   *
+   *      const curriedAddFourNumbers = R.curry(addFourNumbers);
+   *      const f = curriedAddFourNumbers(1, 2);
+   *      const g = f(3);
+   *      g(4); //=> 10
+   */
   function curry(fn) {
     var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     return function () {
@@ -48,6 +88,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var test$1 = false;
   var hash$1 = "ABCDEFG";
   var instance$1 = null;
+
+  // shim for using process in browser
+  // based off https://github.com/defunctzombie/node-process/blob/master/browser.js
+
   function defaultSetTimout() {
     throw new Error('setTimeout has not been defined');
   }
@@ -64,36 +108,47 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   }
   function runTimeout(fun) {
     if (cachedSetTimeout === setTimeout) {
+      //normal enviroments in sane situations
       return setTimeout(fun, 0);
     }
+    // if setTimeout wasn't available but was latter defined
     if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
       cachedSetTimeout = setTimeout;
       return setTimeout(fun, 0);
     }
     try {
+      // when when somebody has screwed with setTimeout but no I.E. maddness
       return cachedSetTimeout(fun, 0);
     } catch (e) {
       try {
+        // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
         return cachedSetTimeout.call(null, fun, 0);
       } catch (e) {
+        // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
         return cachedSetTimeout.call(this, fun, 0);
       }
     }
   }
   function runClearTimeout(marker) {
     if (cachedClearTimeout === clearTimeout) {
+      //normal enviroments in sane situations
       return clearTimeout(marker);
     }
+    // if clearTimeout wasn't available but was latter defined
     if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
       cachedClearTimeout = clearTimeout;
       return clearTimeout(marker);
     }
     try {
+      // when when somebody has screwed with setTimeout but no I.E. maddness
       return cachedClearTimeout(marker);
     } catch (e) {
       try {
+        // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
         return cachedClearTimeout.call(null, marker);
       } catch (e) {
+        // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+        // Some versions of I.E. have different rules for clearTimeout vs setTimeout
         return cachedClearTimeout.call(this, marker);
       }
     }
@@ -150,6 +205,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       runTimeout(drainQueue);
     }
   }
+  // v8 likes predictible objects
   function Item(fun, array) {
     this.fun = fun;
     this.array = array;
@@ -162,7 +218,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var browser = true;
   var env = {};
   var argv = [];
-  var version = '';
+  var version = ''; // empty string to avoid regexp issues
   var versions = {};
   var release = {};
   var config = {};
@@ -186,10 +242,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   function umask() {
     return 0;
   }
+
+  // from https://github.com/kumavis/browser-process-hrtime/blob/master/index.js
   var performance = global$1.performance || {};
   var performanceNow = performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {
     return new Date().getTime();
   };
+
+  // generate timestamp or delta
+  // see http://nodejs.org/api/process.html#process_process_hrtime
   function hrtime(previousTimestamp) {
     var clocktime = performanceNow.call(performance) * 1e-3;
     var seconds = Math.floor(clocktime);
@@ -236,8 +297,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     uptime: uptime
   };
   var compiler = {};
+
+  /*
+   *  Copyright 2011 Twitter, Inc.
+   *  Licensed under the Apache License, Version 2.0 (the "License");
+   *  you may not use this file except in compliance with the License.
+   *  You may obtain a copy of the License at
+   *
+   *  http://www.apache.org/licenses/LICENSE-2.0
+   *
+   *  Unless required by applicable law or agreed to in writing, software
+   *  distributed under the License is distributed on an "AS IS" BASIS,
+   *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   *  See the License for the specific language governing permissions and
+   *  limitations under the License.
+   */
+
   (function (exports) {
     (function (Hogan) {
+      // Setup regex  assignments
+      // remove whitespace according to Mustache spec
       var rIsWhitespace = /\S/,
         rQuot = /\"/g,
         rNewline = /\n/g,
@@ -299,6 +378,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             for (var j = lineStart, next; j < tokens.length; j++) {
               if (tokens[j].text) {
                 if ((next = tokens[j + 1]) && next.tag == '>') {
+                  // set indent to token value
                   next.indent = tokens[j].text.toString();
                 }
                 tokens.splice(j, 1);
@@ -401,6 +481,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
         return true;
       }
+
+      // the tags allowed inside super templates
       var allowedInSuper = {
         '_t': true,
         '\n': true,
@@ -615,6 +697,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     })(exports);
   })(compiler);
   var template = {};
+
+  /*
+   *  Copyright 2011 Twitter, Inc.
+   *  Licensed under the Apache License, Version 2.0 (the "License");
+   *  you may not use this file except in compliance with the License.
+   *  You may obtain a copy of the License at
+   *
+   *  http://www.apache.org/licenses/LICENSE-2.0
+   *
+   *  Unless required by applicable law or agreed to in writing, software
+   *  distributed under the License is distributed on an "AS IS" BASIS,
+   *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   *  See the License for the specific language governing permissions and
+   *  limitations under the License.
+   */
+
   (function (exports) {
     (function (Hogan) {
       Hogan.Template = function (codeObj, text, compiler, options) {
@@ -628,19 +726,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.buf = '';
       };
       Hogan.Template.prototype = {
+        // render: replaced by generated code.
         r: function r(context, partials, indent) {
           return '';
         },
+        // variable escaping
         v: hoganEscape,
+        // triple stache
         t: coerceToString,
         render: function render(context, partials, indent) {
           return this.ri([context], partials || {}, indent);
         },
+        // render internal -- a hook for overrides that catches partials too
         ri: function ri(context, partials, indent) {
           return this.r(context, partials, indent);
         },
+        // ensurePartial
         ep: function ep(symbol, partials) {
           var partial = this.partials[symbol];
+
+          // check to see that if we've instantiated this partial before
           var template = partials[partial.name];
           if (partial.instance && partial.base == template) {
             return partial.instance;
@@ -654,8 +759,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (!template) {
             return null;
           }
+
+          // We use this to check whether the partials dictionary has changed
           this.partials[symbol].base = template;
           if (partial.subs) {
+            // Make sure we consider parent template now
             if (!partials.stackText) partials.stackText = {};
             for (key in partial.subs) {
               if (!partials.stackText[key]) {
@@ -667,6 +775,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.partials[symbol].instance = template;
           return template;
         },
+        // tries to find a partial in the current scope and render it
         rp: function rp(symbol, context, partials, indent) {
           var partial = this.ep(symbol, partials);
           if (!partial) {
@@ -674,6 +783,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
           return partial.ri(context, partials, indent);
         },
+        // render a section
         rs: function rs(context, partials, section) {
           var tail = context[context.length - 1];
           if (!isArray(tail)) {
@@ -686,6 +796,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             context.pop();
           }
         },
+        // maybe start a section
         s: function s(val, ctx, partials, inverted, start, end, tags) {
           var pass;
           if (isArray(val) && val.length === 0) {
@@ -700,6 +811,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
           return pass;
         },
+        // find values with dotted names
         d: function d(key, ctx, partials, returnFound) {
           var found,
             names = key.split('.'),
@@ -729,6 +841,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
           return val;
         },
+        // find values with normal names
         f: function f(key, ctx, partials, returnFound) {
           var val = false,
             v = null,
@@ -750,6 +863,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
           return val;
         },
+        // higher order templates
         ls: function ls(func, cx, partials, text, tags) {
           var oldTags = this.options.delimiters;
           this.options.delimiters = tags;
@@ -757,12 +871,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.options.delimiters = oldTags;
           return false;
         },
+        // compile text
         ct: function ct(text, cx, partials) {
           if (this.options.disableLambda) {
             throw new Error('Lambda features disabled.');
           }
           return this.c.compile(text, this.options).render(cx, partials);
         },
+        // template result buffering
         b: function b(s) {
           this.buf += s;
         },
@@ -771,6 +887,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.buf = '';
           return r;
         },
+        // method replace section
         ms: function ms(func, ctx, partials, inverted, start, end, tags) {
           var textSource,
             cx = ctx[ctx.length - 1],
@@ -785,6 +902,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
           return result;
         },
+        // method replace variable
         mv: function mv(func, ctx, partials) {
           var cx = ctx[ctx.length - 1];
           var result = func.call(cx);
@@ -802,11 +920,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         }
       };
+
+      //Find a key in an object
       function findInScope(key, scope, doModelGet) {
         var val;
         if (scope && _typeof(scope) == 'object') {
           if (scope[key] !== undefined) {
             val = scope[key];
+
+            // try lookup with get for backbone or similar model data
           } else if (doModelGet && scope.get && typeof scope.get == 'function') {
             val = scope.get(key);
           }
@@ -821,7 +943,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var key;
         var partial = new PartialTemplate();
         partial.subs = new Substitutions();
-        partial.subsText = {};
+        partial.subsText = {}; //hehe. substext.
         partial.buf = '';
         stackSubs = stackSubs || {};
         partial.stackSubs = stackSubs;
@@ -860,6 +982,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       };
     })(exports);
   })(template);
+
+  /*
+   *  Copyright 2011 Twitter, Inc.
+   *  Licensed under the Apache License, Version 2.0 (the "License");
+   *  you may not use this file except in compliance with the License.
+   *  You may obtain a copy of the License at
+   *
+   *  http://www.apache.org/licenses/LICENSE-2.0
+   *
+   *  Unless required by applicable law or agreed to in writing, software
+   *  distributed under the License is distributed on an "AS IS" BASIS,
+   *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   *  See the License for the specific language governing permissions and
+   *  limitations under the License.
+   */
+
+  // This file is for use with Node.js. See dist/ for browser files.
+
   var Hogan = compiler;
   Hogan.Template = template.Template;
   Hogan.template = Hogan.Template;
@@ -878,6 +1018,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var pugRuntime = {};
   var require$$0 = {};
   var pug_has_own_property = Object.prototype.hasOwnProperty;
+
+  /**
+   * Merge two attribute objects giving precedence
+   * to values in object `b`. Classes are special-cased
+   * allowing for arrays and merging/joining appropriately
+   * resulting in a string.
+   *
+   * @param {Object} a
+   * @param {Object} b
+   * @return {Object} a
+   * @api private
+   */
+
   pugRuntime.merge = pug_merge;
   function pug_merge(a, b) {
     if (arguments.length === 1) {
@@ -903,6 +1056,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
     return a;
   }
+  /**
+   * Process array, object, or string as a string of classes delimited by a space.
+   *
+   * If `val` is an array, all members of it and its subarrays are counted as
+   * classes. If `escaping` is an array, then whether or not the item in `val` is
+   * escaped depends on the corresponding item in `escaping`. If `escaping` is
+   * not an array, no escaping is done.
+   *
+   * If `val` is an object, all the keys whose value is truthy are counted as
+   * classes. No escaping is done.
+   *
+   * If `val` is a string, it is counted as a class. No escaping is done.
+   *
+   * @param {(Array.<string>|Object.<string, boolean>|string)} val
+   * @param {?Array.<string>} escaping
+   * @return {String}
+   */
   pugRuntime.classes = pug_classes;
   function pug_classes_array(val, escaping) {
     var classString = '',
@@ -938,12 +1108,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return val || '';
     }
   }
+
+  /**
+   * Convert object or string to a string of CSS styles delimited by a semicolon.
+   *
+   * @param {(Object.<string, string>|string)} val
+   * @return {String}
+   */
+
   pugRuntime.style = pug_style;
   function pug_style(val) {
     if (!val) return '';
     if (_typeof(val) === 'object') {
       var out = '';
       for (var style in val) {
+        /* istanbul ignore else */
         if (pug_has_own_property.call(val, style)) {
           out = out + style + ':' + val[style] + ';';
         }
@@ -953,6 +1132,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return val + '';
     }
   }
+  /**
+   * Render the given attribute.
+   *
+   * @param {String} key
+   * @param {String} val
+   * @param {Boolean} escaped
+   * @param {Boolean} terse
+   * @return {String}
+   */
   pugRuntime.attr = pug_attr;
   function pug_attr(key, val, escaped, terse) {
     if (val === false || val == null || !val && (key === 'class' || key === 'style')) {
@@ -974,6 +1162,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     if (escaped) val = pug_escape(val);
     return ' ' + key + '="' + val + '"';
   }
+  /**
+   * Render the given attributes object.
+   *
+   * @param {Object} obj
+   * @param {Object} terse whether to use HTML5 terse boolean attributes
+   * @return {String}
+   */
   pugRuntime.attrs = pug_attrs;
   function pug_attrs(obj, terse) {
     var attrs = '';
@@ -993,6 +1188,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
     return attrs;
   }
+  /**
+   * Escape the given string of `html`.
+   *
+   * @param {String} html
+   * @return {String}
+   * @api private
+   */
+
   var pug_match_html = /["&<>]/;
   pugRuntime.escape = pug_escape;
   function pug_escape(_html) {
@@ -1024,6 +1227,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
     if (lastIndex !== i) return result + html.substring(lastIndex, i);else return result;
   }
+  /**
+   * Re-throw the given `err` in context to the
+   * the pug in `filename` at the given `lineno`.
+   *
+   * @param {Error} err
+   * @param {String} filename
+   * @param {String} lineno
+   * @param {String} str original source
+   * @api private
+   */
+
   pugRuntime.rethrow = pug_rethrow;
   function pug_rethrow(err, filename, lineno, str) {
     if (!(err instanceof Error)) throw err;
@@ -1040,10 +1254,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       lines = str.split('\n'),
       start = Math.max(lineno - context, 0),
       end = Math.min(lines.length, lineno + context);
+
+    // Error context
     var context = lines.slice(start, end).map(function (line, i) {
       var curr = i + start + 1;
       return (curr == lineno ? '  > ' : '    ') + curr + '| ' + line;
     }).join('\n');
+
+    // Alter exception message
     err.path = filename;
     err.message = (filename || 'Pug') + ':' + lineno + '\n' + context + '\n\n' + err.message;
     throw err;

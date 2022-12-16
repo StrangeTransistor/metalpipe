@@ -153,32 +153,31 @@ function final (context)
 	}
 
 	var get_true = require('../../util/get-true')
-	var mpipe    = require('multipipe')
 
+	var minify = []
+	if (get_true(context.opts, 'minify'))
+	{
+		var terser = require('gulp-terser')
+
+		minify = [ terser() ]
+	}
+
+	var babel = require('gulp-babel')
+	var stamp = require('../../unit/hash-stamp')
+
+	var hash = context.opts.hash
 	var presets =
 	[
 		require('@babel/preset-env'),
 	]
 
-	if (get_true(context.opts, 'minify'))
-	{
-		presets.push([ require('babel-preset-minify'),
-		{
-			simplify: false,
-		}])
-	}
+	var pipe =
+	[
+		babel({ presets, compact: false }),
+		stamp(hash),
+		...minify,
+	]
 
-	var hash = context.opts.hash
-
-	var babel = require('gulp-babel')
-	var stamp = require('../../unit/hash-stamp')
-
-	return mpipe(
-		babel(
-		{
-			presets,
-			comments: false,
-		}),
-		stamp(hash)
-	)
+	var mpipe = require('multipipe')
+	return mpipe(...pipe)
 }
