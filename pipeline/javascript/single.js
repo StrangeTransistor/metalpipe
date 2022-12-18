@@ -162,6 +162,7 @@ var label    = require('./label')
 var resolve  = require('./node-resolve')
 var commonjs = require('./commonjs')
 var terser   = require('@rollup/plugin-terser')
+var analyze  = require('./analyze')
 
 function plugins (context)
 {
@@ -180,6 +181,7 @@ function plugins (context)
 			label(context),
 			resolve(context),
 			commonjs(context),
+			analyze(context),
 		]
 	}
 

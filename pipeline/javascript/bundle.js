@@ -90,6 +90,7 @@ function plugins (context)
 	var mustache = require('rollup-plugin-mustache')
 	var pug      = require('rollup-plugin-pug')
 
+	var analyze  = require('./analyze')
 	var sucrase  = require('./sucrase')
 	var label    = require('./label')
 	var virtual  = require('./virtual')
@@ -121,6 +122,11 @@ function plugins (context)
 		commonjs(),
 		globals(),
 	]
+
+	if (context.opts.final)
+	{
+		plugins = [ ...plugins, analyze(context) ]
+	}
 
 	return plugins
 }

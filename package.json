@@ -198,6 +198,10 @@
 		"@rollup/plugin-terser":
 			"0.2",
 
+		"rollup-plugin-analyzer":
+			"4",
+
+
 		"gulp-eslint":
 			"6",
 
