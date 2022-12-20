@@ -1,3 +1,4 @@
+// TODO: label bundle, minify
 
 var strip = require('@rollup/plugin-strip')
 

@@ -2,7 +2,7 @@
 var entries = Object.entries
 
 
-module.exports = function ExportOpts (base)
+module.exports = function ExportOpts (base, pkg)
 {
 	var keys =
 	[
@@ -15,7 +15,12 @@ module.exports = function ExportOpts (base)
 
 	function as_map ()
 	{
-		var opts = {}
+		var version = pkg.version
+		var opts =
+		{
+			version,
+		}
+
 		for (var key of keys)
 		{
 			if (key in base)
@@ -27,6 +32,7 @@ module.exports = function ExportOpts (base)
 				opts[key] = null
 			}
 		}
+
 		return opts
 	}
 

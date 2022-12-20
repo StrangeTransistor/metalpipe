@@ -83,6 +83,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var json = {
     other: other$1
   };
+  var version$1 = "0.0.0";
   var final$1 = true;
   var dev$1 = false;
   var test$1 = false;
@@ -1327,7 +1328,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     final: final$1,
     test: test$1,
     hash: hash$1,
-    instance: instance$1
+    instance: instance$1,
+    version: version$1
   });
   console.log('production');
   console.log(!!global$1.global);

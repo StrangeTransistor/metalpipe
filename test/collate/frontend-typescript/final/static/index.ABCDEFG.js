@@ -213,7 +213,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var browser = true;
   var env = {};
   var argv = [];
-  var version = ''; // empty string to avoid regexp issues
+  var version$1 = ''; // empty string to avoid regexp issues
   var versions = {};
   var release = {};
   var config = {};
@@ -272,7 +272,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     browser: browser,
     env: env,
     argv: argv,
-    version: version,
+    version: version$1,
     versions: versions,
     on: on,
     addListener: addListener,
@@ -1301,6 +1301,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
     return pug_html;
   }
+  var version = "0.0.0";
   var final = true;
   var dev$1 = false;
   var test = false;
@@ -1333,7 +1334,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     final: final,
     test: test,
     hash: hash,
-    instance: instance
+    instance: instance,
+    version: version
   });
   console.log('production');
   console.log('final');

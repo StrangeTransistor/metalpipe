@@ -41,7 +41,8 @@ module.exports = function Context (options)
 
 	var ignore = opts.ignore
 
-	var exp_opts = ExportOpts(opts)
+	var pkg = Package($root)
+	var exp_opts = ExportOpts(opts, pkg)
 	var notify = Notify()
 	var other = Other({ ignore, ignore_test: (! opts.test) })
 
@@ -53,7 +54,7 @@ module.exports = function Context (options)
 
 	var context =
 	{
-		package: Package($root),
+		package: pkg,
 		gulp,
 		$root, $from, $to,
 		opts,

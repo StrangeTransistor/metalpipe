@@ -78,6 +78,7 @@
             	other: other$1
             };
 
+            const version$1 = "0.0.0";
             const final$1 = false;
             const dev$1 = true;
             const test$1 = true;
@@ -1406,7 +1407,7 @@
             }
             console.log(dev$1);
             debug(1, 2, 3);
-            console.log({ final: final$1, test: test$1, hash: hash$1, instance: instance$1 });
+            console.log({ final: final$1, test: test$1, hash: hash$1, instance: instance$1, version: version$1 });
 
             console.log('development');
 
