@@ -1,3 +1,4 @@
+// TODO: inline-resources html (web-resource-inliner)
 
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')

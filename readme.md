@@ -31,12 +31,14 @@
 }
 ```
 
+
 ## pick prefab (`gulpfile.js`)
 ```js
 module.exports.default = require('metalpipe/prefab')('frontend', require('gulp'), {})
 module.exports.default = require('metalpipe/prefab')('backend', require('gulp'), {})
 module.exports.default = require('metalpipe/prefab')('library', require('gulp'), {})
 ```
+
 
 ## pick release commands (`package.json`)
 ```json
@@ -48,6 +50,7 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
   }
 }
 ```
+
 
 ## opts
 ```sh
@@ -73,23 +76,26 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 --bundle   - [bool|string[]] - bundle content for backend = false
 ```
 
+
 ## virtual
 ### frontend ← javascript/bundle
-* js: `~lib` root = ./lib/
+* js: `~lib` root = `/lib/`
 * js: `~metalpipe` = { final, dev, test, hash, instance }
 * js: labels `dev`, `test` and `final`
 * pug: global var { final, dev, test, hash, instance }
 * less: global var { final, dev, test, hash, instance }
-* less, pug, html: replace uris that start with static/ in CSS and HTML to actual static
+* less, pug, html: replace uris that start with `static/` in CSS and HTML to actual static
+* copy plain assets `lib/assets/` → `assets/`
+* copy lib assets `lib/X/assets/` → `assets/X/`
+* asset hash (`static/` index.js, index.css → index.HASH.js, index.HASH.css)
+* asset hash (`static/assets/` → `static/assets.HASH/`)
+
 
 ### backend
 * `scripts:final`
 * ignore `web/` if it contains gulpfile
 * js: labels `dev`, `test` and `final`
 
-## TODO: inline-resources css (postcss inline), html (web-resource-inliner)
-## TODO: features
-## TODO: impr test cases (all features, file names, cross false positives)
 
 ## license
 ISC. © Strider, 2022.

@@ -31,7 +31,6 @@ stamp.in_uri = curry((hash, uri) =>
 		return uri
 	}
 
-	// m[1] || (m[1] = '')
 	m[3] || (m[3] = '')
 
 	uri = m[1] + stamp(hash, m[2]) + m[3]
@@ -39,4 +38,7 @@ stamp.in_uri = curry((hash, uri) =>
 	return uri
 })
 
+/* 1 = static, 2 = index.js, index.css etc, 3 = '' */
+/* or */
+/* 1 = static, 2 = assets, 3 = asset relpath */
 var re_uri = /^(\/?static\/)(.*?)(\/.*)?$/
