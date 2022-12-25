@@ -1,21 +1,29 @@
 
+module.exports = function series (...tasks)
+{
+	return next(tasks)
+
+	function next (tasks)
+	{
+		return (/* value */) =>
+		{
+			if (! tasks.length) return Promise.resolve()
+
+			var task = tasks[0]
+			tasks = tasks.slice(1)
+
+			return capture(task).then(next(tasks))
+		}
+	}
+}
+
+
 var eos = require('end-of-stream')
 
-
-module.exports = function series (t1, t2)
+function capture (task)
 {
-	return () => new Promise((rs, rj) =>
+	return new Promise((rs, rj) =>
 	{
-		eos(t1(), (e) =>
-		{
-			if (e) { return rj(e) }
-
-			eos(t2(), (e) =>
-			{
-				if (e) { return rj(e) }
-
-				return rs()
-			})
-		})
+		eos(task(), e => (e && rj(e) || rs()))
 	})
 }

@@ -89,6 +89,7 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 * copy lib assets `lib/X/assets/` → `assets/X/`
 * asset hash (`static/` index.js, index.css → index.HASH.js, index.HASH.css)
 * asset hash (`static/assets/` → `static/assets.HASH/`)
+* copy intert stuff (`lib/copy` → `.`)
 
 
 ### backend

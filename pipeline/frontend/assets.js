@@ -2,7 +2,6 @@
 var { src } = require('gulp')
 var { dest: dst } = require('gulp')
 
-
 var rename = require('../../unit/rename')
 
 var stamp  = require('../../util/hash-stamp')
@@ -22,11 +21,24 @@ module.exports = function assets (context)
 		var to = $to.$static(stamp(context.opts.hash, 'assets'))
 
 		var task = fnom('assets$', series(
+			inert(context),
 			assets_plain(context, to),
-			assets_bundle(context, to)
+			assets_bundle(context, to),
 		))
 
 		return live(context, watch, task)
+	}
+}
+
+
+function inert (context)
+{
+	var { $from, $to } = context
+
+	return function INERT ()
+	{
+		return src($from('copy/**'))
+		.pipe(dst($to()))
 	}
 }
 
