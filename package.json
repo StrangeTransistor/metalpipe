@@ -169,10 +169,10 @@
 			"2",
 
 		"@rollup/plugin-commonjs":
-			"23",
+			"24",
 
 		"@rollup/plugin-json":
-			"5",
+			"6",
 
 		"@rollup/plugin-replace":
 			"5",
