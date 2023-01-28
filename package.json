@@ -196,7 +196,7 @@
 			"3",
 
 		"@rollup/plugin-terser":
-			"0.3",
+			"0.4",
 
 		"rollup-plugin-analyzer":
 			"4",
