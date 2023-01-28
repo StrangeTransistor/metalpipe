@@ -38,7 +38,7 @@ stamp.in_uri = curry((hash, uri) =>
 	return uri
 })
 
-/* 1 = static, 2 = index.js, index.css etc, 3 = '' */
+/* 1 = static, 2 = {index.js, index.css, …}, 3 = '' */
 /* or */
-/* 1 = static, 2 = assets, 3 = asset relpath */
+/* 1 = static, 2 = assets, 3 = asset/ relpath */
 var re_uri = /^(\/?static\/)(.*?)(\/.*)?$/
