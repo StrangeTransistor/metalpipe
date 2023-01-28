@@ -1,5 +1,5 @@
 
-var { src } = require('gulp')
+var { src: src$ } = require('gulp')
 var { dest: dst } = require('gulp')
 
 var rename = require('../../unit/rename')
@@ -9,6 +9,10 @@ var fnom   = require('../../util/fnom')
 var series = require('../../util/series')
 var live   = require('../../util/live')
 
+function src (to)
+{
+	return src$(to, { follow: true })
+}
 
 module.exports = function assets (context)
 {
