@@ -192,12 +192,13 @@ function plugins (context)
 
 	if (! context.opts.esm)
 	{
-		plugins = [ ...plugins, dynamic_import() ]
+		// plugins = [ ...plugins, dynamic_import() ]
 	}
 
 	return plugins
 }
 
+/*
 function dynamic_import ()
 {
 	function renderDynamicImport ()
@@ -207,7 +208,7 @@ function dynamic_import ()
 
 	return { renderDynamicImport }
 }
-
+*/
 
 function dev (context)
 {
