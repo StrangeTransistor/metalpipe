@@ -99,7 +99,13 @@ function config (context)
 {
 	if (! context.opts.bundle)
 	{
-		var external = { external () { return true } }
+		var external =
+		{
+			external (id)
+			{
+				return (id !== '~metalpipe')
+			}
+		}
 	}
 	else
 	{
@@ -170,15 +176,14 @@ function plugins (context)
 	[
 		sucrase(context),
 		label(context),
+		virtual(context),
 	]
 
 	if (context.opts.bundle)
 	{
 		var plugins =
 		[
-			sucrase(context),
-			virtual(context),
-			label(context),
+			...plugins,
 			resolve(context),
 			commonjs(context),
 			analyze(context),

@@ -22,6 +22,14 @@ var mod$1 = /*#__PURE__*/Object.freeze({
 	default: mod
 })
 
+const custom_opt = 'HASH_0.0.0'
+const version = '0.0.0'
+const final = false
+const dev = true
+const test = true
+const hash = null
+const instance = 'dev'
+
 console.log(noop3())
 
 console.log(answer__default.default)
@@ -42,3 +50,5 @@ console.log('dev')
 console.log('test')
 
 debugger
+console.log({ dev, final, test, hash, instance, version })
+console.log(custom_opt)

@@ -22,6 +22,14 @@ var mod$1 = /*#__PURE__*/Object.freeze({
 	default: mod
 });
 
+const custom_opt = "HASH_0.0.0";
+const version = "0.0.0";
+const final = true;
+const dev = false;
+const test = false;
+const hash = null;
+const instance = "final";
+
 console.log(noop3());
 
 console.log(answer__default.default);
@@ -38,3 +46,5 @@ function async_import ()
 async_import();
 
 console.log('final');
+console.log({ dev, final, test, hash, instance, version });
+console.log(custom_opt);
