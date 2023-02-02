@@ -1269,7 +1269,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var pug_debug_sources = {};
       ;
       var locals_for_with = locals || {};
-      (function (dev, other) {
+      (function (custom_opt, dev, other) {
         pug_html = pug_html + "<!DOCTYPE html>";
         pug_html = pug_html + "<head>";
         pug_html = pug_html + "<meta charset=\"utf-8\">";
@@ -1282,6 +1282,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         pug_html = pug_html + pugRuntime.escape(null == (pug_interp = other) ? "" : pug_interp) + "</div>";
         pug_html = pug_html + "<div class=\"dev\">";
         pug_html = pug_html + pugRuntime.escape(null == (pug_interp = dev) ? "" : pug_interp) + "</div>";
+        pug_html = pug_html + "<div class=\"custom\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = custom_opt) ? "" : pug_interp) + "</div>";
         if (dev) {
           pug_html = pug_html + "<div class=\"dev\">";
           pug_html = pug_html + "Yes</div>";
@@ -1295,7 +1297,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         pug_html = pug_html + "<div class=\"bg img4\"></div>";
         pug_html = pug_html + "<img src=\"static/assets/index/dir/blue.png\">";
         pug_html = pug_html + "<a href=\"localhost:8080/static/assets/red.png\"></a></body>";
-      }).call(this, "dev" in locals_for_with ? locals_for_with.dev : typeof dev !== "undefined" ? dev : undefined, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined);
+      }).call(this, "custom_opt" in locals_for_with ? locals_for_with.custom_opt : typeof custom_opt !== "undefined" ? custom_opt : undefined, "dev" in locals_for_with ? locals_for_with.dev : typeof dev !== "undefined" ? dev : undefined, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined);
     } catch (err) {
       pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
     }

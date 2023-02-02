@@ -78,6 +78,7 @@
             	other: other$1
             };
 
+            const custom_opt$1 = "HASH_0.0.0";
             const version$1 = "0.0.0";
             const final$1 = false;
             const dev$1 = true;
@@ -1102,7 +1103,7 @@
 
             var mst = new hogan.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b(t.v(t.f("data",c,p,0)));return t.fl(); },partials: {}, subs: {  }});
 
-            var pug_static = "<div>Some Static</div><div class=\"dev\">true</div><div class=\"test\">true</div><div class=\"final\">false</div><div class=\"hash\"></div><div class=\"instance\"></div>";
+            var pug_static = "<div>Some Static</div><div class=\"dev\">true</div><div class=\"test\">true</div><div class=\"final\">false</div><div class=\"hash\"></div><div class=\"instance\"></div><div class=\"custom\">HASH_0.0.0</div>";
 
             var pugRuntime = {};
 
@@ -1357,7 +1358,7 @@
             }
 
             function pug(locals) {var pug_html = "", pug_interp;var pug_debug_filename, pug_debug_line;try {var pug_debug_sources = {};
-            ;var locals_for_with = (locals || {});(function (dev, final, hash, instance, other, some, test) {
+            ;var locals_for_with = (locals || {});(function (custom_opt, dev, final, hash, instance, other, some, test) {
             pug_html = pug_html + "\u003C!DOCTYPE html\u003E";
             pug_html = pug_html + "\u003Chead\u003E";
             pug_html = pug_html + "\u003Cmeta charset=\"utf-8\"\u003E";
@@ -1380,6 +1381,8 @@
             pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = hash) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
             pug_html = pug_html + "\u003Cdiv class=\"instance\"\u003E";
             pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = instance) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
+            pug_html = pug_html + "\u003Cdiv class=\"custom\"\u003E";
+            pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = custom_opt) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
             if (dev) {
             pug_html = pug_html + "\u003Cdiv class=\"dev\"\u003E";
             pug_html = pug_html + "Yes\u003C\u002Fdiv\u003E";
@@ -1393,7 +1396,7 @@
             pug_html = pug_html + "\u003Cdiv class=\"bg img4\"\u003E\u003C\u002Fdiv\u003E";
             pug_html = pug_html + "\u003Cimg src=\"static\u002Fassets\u002Findex\u002Fdir\u002Fblue.png\"\u003E";
             pug_html = pug_html + "\u003Ca href=\"localhost:8080\u002Fstatic\u002Fassets\u002Fred.png\"\u003E\u003C\u002Fa\u003E\u003C\u002Fbody\u003E";
-            }.call(this,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"final" in locals_for_with?locals_for_with.final:typeof final!=="undefined"?final:undefined,"hash" in locals_for_with?locals_for_with.hash:typeof hash!=="undefined"?hash:undefined,"instance" in locals_for_with?locals_for_with.instance:typeof instance!=="undefined"?instance:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined,"some" in locals_for_with?locals_for_with.some:typeof some!=="undefined"?some:undefined,"test" in locals_for_with?locals_for_with.test:typeof test!=="undefined"?test:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
+            }.call(this,"custom_opt" in locals_for_with?locals_for_with.custom_opt:typeof custom_opt!=="undefined"?custom_opt:undefined,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"final" in locals_for_with?locals_for_with.final:typeof final!=="undefined"?final:undefined,"hash" in locals_for_with?locals_for_with.hash:typeof hash!=="undefined"?hash:undefined,"instance" in locals_for_with?locals_for_with.instance:typeof instance!=="undefined"?instance:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined,"some" in locals_for_with?locals_for_with.some:typeof some!=="undefined"?some:undefined,"test" in locals_for_with?locals_for_with.test:typeof test!=="undefined"?test:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
 
             console.log('answer', index);
             console.log('noop', noop3);
@@ -1408,6 +1411,7 @@
             console.log(dev$1);
             debug(1, 2, 3);
             console.log({ final: final$1, test: test$1, hash: hash$1, instance: instance$1, version: version$1 });
+            console.log(custom_opt$1);
 
             console.log('development');
 

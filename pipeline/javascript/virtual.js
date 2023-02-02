@@ -5,8 +5,26 @@ module.exports = function virtual (context)
 
 	var mod = context.exp_opts
 	.as_pairs()
-	.map(([ key, value ]) => `export const ${ key } = ${ JSON.stringify(value) }`)
+	.map(([ key, value ]) => `export const ${ key } = ${ repr(value) }`)
 	.join('\n')
 
 	return virtual({ '~metalpipe': mod })
+}
+
+
+function repr (value)
+{
+	try
+	{
+		return JSON.stringify(value)
+	}
+	catch (e) {}
+	try
+	{
+		return String(value)
+	}
+	catch (e)
+	{
+		return ''
+	}
 }

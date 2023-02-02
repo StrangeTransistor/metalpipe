@@ -16,8 +16,13 @@ module.exports = function ExportOpts (base, pkg)
 	function as_map ()
 	{
 		var version = pkg.version
+		if (base.vars)
+		{
+			var vars = evaluate(base.vars, base, pkg)
+		}
 		var opts =
 		{
+			...vars,
 			version,
 		}
 
@@ -42,4 +47,11 @@ module.exports = function ExportOpts (base, pkg)
 	}
 
 	return { as_map, as_pairs }
+}
+
+
+function evaluate (value, ...context)
+{
+	if (typeof value !== 'function') return value
+	return value(...context)
 }

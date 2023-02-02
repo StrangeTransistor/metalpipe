@@ -1350,7 +1350,7 @@
 	}
 
 	function pug(locals) {var pug_html = "", pug_interp;var pug_debug_filename, pug_debug_line;try {var pug_debug_sources = {};
-	;var locals_for_with = (locals || {});(function (dev, other) {
+	;var locals_for_with = (locals || {});(function (custom_opt, dev, other) {
 	pug_html = pug_html + "\u003C!DOCTYPE html\u003E";
 	pug_html = pug_html + "\u003Chead\u003E";
 	pug_html = pug_html + "\u003Cmeta charset=\"utf-8\"\u003E";
@@ -1363,6 +1363,8 @@
 	pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = other) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
 	pug_html = pug_html + "\u003Cdiv class=\"dev\"\u003E";
 	pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = dev) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
+	pug_html = pug_html + "\u003Cdiv class=\"custom\"\u003E";
+	pug_html = pug_html + (pugRuntime.escape(null == (pug_interp = custom_opt) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
 	if (dev) {
 	pug_html = pug_html + "\u003Cdiv class=\"dev\"\u003E";
 	pug_html = pug_html + "Yes\u003C\u002Fdiv\u003E";
@@ -1376,7 +1378,7 @@
 	pug_html = pug_html + "\u003Cdiv class=\"bg img4\"\u003E\u003C\u002Fdiv\u003E";
 	pug_html = pug_html + "\u003Cimg src=\"static\u002Fassets\u002Findex\u002Fdir\u002Fblue.png\"\u003E";
 	pug_html = pug_html + "\u003Ca href=\"localhost:8080\u002Fstatic\u002Fassets\u002Fred.png\"\u003E\u003C\u002Fa\u003E\u003C\u002Fbody\u003E";
-	}.call(this,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
+	}.call(this,"custom_opt" in locals_for_with?locals_for_with.custom_opt:typeof custom_opt!=="undefined"?custom_opt:undefined,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
 
 	const version = "0.0.0";
 	const final = false;

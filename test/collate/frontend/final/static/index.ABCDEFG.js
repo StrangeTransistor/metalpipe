@@ -83,6 +83,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   var json = {
     other: other$1
   };
+  var custom_opt$1 = "ABCDEFG_0.0.0";
   var version$1 = "0.0.0";
   var final$1 = true;
   var dev$1 = false;
@@ -1015,7 +1016,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     partials: {},
     subs: {}
   });
-  var pug_static = "<div>Some Static</div><div class=\"dev\">false</div><div class=\"test\">false</div><div class=\"final\">true</div><div class=\"hash\">ABCDEFG</div><div class=\"instance\"></div>";
+  var pug_static = "<div>Some Static</div><div class=\"dev\">false</div><div class=\"test\">false</div><div class=\"final\">true</div><div class=\"hash\">ABCDEFG</div><div class=\"instance\"></div><div class=\"custom\">ABCDEFG_0.0.0</div>";
   var pugRuntime = {};
   var require$$0 = {};
   var pug_has_own_property = Object.prototype.hasOwnProperty;
@@ -1275,7 +1276,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var pug_debug_sources = {};
       ;
       var locals_for_with = locals || {};
-      (function (dev, final, hash, instance, other, some, test) {
+      (function (custom_opt, dev, final, hash, instance, other, some, test) {
         pug_html = pug_html + "<!DOCTYPE html>";
         pug_html = pug_html + "<head>";
         pug_html = pug_html + "<meta charset=\"utf-8\">";
@@ -1298,6 +1299,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         pug_html = pug_html + pugRuntime.escape(null == (pug_interp = hash) ? "" : pug_interp) + "</div>";
         pug_html = pug_html + "<div class=\"instance\">";
         pug_html = pug_html + pugRuntime.escape(null == (pug_interp = instance) ? "" : pug_interp) + "</div>";
+        pug_html = pug_html + "<div class=\"custom\">";
+        pug_html = pug_html + pugRuntime.escape(null == (pug_interp = custom_opt) ? "" : pug_interp) + "</div>";
         if (dev) {
           pug_html = pug_html + "<div class=\"dev\">";
           pug_html = pug_html + "Yes</div>";
@@ -1311,7 +1314,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         pug_html = pug_html + "<div class=\"bg img4\"></div>";
         pug_html = pug_html + "<img src=\"static/assets/index/dir/blue.png\">";
         pug_html = pug_html + "<a href=\"localhost:8080/static/assets/red.png\"></a></body>";
-      }).call(this, "dev" in locals_for_with ? locals_for_with.dev : typeof dev !== "undefined" ? dev : undefined, "final" in locals_for_with ? locals_for_with.final : typeof final !== "undefined" ? final : undefined, "hash" in locals_for_with ? locals_for_with.hash : typeof hash !== "undefined" ? hash : undefined, "instance" in locals_for_with ? locals_for_with.instance : typeof instance !== "undefined" ? instance : undefined, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined, "some" in locals_for_with ? locals_for_with.some : typeof some !== "undefined" ? some : undefined, "test" in locals_for_with ? locals_for_with.test : typeof test !== "undefined" ? test : undefined);
+      }).call(this, "custom_opt" in locals_for_with ? locals_for_with.custom_opt : typeof custom_opt !== "undefined" ? custom_opt : undefined, "dev" in locals_for_with ? locals_for_with.dev : typeof dev !== "undefined" ? dev : undefined, "final" in locals_for_with ? locals_for_with.final : typeof final !== "undefined" ? final : undefined, "hash" in locals_for_with ? locals_for_with.hash : typeof hash !== "undefined" ? hash : undefined, "instance" in locals_for_with ? locals_for_with.instance : typeof instance !== "undefined" ? instance : undefined, "other" in locals_for_with ? locals_for_with.other : typeof other !== "undefined" ? other : undefined, "some" in locals_for_with ? locals_for_with.some : typeof some !== "undefined" ? some : undefined, "test" in locals_for_with ? locals_for_with.test : typeof test !== "undefined" ? test : undefined);
     } catch (err) {
       pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
     }
@@ -1331,6 +1334,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     instance: instance$1,
     version: version$1
   });
+  console.log(custom_opt$1);
   console.log('production');
   console.log(!!global$1.global);
   console.log(p);

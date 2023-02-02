@@ -106,6 +106,7 @@ body {
   final: true;
   hash: ABCDEFG;
   instance: null;
+  custom: ABCDEFG_0 0 0;
 }
 .other {
   color: Green;

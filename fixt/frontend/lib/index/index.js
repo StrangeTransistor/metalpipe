@@ -30,6 +30,9 @@ debug(1, 2, 3)
 import { final, test, hash, instance, version } from '~metalpipe'
 console.log({ final, test, hash, instance, version })
 
+import { custom_opt } from '~metalpipe'
+console.log(custom_opt)
+
 console.log(process.env.NODE_ENV)
 
 console.log(!! global.global)
