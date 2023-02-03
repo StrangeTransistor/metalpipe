@@ -9,6 +9,8 @@ console.log(answer)
 
 import mod from './src/mod'
 
+import './src/mod2'
+
 console.log(mod())
 
 function async_import ()

@@ -22,6 +22,8 @@ var mod$1 = /*#__PURE__*/Object.freeze({
 	default: mod
 });
 
+console.log('MOD2');
+
 const custom_opt = "HASH_0.0.0";
 const version = "0.0.0";
 const final = true;

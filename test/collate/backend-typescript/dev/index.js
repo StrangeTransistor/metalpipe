@@ -3,6 +3,7 @@
 var noop = require('noop3')
 var answer = require('the-answer')
 var mod = require('./src/mod')
+require('./src/mod2')
 
 function _interopDefaultCompat (e) { return e && typeof e === 'object' && 'default' in e ? e : { default: e } }
 
