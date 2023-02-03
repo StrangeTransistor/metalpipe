@@ -39,6 +39,19 @@ module.exports.default = require('metalpipe/prefab')('backend', require('gulp'),
 module.exports.default = require('metalpipe/prefab')('library', require('gulp'), {})
 ```
 
+## extended config
+```js
+module.exports.default = require('metalpipe/prefab')('backend', require('gulp'),
+{
+  ignore: [ 'cfg/**', ],
+  'bundle-deps': [ 'axios', ],
+  vars (opts, pkg)
+  {
+    var custom_var = 'custom'
+    return { custom_var, }
+  },
+})
+```
 
 ## pick release commands (`package.json`)
 ```json
@@ -79,7 +92,7 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 ## virtual
 ### frontend ← javascript/bundle
 * js: `~lib` root = `/lib/`
-* js: `~metalpipe` = { final, dev, test, hash, instance }
+* js: `~metalpipe` = { final, dev, test, hash, instance, custom_var }
 * js: labels `dev`, `test` and `final`
 * pug: global var { final, dev, test, hash, instance }
 * less: global var { final, dev, test, hash, instance }
@@ -94,8 +107,9 @@ module.exports.default = require('metalpipe/prefab')('library', require('gulp'),
 ### backend
 * `scripts:final`
 * ignore `web/` if it contains gulpfile
+* js: `~metalpipe` = { final, dev, test, hash, instance, custom_var }
 * js: labels `dev`, `test` and `final`
 
 
 ## license
-ISC. © Strider, 2022.
+ISC. © Strider, 2023.
