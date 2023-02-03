@@ -195,6 +195,9 @@
 		"@rollup/plugin-strip":
 			"3",
 
+		"rollup-plugin-rewrite":
+			"0.0.4",
+
 		"@rollup/plugin-terser":
 			"0.4",
 
@@ -217,9 +220,6 @@
 
 		"@babel/preset-env":
 			"7",
-
-		"babel-plugin-add-import-extension":
-			"^1.6.0",
 
 
 		"gulp-terser":

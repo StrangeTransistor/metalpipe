@@ -67,7 +67,6 @@ module.exports = function javascript (context)
 			.pipe(rollup(...config(context)))
 			.on('error', pr.error).on('end', pr.stable)
 			.pipe(js_ext())
-			.pipe(js_ext_import(context))
 			.pipe(dev(context))
 			// .pipe(final(context))
 			.pipe(dst($to()))
@@ -79,19 +78,6 @@ module.exports = function javascript (context)
 function glob_entry (exts)
 {
 	return exts.view_onto('**/*')
-}
-
-function js_ext_import (context)
-{
-	if (! context.opts.esm) return nothing()
-
-	var babel = require('gulp-babel')
-	var plugins = [ require('babel-plugin-add-import-extension') ]
-
-	return babel(
-	{
-		plugins,
-	})
 }
 
 
@@ -169,6 +155,7 @@ var resolve  = require('./node-resolve')
 var commonjs = require('./commonjs')
 var terser   = require('@rollup/plugin-terser')
 var analyze  = require('./analyze')
+var rewrite  = require('rollup-plugin-rewrite')
 
 function plugins (context)
 {
@@ -189,19 +176,54 @@ function plugins (context)
 			analyze(context),
 		]
 	}
-
+	if (context.opts.esm)
+	{
+		plugins = [ ...plugins, explicit_ext() ]
+	}
+	if (! context.opts.esm)
+	{
+		// plugins = [ ...plugins, dynamic_import() ]
+	}
 	if (context.opts.minify)
 	{
 		plugins = [ ...plugins, terser({ toplevel: true }) ]
 	}
 
-	if (! context.opts.esm)
-	{
-		// plugins = [ ...plugins, dynamic_import() ]
-	}
-
 	return plugins
 }
+
+function explicit_ext ()
+{
+	var find = /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/gm
+	var re_path = /(?:".*?")|(?:'.*?')/
+	var re_local = /^(\.\/)|(\.\.\/)/
+
+	function replace ([ importee ])
+	{
+		var
+		path = importee.match(re_path)
+		path = path[0]
+		path = path.slice(1, -1)
+
+		if (! path.match(re_local)) return importee
+
+		path = ext(path, '.js')
+		importee = importee.replace(re_path, `'${ path }'`)
+
+		return importee
+	}
+
+	return rewrite({ find, replace })
+}
+
+function dev (context)
+{
+	if (! context.opts.dev) return nothing()
+
+	var outlander = require('./outlander')
+	return outlander()
+}
+
 
 /*
 function dynamic_import ()
@@ -215,10 +237,20 @@ function dynamic_import ()
 }
 */
 
-function dev (context)
+/*
+function js_ext_import (context)
 {
-	if (! context.opts.dev) return nothing()
+	// "babel-plugin-add-import-extension":
+	// "^1.6.0",
 
-	var outlander = require('./outlander')
-	return outlander()
+	if (! context.opts.esm) return nothing()
+
+	var babel = require('gulp-babel')
+	var plugins = [ require('babel-plugin-add-import-extension') ]
+
+	return babel(
+	{
+		plugins,
+	})
 }
+*/
