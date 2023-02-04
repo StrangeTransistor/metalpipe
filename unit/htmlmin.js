@@ -9,7 +9,8 @@ module.exports = function htmlmin ()
 	return min(
 	{
 		collapseWhitespace: true,
-		collapseInlineTagWhitespace: true, // eslint-disable-line id-length
+		// conservativeCollapse: true,
+		// collapseInlineTagWhitespace: true, // eslint-disable-line id-length
 
 		removeComments: true,
 		removeEmptyAttributes: true,
