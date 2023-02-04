@@ -13,16 +13,14 @@ module.exports = function htmlmin ()
 		// collapseInlineTagWhitespace: true, // eslint-disable-line id-length
 
 		removeComments: true,
-		removeEmptyAttributes: true,
 
-		// maxLineLength: 80,
+		removeEmptyAttributes: true,
+		collapseBooleanAttributes: true,
+
 		quoteCharacter: "'",
 	})
 }
 
-
-//		collapseBooleanAttributes: true,
-//
 //		// ignoreCustomFragments: [ /\{\{.*?\}\}/, /\{%.*?%\}/ ],
 //		ignoreCustomFragments: [ /\{%.*?%\}/ ],
 //		// customAttrSurround: [ /\{\{.*?\}\}/, /\{%.*?%\}/ ],
