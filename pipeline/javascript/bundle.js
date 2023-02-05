@@ -164,8 +164,9 @@ function final (context)
 	if (get_true(context.opts, 'minify'))
 	{
 		var terser = require('gulp-terser')
+		var options = require('./terser')
 
-		minify = [ terser() ]
+		minify = [ terser(options) ]
 	}
 
 	var babel = require('gulp-babel')

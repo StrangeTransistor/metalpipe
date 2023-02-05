@@ -186,7 +186,9 @@ function plugins (context)
 	}
 	if (context.opts.minify)
 	{
-		plugins = [ ...plugins, terser({ toplevel: true }) ]
+		var options = require('./terser')
+
+		plugins = [ ...plugins, terser({ toplevel: true, ...options }) ]
 	}
 
 	return plugins

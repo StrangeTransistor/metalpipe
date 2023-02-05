@@ -1,1 +1,2 @@
-"use strict";!function(e){function n(){return e.createElement("div",{class:"foo"})}console.log(e.createElement((function(){return e.createElement("div",{class:"app"},e.createElement(n,null))}),null)),console.log("final")}(React);
+"use strict";!function(e){function n(){return e.createElement("div",{class:"foo"})}console.log(e.createElement((function(){return e.createElement("div",{class:"app"},e.createElement(n,null))
+}),null)),console.log("final")}(React);
