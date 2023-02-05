@@ -17,6 +17,8 @@ module.exports = function htmlmin ()
 		removeEmptyAttributes: true,
 		collapseBooleanAttributes: true,
 
+		maxLineLength: 192,
+
 		quoteCharacter: "'",
 	})
 }
