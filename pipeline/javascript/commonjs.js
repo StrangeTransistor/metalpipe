@@ -1,3 +1,6 @@
+/*
+ https://github.com/rollup/plugins/tree/master/packages/commonjs/
+*/
 
 module.exports = function commonjs ()
 {
@@ -6,5 +9,6 @@ module.exports = function commonjs ()
 	return commonjs(
 	{
 		requireReturnsDefault: 'preferred', /* auto */
+		defaultIsModuleExports: true, /* auto */
 	})
 }
