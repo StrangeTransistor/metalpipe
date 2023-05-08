@@ -81,6 +81,7 @@ function glob_entry (exts)
 }
 
 
+/* TODO: externalize */
 function config (context)
 {
 	if (! context.opts.bundle)
