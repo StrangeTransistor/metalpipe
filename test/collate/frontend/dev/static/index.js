@@ -733,7 +733,7 @@
             	    template = this.generate(this.parse(this.scan(text, options.delimiters), text, options), text, options);
             	    return this.cache[key] = template;
             	  };
-            	})(exports );
+            	})(exports ); 
             } (compiler));
 
             var template = {};
@@ -1076,7 +1076,7 @@
             	    return Object.prototype.toString.call(a) === '[object Array]';
             	  };
 
-            	})(exports );
+            	})(exports ); 
             } (template));
 
             /*
