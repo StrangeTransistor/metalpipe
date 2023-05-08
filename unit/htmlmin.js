@@ -15,7 +15,7 @@ module.exports = function htmlmin ()
 		removeComments: true,
 
 		removeEmptyAttributes: true,
-		collapseBooleanAttributes: true,
+		collapseBooleanAttributes: true, // eslint-disable-line id-length
 
 		maxLineLength: 192,
 
