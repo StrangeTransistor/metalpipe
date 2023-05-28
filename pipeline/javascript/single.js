@@ -81,73 +81,62 @@ function glob_entry (exts)
 }
 
 
-/* TODO: externalize */
 function config (context)
 {
-	if (! context.opts.bundle)
-	{
-		var external =
-		{
-			external (id)
-			{
-				return (id !== '~metalpipe')
-			}
-		}
-	}
-	else
-	{
-		var bundle_deps = context.opts['bundle-deps']
-		if (! bundle_deps)
-		{
-			var external = { external: /node_modules/ }
-		}
-		else
-		{
-			var external =
-			{
-				external (id /*, p_id, isResolved */)
-				{
-					for (var dep of bundle_deps)
-					{
-						dep = dep.replace('/', '.')
-						dep = ('node_modules.*' + dep)
-						var re = new RegExp(dep)
-
-						if (id.match(re)) return false
-						/* if (p_id && p_id.match(re)) return false */
-					}
-
-					return id.match(/node_modules/)
-				}
-			}
-		}
-	}
-
 	var input =
 	{
-		plugins: plugins(context),
-
-		...external,
-
+		plugins:  plugins(context),
+		external: external(context),
 		onwarn,
 	}
 
 	var format = 'cjs'
-	if (context.opts.esm)
-	{
-		format = 'esm'
-	}
+	if (context.opts.esm) { format = 'esm' }
 
 	var output =
 	{
 		format,
 		exports: 'auto',
-		// interop: 'auto',
+		/* interop: 'auto', */
 		interop: 'compat',
 	}
 
 	return [ input, output ]
 }
+
+function external (context)
+{
+	if (! context.opts.bundle)
+	{
+		return (id) => (id !== '~metalpipe')
+	}
+
+	var bundle_deps = context.opts['bundle-deps']
+	if (! bundle_deps)
+	{
+		return /node_modules/
+	}
+
+	return (id /*, p_id, isResolved */) =>
+	{
+		for (var dep of bundle_deps)
+		{
+			dep = dep.replace('/', '.')
+			dep = ('node_modules.*' + dep)
+			var re = new RegExp(dep)
+
+			if (id.match(re))
+			{
+				return false
+			}
+
+			/* if (p_id && p_id.match(re)) return false */
+		}
+
+		return id.match(/node_modules/)
+	}
+}
+
 
 var sucrase  = require('./sucrase')
 var virtual  = require('./virtual')
