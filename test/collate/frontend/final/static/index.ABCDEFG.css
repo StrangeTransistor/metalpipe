@@ -106,7 +106,9 @@ body {
   final: true;
   hash: ABCDEFG;
   instance: null;
-  custom: ABCDEFG_0 0 0;
+  custom: ABCDEFG_0.0.0;
+  custom-at: foo@barbarbar;
+  custom-dot: baz@baz;
 }
 .other {
   color: Green;

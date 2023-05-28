@@ -1,21 +1,40 @@
-// TODO: flat vars ; https://www.npmjs.com/package/flat
+/* eslint complexity: [ 1, 6 ] */
+
+var delimiter = '__'
 
 var gulp_less = require('gulp-less')
+var flat = require('flat')
 
 
 module.exports = function less ({ $from, exp_opts })
 {
 	var map = { ...exp_opts.as_map() }
+
 	for (var key in map)
 	{
 		var v = map[key]
+
+		if (Object(v) === v)
+		{
+			var vmap = flat(v, { delimiter })
+			for (var key_flat in vmap)
+			{
+				map[key + delimiter + key_flat] = vmap[key_flat]
+			}
+
+			delete map[key]
+		}
+	}
+
+	for (var key in map)
+	{
+		var v = map[key]
+
 		if (typeof v === 'string')
 		{
-			if (v.indexOf('@') !== -1)
-			{
-				v = `~'${ v }'`
-				map[key] = v
-			}
+			/* treat all strings literally */
+			v = `~'${ v }'`
+			map[key] = v
 		}
 	}
 
