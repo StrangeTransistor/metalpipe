@@ -43,21 +43,29 @@ module.exports = function Typings (context)
 	return function TYPINGS ()
 	{
 		// TODO: live typings
+
+		/*
 		//return live(context, from, function typings$ ()
 		//{
-			var ts = Typescript(
-			{
-				declaration: true,
-				emitDeclarationOnly: true
-			}
-			, Typescript.reporter.nullReporter())
-			//*/
-
-			var streams = src(from)
-			.pipe(ts)
-			.on('error', () => {})
-
-			return streams.dts.pipe(dst($to()))
 		//})
+		*/
+
+		var reporter = Typescript.reporter.nullReporter()
+		var ts = Typescript(
+		{
+			declaration: true,
+			emitDeclarationOnly: true
+		}
+		, reporter)
+
+		var streams = src(from)
+		.pipe(ts)
+		.on('error', e =>
+		{
+			if (e?.message?.match(/TypeScript: Compilation failed/)) { return }
+			throw e
+		})
+
+		return streams.dts.pipe(dst($to()))
 	}
 }
