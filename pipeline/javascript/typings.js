@@ -29,19 +29,20 @@ module.exports = function Typings (context)
 	]
 	var from = Fileset(glob, ignored).base($from).view()
 
-	var Typescript = require('gulp-typescript')
+	var GulpTs = require('gulp-typescript')
 
-	/*
-	var ts = Typescript.createProject($from('tsconfig.json'),
+	var project = GulpTs.createProject(
 	{
 		declaration: true,
+		/* noEmit: true, */
 		emitDeclarationOnly: true,
-		// typescript: require('typescript'),
+		/* typescript: require('typescript'), */
 	})
-	//*/
 
 	return function TYPINGS ()
 	{
+		var reporter = GulpTs.reporter.nullReporter()
+
 		// TODO: live typings
 
 		/*
@@ -50,22 +51,23 @@ module.exports = function Typings (context)
 		//})
 		*/
 
-		var reporter = Typescript.reporter.nullReporter()
-		var ts = Typescript(
+		/*
+		var ts = GulpTs(
 		{
 			declaration: true,
 			emitDeclarationOnly: true
 		}
 		, reporter)
+		*/
 
-		var streams = src(from)
-		.pipe(ts)
+		var { dts: d_ts } = src(from)
+		.pipe(project(reporter))
 		.on('error', e =>
 		{
 			if (e?.message?.match(/TypeScript: Compilation failed/)) { return }
 			throw e
 		})
 
-		return streams.dts.pipe(dst($to()))
+		return d_ts.pipe(dst($to()))
 	}
 }
