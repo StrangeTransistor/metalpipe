@@ -4,7 +4,7 @@ var { dest: dst } = require('gulp')
 var nothing = require('../../unit/nothing')
 
 var Fileset = require('../../util/Fileset')
-// var live = require('../../util/live')
+var live = require('../../util/live')
 
 
 module.exports = function Typings (context)
@@ -41,16 +41,6 @@ module.exports = function Typings (context)
 
 	return function TYPINGS ()
 	{
-		var reporter = GulpTs.reporter.nullReporter()
-
-		// TODO: live typings
-
-		/*
-		//return live(context, from, function typings$ ()
-		//{
-		//})
-		*/
-
 		/*
 		var ts = GulpTs(
 		{
@@ -60,14 +50,19 @@ module.exports = function Typings (context)
 		, reporter)
 		*/
 
-		var { dts: d_ts } = src(from)
-		.pipe(project(reporter))
-		.on('error', e =>
-		{
-			if (e?.message?.match(/TypeScript: Compilation failed/)) { return }
-			throw e
-		})
+		var reporter = GulpTs.reporter.nullReporter()
 
-		return d_ts.pipe(dst($to()))
+		return live(context, from, function typings$ ()
+		{
+			return src(from)
+			.pipe(project(reporter))
+			.on('error', e =>
+			{
+				if (e?.message?.match(/TypeScript: Compilation failed/)) { return }
+				throw e
+			})
+			.dts
+			.pipe(dst($to()))
+		})
 	}
 }
