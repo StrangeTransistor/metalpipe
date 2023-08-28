@@ -9,6 +9,6 @@ module.exports = function commonjs ()
 	return commonjs(
 	{
 		requireReturnsDefault: 'preferred', /* auto */
-		defaultIsModuleExports: true, /* auto */
+		defaultIsModuleExports: 'auto', /* ← not covered (true/auto) */
 	})
 }
