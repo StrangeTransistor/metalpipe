@@ -6,11 +6,18 @@ function _interopDefaultCompat (e) { return e && typeof e === 'object' && 'defau
 
 var answer__default = /*#__PURE__*/_interopDefaultCompat(answer)
 
+function getDefaultExportFromCjs (x)
+{
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x
+}
+
 var factory = () => () => {}
 
 const noopFactory = factory
 
 var noop3 = noopFactory()
+
+var noop = /*@__PURE__*/getDefaultExportFromCjs(noop3)
 
 function mod ()
 {
@@ -32,7 +39,7 @@ const test = true
 const hash = null
 const instance = 'dev'
 
-console.log(noop3())
+console.log(noop())
 
 console.log(answer__default.default)
 

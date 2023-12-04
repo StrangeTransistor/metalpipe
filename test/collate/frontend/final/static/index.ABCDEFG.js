@@ -12,11 +12,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
   var global$1 = typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};
   var index = 42;
+  function getDefaultExportFromCjs(x) {
+    return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+  }
   var factory = function factory() {
     return function () {};
   };
   var noopFactory = factory;
   var noop3 = noopFactory();
+  var noop$1 = /*@__PURE__*/getDefaultExportFromCjs(noop3);
 
   /**
    * taken from the last comment of https://gist.github.com/mkuklis/5294248
@@ -79,6 +83,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     answer: answer,
     mixed: mixed
   };
+  var cjs$1 = /*@__PURE__*/getDefaultExportFromCjs(cjs);
   var other$1 = "json";
   var json = {
     other: other$1
@@ -1006,7 +1011,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   Hogan.Template = template.Template;
   Hogan.template = Hogan.Template;
   var hogan = Hogan;
-  var mst = new hogan.Template({
+  var Hogan$1 = /*@__PURE__*/getDefaultExportFromCjs(hogan);
+  var mst = new Hogan$1.Template({
     code: function code(c, p, i) {
       var t = this;
       t.b(i = i || "");
@@ -1321,10 +1327,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return pug_html;
   }
   console.log('answer', index);
-  console.log('noop', noop3);
+  console.log('noop', noop$1);
   console.log('curry', curry);
   console.log(other$2);
-  console.log(cjs);
+  console.log(cjs$1);
   console.log(json);
   console.log(dev$1);
   console.log({

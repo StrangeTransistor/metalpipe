@@ -7,11 +7,17 @@
 
             var index = 42;
 
+            function getDefaultExportFromCjs (x) {
+            	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+            }
+
             var factory = () => () => {};
 
             const noopFactory = factory;
 
             var noop3 = noopFactory();
+
+            var noop$1 = /*@__PURE__*/getDefaultExportFromCjs(noop3);
 
             /**
              * taken from the last comment of https://gist.github.com/mkuklis/5294248
@@ -72,6 +78,8 @@
 
 
             var cjs = { cjs: 'yes', answer, mixed };
+
+            var cjs$1 = /*@__PURE__*/getDefaultExportFromCjs(cjs);
 
             var other$1 = "json";
             var json = {
@@ -1101,7 +1109,9 @@
             Hogan.template = Hogan.Template;
             var hogan = Hogan;
 
-            var mst = new hogan.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b(t.v(t.f("data",c,p,0)));return t.fl(); },partials: {}, subs: {  }});
+            var Hogan$1 = /*@__PURE__*/getDefaultExportFromCjs(hogan);
+
+            var mst = new Hogan$1.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b(t.v(t.f("data",c,p,0)));return t.fl(); },partials: {}, subs: {  }});
 
             var pug_static = "<div>Some Static</div><div class=\"dev\">true</div><div class=\"test\">true</div><div class=\"final\">false</div><div class=\"hash\"></div><div class=\"instance\"></div><div class=\"custom\">HASH_0.0.0</div>";
 
@@ -1399,10 +1409,10 @@
             }.call(this,"custom_opt" in locals_for_with?locals_for_with.custom_opt:typeof custom_opt!=="undefined"?custom_opt:undefined,"dev" in locals_for_with?locals_for_with.dev:typeof dev!=="undefined"?dev:undefined,"final" in locals_for_with?locals_for_with.final:typeof final!=="undefined"?final:undefined,"hash" in locals_for_with?locals_for_with.hash:typeof hash!=="undefined"?hash:undefined,"instance" in locals_for_with?locals_for_with.instance:typeof instance!=="undefined"?instance:undefined,"other" in locals_for_with?locals_for_with.other:typeof other!=="undefined"?other:undefined,"some" in locals_for_with?locals_for_with.some:typeof some!=="undefined"?some:undefined,"test" in locals_for_with?locals_for_with.test:typeof test!=="undefined"?test:undefined));} catch (err) {pugRuntime.rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);}return pug_html;}
 
             console.log('answer', index);
-            console.log('noop', noop3);
+            console.log('noop', noop$1);
             console.log('curry', curry);
             console.log(other$2);
-            console.log(cjs);
+            console.log(cjs$1);
             console.log(json);
             function debug (...args)
             {

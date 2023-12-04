@@ -6,6 +6,10 @@
 		return 'Other TypeScript'
 	}
 
+	function getDefaultExportFromCjs (x) {
+		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+	}
+
 	var index = 42;
 
 	var foo1 = 'foo1';
@@ -15,6 +19,8 @@
 
 
 	var cjs = { cjs: 'yes', answer, mixed };
+
+	var cjs$1 = /*@__PURE__*/getDefaultExportFromCjs(cjs);
 
 	var other$1 = "json";
 	var json = {
@@ -26,6 +32,8 @@
 	const noopFactory = factory;
 
 	var noop3 = noopFactory();
+
+	var noop$1 = /*@__PURE__*/getDefaultExportFromCjs(noop3);
 
 	/**
 	 * taken from the last comment of https://gist.github.com/mkuklis/5294248
@@ -1093,7 +1101,9 @@
 	Hogan.template = Hogan.Template;
 	var hogan = Hogan;
 
-	var mst = new hogan.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b(t.v(t.f("data",c,p,0)));return t.fl(); },partials: {}, subs: {  }});
+	var Hogan$1 = /*@__PURE__*/getDefaultExportFromCjs(hogan);
+
+	var mst = new Hogan$1.Template({code: function (c,p,i) { var t=this;t.b(i=i||"");t.b(t.v(t.f("data",c,p,0)));return t.fl(); },partials: {}, subs: {  }});
 
 	var pug_static = "<div>Some Static</div>";
 
@@ -1390,10 +1400,10 @@
 	var foo = { yes: 'yes' };
 	console.log(foo);
 	console.log('other', other$2);
-	console.log('cjs', cjs);
+	console.log('cjs', cjs$1);
 	console.log('json', json);
 	console.log('answer', index);
-	console.log('noop', noop3);
+	console.log('noop', noop$1);
 	console.log('curry', curry);
 
 
