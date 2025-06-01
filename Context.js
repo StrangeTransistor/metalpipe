@@ -27,7 +27,10 @@ module.exports = function Context (options)
 
 	opts.final = (!! opts.final)
 	opts.dev   = (!  opts.final)
-	opts.test  = fallback(opts, 'test', () => opts.dev)
+	opts.test  = fallback(opts, 'test', () =>
+	{
+		return fallback(opts, 'testing', () => opts.dev)
+	})
 
 	opts.clean = fallback(opts, 'clean', () => opts.final)
 
