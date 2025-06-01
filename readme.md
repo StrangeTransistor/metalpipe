@@ -112,4 +112,4 @@ module.exports.default = require('metalpipe/prefab')('backend', require('gulp'),
 
 
 ## license
-ISC. © Strider, 2023.
+ISC. © Strider, 2025.
